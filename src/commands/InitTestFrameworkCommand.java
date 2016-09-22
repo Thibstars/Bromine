@@ -1,11 +1,10 @@
 package commands;
 
-import navigation.Navigator;
-
 import java.io.File;
 
 /**
- * Created by Thibault on 30/08/2016.
+ * Class responsible for initialization of the test framework.
+ * @author Thibault Helsmoortel
  */
 public class InitTestFrameworkCommand implements Command {
 
@@ -30,8 +29,6 @@ public class InitTestFrameworkCommand implements Command {
                 System.setProperty("webdriver.chrome.driver", chromeDriverFile.getAbsolutePath());
                 System.setProperty("webdriver.gecko.driver", geckoDriverFile.getAbsolutePath());
             }
-
-            new Navigator();
 
             isInitialised = true;
         }

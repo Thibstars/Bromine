@@ -3,19 +3,19 @@ package pages;
 import java.net.MalformedURLException;
 
 /**
- * Created by Thibault on 29/08/2016.
+ * Representation of all the registered pages.
+ * @author Thibault Helsmoortel
  */
 public abstract class Pages {
 
+    //TODO implement a way of registering pages
+
     /*
+    //Example use
     public static HomePage homePage;
 
     static {
-        try {
-            homePage = new HomePage();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        homePage = new HomePage();
     }
     */
 }

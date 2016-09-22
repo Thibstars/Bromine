@@ -3,10 +3,12 @@ package commands.elements;
 import commands.Command;
 import navigation.Navigator;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- * Created by Thibault on 30/08/2016.
+ * Command for finding WebElements by link text.
+ * @author Thibault Helsmoortel
  */
 public class ElementFindByLinkTextCommand implements Command {
 
@@ -26,7 +28,7 @@ public class ElementFindByLinkTextCommand implements Command {
 
     @Override
     public Object execute() {
-        //TODO replace with Navigator wait method
-        return Navigator.getWait().until(ExpectedConditions.presenceOfElementLocated(By.linkText(linkText)));
+        Navigator.getInstance().explicitlyWaitForElementPresent(By.linkText(linkText));
+        return Navigator.getInstance().getDriver().findElement(By.linkText(linkText));
     }
 }

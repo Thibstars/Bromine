@@ -1,14 +1,12 @@
 package commands.elements;
 
 import commands.Command;
+import navigation.Navigator;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import static navigation.Navigator.getWait;
 
 /**
- * Created by Thibault on 29/08/2016.
+ * Command for finding WebElements by id.
+ * @author Thibault Helsmoortel
  */
 public class ElementFindByIdCommand implements Command {
 
@@ -28,12 +26,7 @@ public class ElementFindByIdCommand implements Command {
 
     @Override
     public Object execute() {
-        //Wait till the element is visible
-        //WebElement element = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
-
-        //Wait till the element is present
-        //TODO replace with Navigator wait method
-        WebElement element = getWait().until(ExpectedConditions.presenceOfElementLocated(By.id(id)));
-        return element;
+        Navigator.getInstance().explicitlyWaitForElementPresent(By.id(id));
+        return Navigator.getInstance().getDriver().findElement(By.id(id));
     }
 }

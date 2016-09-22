@@ -13,7 +13,8 @@ import java.util.stream.Collectors;
 import static navigation.Navigator.*;
 
 /**
- * Created by Thibault on 29/08/2016.
+ * Command for finding WebElements by class.
+ * @author Thibault Helsmoortel
  */
 public class ElementsFindByClassCommand implements Command {
 
@@ -34,9 +35,7 @@ public class ElementsFindByClassCommand implements Command {
     @Override
     public Object execute() {
         List<WebElement> elements = new ArrayList<WebElement>();
-        for (WebElement element : Navigator.getDriver().findElements(new By.ByClassName(clazz))) {
-            elements.add(element);
-        }
+        elements.addAll(Navigator.getInstance().getDriver().findElements(new By.ByClassName(clazz)));
         return elements;
     }
 }

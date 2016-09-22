@@ -2,33 +2,68 @@ package pages;
 
 import navigation.Navigator;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by Thibault on 29/08/2016.
+ * The abstract representation of a page.
+ * @author Thibault Helsmoortel
  */
 public abstract class Page {
 
-    protected  URL url;
+    protected  String url;
 
-    public Page(URL url) {
+    /**
+     * Class constructor specifying the url (example: '/page').
+     * @param url the url of the page
+     */
+    public Page(String url) {
         this.url = url;
     }
 
-    public URL getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(URL pageUrl) {
+    public void setUrl(String pageUrl) {
         url = pageUrl;
     }
 
-    public void goTo() {
-        Navigator.navigateTo(url);
+    /**
+     * Returns the base of this page's url, in String form.
+     * @return the base of this page's url
+     */
+    protected String getBaseURL() {
+        String base = "";
+        try {
+            URL navURL = new URL(Navigator.getInstance().getUrl());
+            String path = navURL.getFile().substring(0, navURL.getFile().lastIndexOf('/'));
+            base = navURL.getProtocol() + "://" + navURL.getHost() + path;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return base;
     }
 
+    /**
+     * Navigates the WebDriver to this page.
+     */
+    public void goTo() {
+        String base = getBaseURL();
+        try {
+            Navigator.getInstance().navigateTo(new URL(base + url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Returns true if the WebDriver is currently located on the page, else if otherwise.
+     * @return true if the WebDriver is currently located on the page, else if otherwise
+     */
     public  boolean isAt() {
-        return url != null && Navigator.getUrl().equals(url.toString());
+        String base = getBaseURL();
+        return url != null && Navigator.getInstance().getUrl().equals(base + url);
     }
 
 }

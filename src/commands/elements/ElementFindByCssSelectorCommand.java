@@ -6,7 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- * Created by Thibault on 30/08/2016.
+ * Command for finding WebElements by cssSelector.
+ * @author Thibault Helsmoortel
  */
 public class ElementFindByCssSelectorCommand implements Command {
 
@@ -26,7 +27,7 @@ public class ElementFindByCssSelectorCommand implements Command {
 
     @Override
     public Object execute() {
-        //TODO replace with Navigator wait method
-        return Navigator.getWait().until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(selector)));
+        Navigator.getInstance().explicitlyWaitForElementPresent(By.cssSelector(selector));
+        return Navigator.getInstance().getDriver().findElement(By.cssSelector(selector));
     }
 }
