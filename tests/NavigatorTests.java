@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class NavigatorTests {
 
     @Rule
-    ScreenShotOnFailure failure = new ScreenShotOnFailure();
+    public ScreenShotOnFailure failure = new ScreenShotOnFailure();
 
     @Test
     public void shouldOpenGoogle() {

@@ -46,6 +46,21 @@ public abstract class Page {
     }
 
     /**
+     * Returns the complete url of the page.
+     * @return the complete url of the page
+     */
+    public URL getCompleteURL() {
+        URL url = null;
+        try {
+            url = new URL(getBaseURL() + this.url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
+
+    /**
      * Navigates the WebDriver to this page.
      */
     public void goTo() {
@@ -63,7 +78,7 @@ public abstract class Page {
      */
     public  boolean isAt() {
         String base = getBaseURL();
-        return url != null && Navigator.getInstance().getUrl().equals(base + url);
+        return url != null && Navigator.getInstance().getUrl().equals(getCompleteURL().toString());
     }
 
 }
