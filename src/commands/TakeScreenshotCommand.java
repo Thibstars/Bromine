@@ -34,7 +34,7 @@ public class TakeScreenshotCommand implements Command {
     public Object execute() {
         File scrFile = ((TakesScreenshot) Navigator.getInstance().getDriver()).getScreenshotAs(OutputType.FILE);
         String path = "./screenshots/";
-        String fileName = null;
+        String fileName;
         fileName = name + "_" + getTimeStampValue() + ".png";
         File targetFile = new File(path + fileName);
         try {
