@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
+import pages.Page;
 import sut.Environment;
 
 import java.net.URL;
@@ -52,6 +53,14 @@ public final class Navigator {
      */
     public void navigateTo(URL url) {
         driver.navigate().to(url);
+    }
+
+    /**
+     * Navigates to a specified page.
+     * @param page the page to navigate to
+     */
+    public void navigateTo(Page page) {
+        driver.navigate().to(page.getCompleteURL());
     }
 
     /**
