@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import pages.Page;
+import stats.StatsAction;
+import stats.StatsTracker;
 import sut.Environment;
 
 import java.net.URL;
@@ -45,6 +47,11 @@ public final class Navigator {
 
     public void setWait(Wait<WebDriver> wait) {
         this.wait = wait;
+    }
+
+    public void click(WebElement element) {
+        element.click();
+        StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
     }
 
     /**
