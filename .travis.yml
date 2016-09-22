@@ -4,8 +4,9 @@ jdk:
   - oraclejdk8
   - openjdk7
 
-script:
-    - ant all
+#script:
+#    - ant all
 
-before_install:
-  - cd java
+
+#before_install:
+# - cd java
