@@ -20,19 +20,19 @@ public class PagesTests {
     @BeforeClass
     public static void init() {
         new InitTestFrameworkCommand().execute();
-        NavigatorFactory.createNavigator(new Environment("Wikipedia", "https://en.wikipedia.org/wiki/Main_Page"));
+        NavigatorFactory.createNavigator(new Environment("Website", "http://thibaulthelsmoortel.be"));
     }
 
     @Test
     public void shouldRegisterPage() {
-        Page homePage = new Page("/wiki/Portal:Contents") {};
+        Page homePage = new Page("/repos") {};
         Pages.registerPage(homePage);
         assertFalse(Pages.isEmpty());
     }
 
     @Test
     public void shouldDeregisterPage() {
-        Page homePage = new Page("/wiki/Portal:Contents") {};
+        Page homePage = new Page("/repos") {};
         Pages.registerPage(homePage);
         Pages.deregisterPage(homePage);
         assertTrue(Pages.isEmpty());
