@@ -38,6 +38,14 @@ public final class StatsTracker {
     }
 
     /**
+     * Returns an immutable list of the currently registered plugins.
+     * @return a list of the currently registered plugins
+     */
+    public static List<StatsPlugin> getPlugins() {
+        return new ArrayList<>(plugins);
+    }
+
+    /**
      * Means to track a given action in all registered plugins.
      * @param action the action to track in all registered plugins
      */

@@ -1,6 +1,5 @@
 package pages;
 
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,6 +28,13 @@ public final class Pages {
     public static void deregisterPage(Page page) {
         if (!pageList.contains(page)) throw new IllegalArgumentException("Page was not previously registered.");
         else pageList.remove(page);
+    }
+
+    /**
+     * Deregisters all pages from the list.
+     */
+    public static void deregisterAll() {
+        for (Page page : pageList) deregisterPage(page);
     }
 
     /**
