@@ -4,7 +4,6 @@ import navigation.Navigator;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.log4testng.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
