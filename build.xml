@@ -45,7 +45,7 @@
             </classpath>
             <formatter type="brief" usefile="false"/>
             <batchtest>
-                <fileset dir="${dir.test.src}" includes="**/*Test*.java"/>
+                <fileset dir="${dir.src}" includes="**/*Test*.java"/>
             </batchtest>
         </junit>
     </target>
