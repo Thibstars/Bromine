@@ -1,15 +1,12 @@
 import commands.InitTestFrameworkCommand;
-import navigation.Navigator;
 import navigation.NavigatorFactory;
 import org.junit.Rule;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.Page;
 import rules.ScreenShotOnFailure;
 import sut.Environment;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import static org.junit.Assert.assertTrue;
 
@@ -21,18 +18,17 @@ public class NavigatorTests {
     @BeforeClass
     public static void init() {
         new InitTestFrameworkCommand().execute();
-        NavigatorFactory.createNavigator(new Environment("Google", "https://google.com"));
+        NavigatorFactory.createNavigator(new Environment("Website", "http://thibaulthelsmoortel.be"));
     }
 
     @Test
-    public void shouldOpenGoogle() {
-        try {
-            Navigator.getInstance().navigateTo(new URL("https://google.com"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+    public void shouldBeOrGotoHomePage() {
+        Page homePage = new Page("/repos") {
+        };
 
-        assertTrue(Navigator.getInstance().getUrl().startsWith("https://www.google."));
+        if (!homePage.isAt()) homePage.goTo();
+
+        assertTrue(homePage.isAt());
     }
 
     @AfterClass
