@@ -17,15 +17,23 @@ public class InitTestFrameworkCommand implements Command {
             File geckoDriverFile;
 
             if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-                chromeDriverFile = new File(InitTestFrameworkCommand.class.getClassLoader().getResource("chromedriver.exe").getFile());
-                geckoDriverFile = new File(InitTestFrameworkCommand.class.getClassLoader().getResource("geckodriver.exe").getFile());
+                chromeDriverFile = new File(InitTestFrameworkCommand.class.getClassLoader().getResource("win/chromedriver.exe").getFile());
+                geckoDriverFile = new File(InitTestFrameworkCommand.class.getClassLoader().getResource("win/geckodriver.exe").getFile());
 
                 System.setProperty("webdriver.chrome.driver", chromeDriverFile.getAbsolutePath());
                 System.setProperty("webdriver.gecko.driver", geckoDriverFile.getAbsolutePath());
             }
             else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-                chromeDriverFile = new File(InitTestFrameworkCommand.class.getClassLoader().getResource("chromedriver").getFile());
-                geckoDriverFile = new File(InitTestFrameworkCommand.class.getClassLoader().getResource("geckodriver").getFile());
+                chromeDriverFile = new File(InitTestFrameworkCommand.class.getClassLoader().getResource("mac/chromedriver").getFile());
+                geckoDriverFile = new File(InitTestFrameworkCommand.class.getClassLoader().getResource("mac/geckodriver").getFile());
+
+                System.setProperty("webdriver.chrome.driver", chromeDriverFile.getAbsolutePath());
+                System.setProperty("webdriver.gecko.driver", geckoDriverFile.getAbsolutePath());
+            }
+            else {
+                chromeDriverFile = new File(InitTestFrameworkCommand.class.getClassLoader().getResource("linux/chromedriver").getFile());
+                geckoDriverFile = new File(InitTestFrameworkCommand.class.getClassLoader().getResource("linux/geckodriver").getFile());
+
                 System.setProperty("webdriver.chrome.driver", chromeDriverFile.getAbsolutePath());
                 System.setProperty("webdriver.gecko.driver", geckoDriverFile.getAbsolutePath());
             }
