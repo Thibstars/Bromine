@@ -3,6 +3,7 @@ import navigation.Navigator;
 import navigation.NavigatorFactory;
 import org.junit.Rule;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import rules.ScreenShotOnFailure;
 import sut.Environment;
@@ -17,11 +18,14 @@ public class NavigatorTests {
     @Rule
     public ScreenShotOnFailure failure = new ScreenShotOnFailure();
 
-    @Test
-    public void shouldOpenGoogle() {
+    @BeforeClass
+    public static void init() {
         new InitTestFrameworkCommand().execute();
         NavigatorFactory.createNavigator(new Environment("Google", "https://google.com"));
+    }
 
+    @Test
+    public void shouldOpenGoogle() {
         try {
             Navigator.getInstance().navigateTo(new URL("https://google.com"));
         } catch (MalformedURLException e) {
