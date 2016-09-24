@@ -25,6 +25,11 @@
         <javac srcdir="${dir.src}" destdir="${dir.build}" includeantruntime="false">
             <classpath refid="classpath.base"/>
         </javac>
+        <!-- Add resources -->
+        <mkdir dir="${dir.build}/resources"/>
+        <copy todir="${dir.build}/resources">
+            <fileset dir="${basedir}/resources" />
+        </copy>
     </target>
 
     <target name="build" depends="compile">
