@@ -1,8 +1,8 @@
 package pages;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Representation of all the registered pages.
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public final class Pages {
 
-    private static final List<Page> pageList = new ArrayList<>();
+    private static final List<Page> pageList = new CopyOnWriteArrayList<>();
 
     /**
      * Registers a page in the list.
@@ -34,7 +34,20 @@ public final class Pages {
      * Deregisters all pages from the list.
      */
     public static void deregisterAll() {
-        for (Page page : pageList) deregisterPage(page);
+        if (!pageList.isEmpty()) for (Page page : pageList) deregisterPage(page);
+    }
+
+    /**
+     * Searches for a page and returns it back if it was found.
+     * @param page the page to find in the list
+     * @return the page if found
+     */
+    public static Page getPage(Page page) {
+        Page res = null;
+        for (Page p : pageList) {
+            if (p.equals(page)) res = p;
+        }
+        return res;
     }
 
     /**
