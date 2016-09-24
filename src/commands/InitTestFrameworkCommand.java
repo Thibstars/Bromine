@@ -40,6 +40,6 @@ public class InitTestFrameworkCommand implements Command {
 
             isInitialised = true;
         }
-        return null;
+        return isInitialised;
     }
 }
