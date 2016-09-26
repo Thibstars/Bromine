@@ -59,6 +59,24 @@ public final class Navigator {
     }
 
     /**
+     * Clicks on a specified element using ng-click (Angular).
+     * Using this method in stead of the default one has a slight
+     * performance impact compared to the default click method.
+     * @param element the element to click on
+     */
+    public void NGClick(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        //Implicit wait is needed because Selenium doesn't know how angular loads and works
+        implicitlyWait(1);
+
+        explicitlyWaitForElementClickable(element);
+        actions.moveToElement(element).click().perform();
+        StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
+    }
+
+    /**
      * Double clicks on a specified element.
      * @param element the element to double click
      */
