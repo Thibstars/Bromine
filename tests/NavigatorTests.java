@@ -8,10 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.Page;
 import pages.Pages;
-import stats.ClickStats;
-import stats.StatsPlugin;
-import stats.StatsTracker;
-import stats.StatsTrackerFactory;
+import stats.*;
 import sut.Environment;
 
 import static org.junit.Assert.assertEquals;
@@ -59,9 +56,9 @@ public class NavigatorTests {
 
         Page homePage = Pages.getPage("/index.html");
         assertTrue(homePage.isAt());
-        ClickStats clicks = null;
+        LMBClickStats clicks = null;
         for (StatsPlugin plugin : StatsTracker.getPlugins()) {
-            if (plugin instanceof ClickStats) clicks = (ClickStats) plugin;
+            if (plugin instanceof LMBClickStats && !(plugin instanceof LMBDoubleClickStats)) clicks = (LMBClickStats) plugin;
         }
         assertEquals(1, clicks.getClicks());
     }

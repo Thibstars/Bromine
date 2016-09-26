@@ -49,9 +49,23 @@ public final class Navigator {
         this.wait = wait;
     }
 
+    /**
+     * Clicks on a specified element.
+     * @param element the element to click on
+     */
     public void click(WebElement element) {
         element.click();
         StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
+    }
+
+    /**
+     * Double clicks on a specified element.
+     * @param element the element to double click
+     */
+    public void doubleClick(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.doubleClick(element).perform();
+        StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_DOUBLE_CLICK);
     }
 
     /**

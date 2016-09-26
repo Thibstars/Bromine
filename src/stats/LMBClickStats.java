@@ -4,12 +4,15 @@ package stats;
  * StatsPlugin tracking only LMB clicks.
  * @author Thibault Helsmoortel
  */
-public class ClickStats implements StatsPlugin {
+public class LMBClickStats implements StatsPlugin {
 
-    private boolean trackingEnabled;
-    private int clicks;
+    protected boolean trackingEnabled;
+    protected int clicks;
 
-    public ClickStats() {
+    /**
+     * Class constructor. Initializes state.
+     */
+    public LMBClickStats() {
         this.trackingEnabled = false;
         clicks = 0;
     }
