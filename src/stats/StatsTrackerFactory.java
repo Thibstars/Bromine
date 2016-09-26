@@ -16,6 +16,7 @@ public final class StatsTrackerFactory {
         //Register default plugins
         statsTracker.registerPlugin(new LMBClickStats());
         statsTracker.registerPlugin(new LMBDoubleClickStats());
+        statsTracker.registerPlugin(new SendKeyStats());
 
         //Enable tracking on all the plugins straight away
         statsTracker.enableTracking();

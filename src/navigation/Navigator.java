@@ -87,6 +87,27 @@ public final class Navigator {
     }
 
     /**
+     * Sends keys on a specified element.
+     * @param element the element to send keys to
+     * @param charSequence the keys to send
+     */
+    public void sendKeys(WebElement element, String charSequence) {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(element, charSequence).perform();
+        StatsTracker.getInstance().track(StatsAction.KEYBOARD_TYPE);
+    }
+
+    /**
+     * Sends specified keys.
+     * @param charSequence the keys to send
+     */
+    public void sendKeys(String charSequence) {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(charSequence).perform();
+        StatsTracker.getInstance().track(StatsAction.KEYBOARD_TYPE);
+    }
+
+    /**
      * Navigates to a specified url.
      * @param url the url to navigate to
      */
