@@ -36,6 +36,6 @@ public class InitFrameworkCommand implements Command {
             isInitialised = true;
         }
 
-        return isInitialised;
+        return null;
     }
 }
