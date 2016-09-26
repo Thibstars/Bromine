@@ -1,6 +1,6 @@
 package navigation;
 
-import commands.InitTestFrameworkCommand;
+import commands.InitFrameworkCommand;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -75,7 +75,7 @@ public final class NavigatorFactory {
         //Destroy previous navigator
         destroyNavigator();
 
-        new InitTestFrameworkCommand().execute();
+        new InitFrameworkCommand().execute();
         Navigator navigator = Navigator.getInstance();
         navigator.setDriver(new ChromeDriver(chromeOptions));
         navigator.setWait(new WebDriverWait(navigator.getDriver(), 30));
@@ -99,7 +99,7 @@ public final class NavigatorFactory {
         //Destroy previous navigator
         destroyNavigator();
 
-        new InitTestFrameworkCommand().execute();
+        new InitFrameworkCommand().execute();
         Navigator navigator = Navigator.getInstance();
         navigator.setDriver(new FirefoxDriver());
         navigator.setWait(new WebDriverWait(navigator.getDriver(), 30));

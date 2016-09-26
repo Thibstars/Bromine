@@ -1,4 +1,4 @@
-import commands.InitTestFrameworkCommand;
+import commands.InitFrameworkCommand;
 import navigation.Navigator;
 import navigation.NavigatorFactory;
 import org.junit.AfterClass;
@@ -6,7 +6,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebElement;
 import pages.Page;
 import pages.Pages;
 import pages.Section;
@@ -14,9 +13,7 @@ import stats.StatsTrackerFactory;
 import sut.Environment;
 
 import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class PagesTests {
 
@@ -27,7 +24,7 @@ public class PagesTests {
 
     @BeforeClass
     public static void init() {
-        new InitTestFrameworkCommand().execute();
+        new InitFrameworkCommand().execute();
         NavigatorFactory.createNavigator(new Environment("Website", "http://thibaulthelsmoortel.be"));
         Pages.deregisterAll();
 
