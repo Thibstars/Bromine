@@ -1,4 +1,4 @@
-import commands.InitTestFrameworkCommand;
+import commands.InitFrameworkCommand;
 import navigation.Navigator;
 import navigation.NavigatorFactory;
 import org.junit.AfterClass;
@@ -23,7 +23,7 @@ public class NavigatorTests {
 
     @BeforeClass
     public static void init() {
-        new InitTestFrameworkCommand().execute();
+        new InitFrameworkCommand().execute();
         NavigatorFactory.createNavigator(new Environment("Website", "http://thibaulthelsmoortel.be"));
         Pages.registerPage(new Page("/index.html") {
         });
