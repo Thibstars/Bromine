@@ -7,8 +7,19 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+/**
+ * Utility class for package operations.
+ * @author Thibault Helsmoortel
+ */
 public final class PackageUtil {
 
+    /**
+     * Returns an array of classes inside a given package.
+     * @param packageName the package of which to retrieve the classes from
+     * @return the classes inside the given package
+     * @throws ClassNotFoundException when a class was not found
+     * @throws IOException when a file could not be found
+     */
     public static Class[] getClasses(String packageName) throws ClassNotFoundException, IOException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         assert classLoader != null;
@@ -26,6 +37,13 @@ public final class PackageUtil {
         return classes.toArray(new Class[classes.size()]);
     }
 
+    /**
+     * Returns a list of classes found in the directory of a package.
+     * @param directory the directory of a package
+     * @param packageName the package
+     * @return the list of classes found in a package
+     * @throws ClassNotFoundException
+     */
     private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
         List<Class> classes = new ArrayList<>();
         if (!directory.exists()) {
