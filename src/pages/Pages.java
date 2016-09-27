@@ -1,5 +1,8 @@
 package pages;
 
+import org.apache.log4j.Logger;
+import util.PackageUtil;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -10,6 +13,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public final class Pages {
 
+    private static final Logger LOGGER = Logger.getLogger(Page.class);
+
     private static final List<Page> pageList = new CopyOnWriteArrayList<>();
 
     /**
@@ -19,6 +24,33 @@ public final class Pages {
     public static void registerPage(Page page) {
         if (pageList.contains(page)) throw new IllegalArgumentException("Page was already registered.");
         else pageList.add(page);
+    }
+
+    /**
+     * Register all pages from a given list.
+     * @param pages the list of pages to register
+     */
+    public static void registerAllPages(List<Page> pages) {
+        LOGGER.debug("Registering all pages...");
+        pages.forEach(Pages::registerPage);
+    }
+
+    /**
+     * The package from which to register all pages from.
+     * Note that this method instantiates all pages with their default constructors before registering them.
+     * @param pack the package of the pages to register
+     */
+    public static void registerAllPagesFromPackage(String pack) {
+        LOGGER.debug("Registering all pages...");
+        try {
+            for (Class clazz : PackageUtil.getClasses("pages")) {
+                if (clazz.getClass().isInstance(Page.class))
+                    LOGGER.debug("Registering: " + clazz.getSimpleName());
+                registerPage((Page) clazz.newInstance());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
