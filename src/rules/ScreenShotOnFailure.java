@@ -5,14 +5,23 @@ import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
-import java.io.IOException;
-
 /**
  * Rule responsible for taking a screenshot right before test failure.
  * @author Thibault Helsmoortel
  */
 public class ScreenShotOnFailure implements MethodRule {
 
+    private String packagePath;
+
+    /**
+     * Class constructor specifying the screenshot destination package path.
+     * @param packagePath the screenshot destination package path
+     */
+    public ScreenShotOnFailure(String packagePath) {
+        this.packagePath = packagePath;
+    }
+
+    @Override
     public Statement apply(final Statement statement, final FrameworkMethod frameworkMethod, final Object o) {
         return new Statement() {
             @Override
@@ -32,7 +41,7 @@ public class ScreenShotOnFailure implements MethodRule {
              * @param fileName the name of the screenshot to take
              */
             public void captureScreenShot(String fileName) {
-                new TakeScreenshotCommand(fileName).execute();
+                new TakeScreenshotCommand(packagePath, fileName).execute();
             }
         };
     }
