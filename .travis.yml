@@ -7,8 +7,7 @@ os:
 - linux
 #- osx
 
-#Only build for now, tests will only work when resources are properly added to travis
-script: ant build
+script: ant test
 
 #script: ant test
 
