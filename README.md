@@ -14,4 +14,4 @@ Selenium tools for Java. Offers means to simplify the setup of a Selenium projec
 - Commons Lang 2.1
 - Log4J 1.2 - API 2.5
 - Log4J - API 2.5
-- LOG4J - Core 2.5
+- Log4J - Core 2.5
