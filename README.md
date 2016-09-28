@@ -1,4 +1,4 @@
-# Bromine [![Build Status](https://travis-ci.org/Thibstars/Bromine.svg)](https://travis-ci.org/Thibstars/Bromine)
+# Bromine [![Build Status](https://travis-ci.org/Thibstars/Bromine.svg)](https://travis-ci.org/Thibstars/Bromine) #
 Selenium tools for Java. Offers means to simplify the setup of a Selenium project.
 
 ## Features
