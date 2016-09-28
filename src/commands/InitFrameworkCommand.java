@@ -2,6 +2,7 @@ package commands;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import stats.StatsTrackerFactory;
 
 import java.net.URL;
 
@@ -46,6 +47,9 @@ public class InitFrameworkCommand implements Command {
             Logger.getLogger("org.apache.http.impl.execchain.MainClientExec")                       .setLevel(Level.WARN);
             Logger.getLogger("org.apache.http.client.protocol.RequestAddCookies")                   .setLevel(Level.WARN);
             Logger.getLogger("org.apache.http.client.protocol.RequestAuthCache")                    .setLevel(Level.WARN);
+
+            //Create default StatsTracker
+            StatsTrackerFactory.createDefault();
 
             isInitialised = true;
         }
