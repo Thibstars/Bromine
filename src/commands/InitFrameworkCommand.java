@@ -1,5 +1,8 @@
 package commands;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import java.net.URL;
 
 /**
@@ -32,6 +35,17 @@ public class InitFrameworkCommand implements Command {
             System.setProperty("webdriver.chrome.driver", chromeDriverURL.getPath());
             assert geckoDriverURL != null;
             System.setProperty("webdriver.gecko.driver", geckoDriverURL.getPath());
+
+            //Remove noisy debug logs
+            Logger.getLogger("org.apache.http")                                                     .setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.wire")                                                .setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.headers")                                             .setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.impl.conn.PoolingHttpClientConnectionManager")        .setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.impl.conn.DefaultHttpClientConnectionOperator")       .setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.impl.conn.DefaultManagedHttpClientConnection")        .setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.impl.execchain.MainClientExec")                       .setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.client.protocol.RequestAddCookies")                   .setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.client.protocol.RequestAuthCache")                    .setLevel(Level.WARN);
 
             isInitialised = true;
         }
