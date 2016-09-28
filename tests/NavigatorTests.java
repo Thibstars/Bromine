@@ -1,6 +1,7 @@
 import commands.InitFrameworkCommand;
 import navigation.Navigator;
 import navigation.NavigatorFactory;
+import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,6 +16,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class NavigatorTests {
+
+    private static Logger LOGGER = Logger.getLogger(NavigatorTests.class);
 
     /*
     @Rule
@@ -60,6 +63,7 @@ public class NavigatorTests {
         for (StatsPlugin plugin : StatsTracker.getPlugins()) {
             if (plugin instanceof LMBClickStats && !(plugin instanceof LMBDoubleClickStats)) clicks = (LMBClickStats) plugin;
         }
+        LOGGER.debug(clicks.represent());
         assertEquals(1, clicks.getClicks());
     }
 

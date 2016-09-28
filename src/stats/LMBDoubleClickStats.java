@@ -10,4 +10,9 @@ public class LMBDoubleClickStats extends LMBClickStats {
     public void track(StatsAction statsAction) {
         if (statsAction.equals(StatsAction.MOUSE_LMB_DOUBLE_CLICK) && trackingEnabled) clicks++;
     }
+
+    @Override
+    public String represent() {
+        return "Double clicks: " + clicks;
+    }
 }

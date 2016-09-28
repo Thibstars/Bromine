@@ -39,4 +39,9 @@ public class SendKeyStats implements StatsPlugin {
     public void track(StatsAction statsAction) {
         if (statsAction.equals(StatsAction.KEYBOARD_TYPE) && trackingEnabled) timesKeysSent++;
     }
+
+    @Override
+    public String represent() {
+        return "Times keys sent: " + timesKeysSent;
+    }
 }

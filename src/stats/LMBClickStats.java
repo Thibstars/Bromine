@@ -39,4 +39,9 @@ public class LMBClickStats implements StatsPlugin {
     public void track(StatsAction statsAction) {
         if (statsAction.equals(StatsAction.MOUSE_LMB_CLICK) && trackingEnabled) clicks++;
     }
+
+    @Override
+    public String represent() {
+        return "Clicks: " + clicks;
+    }
 }
