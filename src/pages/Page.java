@@ -6,9 +6,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * The abstract representation of a page.
+ *
  * @author Thibault Helsmoortel
  */
 public abstract class Page {
@@ -19,11 +21,13 @@ public abstract class Page {
 
     /**
      * Class constructor specifying the url (example: '/page').
+     *
      * @param url the url of the page
      */
     public Page(String url) {
         this.url = url;
-        this.sections = new ArrayList<>();
+        //Use CopyOnWriteArrayList to prevent ConcurrentModificationException
+        this.sections = new CopyOnWriteArrayList<>();
     }
 
     public String getUrl() {
@@ -41,21 +45,34 @@ public abstract class Page {
 
     /**
      * Removes a section with the given name, if it could be found.
+     *
      * @param name the name of the section to be removed
      */
     public void removeSection(String name) {
-        boolean found = false;
-        for (Section section : sections) {
-            if (section.getName().equals(name)) {
-                found = true;
-                sections.remove(section);
+        synchronized (this) {
+            boolean found = false;
+            for (Section section : sections) {
+                if (section.getName().equals(name)) {
+                    found = true;
+                    sections.remove(section);
+                }
             }
+            if (!found) throw new IllegalArgumentException("Section could not be found.");
         }
-        if (!found) throw new IllegalArgumentException("Section could not be found.");
+    }
+
+    /**
+     * Removes a section from the page, if it could be found.
+     *
+     * @param section the section to be removed
+     */
+    public void removeSection(Section section) {
+        removeSection(section.getName());
     }
 
     /**
      * Returns a section with the given name, if it could be found.
+     *
      * @param name the name of the section to be found
      * @return the section if found, null if not found
      */
@@ -70,6 +87,7 @@ public abstract class Page {
 
     /**
      * Returns the base of this page's url, in String form.
+     *
      * @return the base of this page's url
      */
     protected String getBaseURL() {
@@ -86,6 +104,7 @@ public abstract class Page {
 
     /**
      * Returns the complete url of the page.
+     *
      * @return the complete url of the page
      */
     public URL getCompleteURL() {
@@ -113,9 +132,10 @@ public abstract class Page {
 
     /**
      * Returns true if the WebDriver is currently located on the page, else if otherwise.
+     *
      * @return true if the WebDriver is currently located on the page, else if otherwise
      */
-    public  boolean isAt() {
+    public boolean isAt() {
         String base = getBaseURL();
         return url != null && Navigator.getInstance().getUrl().equals(getCompleteURL().toString());
     }

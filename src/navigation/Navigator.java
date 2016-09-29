@@ -49,9 +49,62 @@ public final class Navigator {
         this.wait = wait;
     }
 
+    /**
+     * Clicks on a specified element.
+     * @param element the element to click on
+     */
     public void click(WebElement element) {
         element.click();
         StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
+    }
+
+    /**
+     * Clicks on a specified element using ng-click (Angular).
+     * Using this method in stead of the default one has a slight
+     * performance impact compared to the default click method.
+     * @param element the element to click on
+     */
+    public void NGClick(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        //Implicit wait is needed because Selenium doesn't know how angular loads and works
+        implicitlyWait(1);
+
+        explicitlyWaitForElementClickable(element);
+        actions.moveToElement(element).click().perform();
+        StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
+    }
+
+    /**
+     * Double clicks on a specified element.
+     * @param element the element to double click
+     */
+    public void doubleClick(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.doubleClick(element).perform();
+        StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_DOUBLE_CLICK);
+    }
+
+    /**
+     * Sends keys on a specified element.
+     * @param element the element to send keys to
+     * @param charSequence the keys to send
+     */
+    public void sendKeys(WebElement element, String charSequence) {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(element, charSequence).perform();
+        StatsTracker.getInstance().track(StatsAction.KEYBOARD_TYPE);
+    }
+
+    /**
+     * Sends specified keys.
+     * @param charSequence the keys to send
+     */
+    public void sendKeys(String charSequence) {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(charSequence).perform();
+        StatsTracker.getInstance().track(StatsAction.KEYBOARD_TYPE);
     }
 
     /**

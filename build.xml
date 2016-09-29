@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="bromine" default="test">
+    <property name="dir.src" value="src"/>
+    <property name="dir.test.src" value="tests"/>
+    <property name="dir.build" value="build"/>
+    <property name="dir.build.test" value="build/test"/>
+    <property name="dir.classes" value="${dir.build}/classes"/>
+    <property name="dir.jar" value="${dir.build}/jar"/>
+
+    <path id="classpath.base">
+        <pathelement location="lib/selenium-server-standalone-3.0.0-beta2.jar"/>
+        <pathelement location="lib/commons-lang-2.1.jar"/>
+        <pathelement location="lib/log4j-1.2-api-2.5.jar"/>
+        <pathelement location="lib/log4j-core-2.5.jar"/>
+        <pathelement location="resources"/>
+    </path>
+
+    <path id="classpath.test">
+        <pathelement location="lib/hamcrest-core-1.3.jar"/>
+        <pathelement location="lib/junit-4.12.jar"/>
+        <pathelement location="${dir.build}"/>
+        <path refid="classpath.base"/>
+    </path>
+
+    <target name="test" depends="run, clean"/>
+
+    <target name="compile">
+        <mkdir dir="${dir.build}"/>
+        <javac srcdir="${dir.src}" destdir="${dir.build}" includeantruntime="false">
+            <classpath refid="classpath.base"/>
+        </javac>
+        <!-- Add resources -->
+        <mkdir dir="${dir.build}/resources"/>
+        <copy todir="${dir.build}/resources">
+            <fileset dir="${basedir}/resources" />
+        </copy>
+    </target>
+
+    <target name="build" depends="compile">
+        <mkdir dir="${dir.build.test}"/>
+        <javac srcdir="${dir.test.src}" destdir="${dir.build.test}" includeantruntime="false">
+            <classpath refid="classpath.test"/>
+        </javac>
+        <echo message="Build done"/>
+    </target>
+
+    <!-- Test and build all files  -->
+    <!-- To run this: use "ant" (default) or "ant run" -->
+    <target name="run" depends="build">
+        <junit printsummary="on" haltonfailure="yes">
+            <classpath>
+                <path refid="classpath.test"/>
+                <pathelement location="${dir.build.test}"/>
+            </classpath>
+            <formatter type="brief" usefile="false"/>
+            <batchtest>
+                <fileset dir="${dir.test.src}" includes="**/*Test*.java"/>
+            </batchtest>
+        </junit>
+    </target>
+
+    <!-- delete all class files -->
+    <!-- To run this: use "ant clean" -->
+    <target name="clean">
+        <delete>
+            <fileset dir="${basedir}" includes="**/*.class"/>
+        </delete>
+        <echo message="Clean done"/>
+    </target>
+</project>

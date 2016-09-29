@@ -9,4 +9,5 @@ public interface StatsPlugin {
     void enableTracking();
     void disableTracking();
     void track(StatsAction statsAction);
+    default String represent() { return toString();}
 }

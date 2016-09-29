@@ -4,7 +4,6 @@ import navigation.Navigator;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.log4testng.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -20,23 +19,25 @@ import java.util.Date;
  */
 public class TakeScreenshotCommand implements Command {
 
+    private String packageName;
     private String name;
 
     /**
      * Class constructor specifying the name of the screenshot to take.
+     * @param packagePath the name of the destination package
      * @param name the name of the screenshot to take
      */
-    public TakeScreenshotCommand(String name) {
+    public TakeScreenshotCommand(String packagePath, String name) {
+        this.packageName = packagePath;
         this.name = name;
     }
 
     @Override
     public Object execute() {
         File scrFile = ((TakesScreenshot) Navigator.getInstance().getDriver()).getScreenshotAs(OutputType.FILE);
-        String path = "./screenshots/";
         String fileName;
         fileName = name + "_" + getTimeStampValue() + ".png";
-        File targetFile = new File(path + fileName);
+        File targetFile = new File(packageName + fileName);
         try {
             FileUtils.copyFile(scrFile, targetFile);
         } catch (IOException e) {

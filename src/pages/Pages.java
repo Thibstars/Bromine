@@ -1,9 +1,11 @@
 package pages;
 
-import java.net.MalformedURLException;
-import java.util.ArrayList;
+import org.apache.log4j.Logger;
+import util.PackageUtil;
+
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Representation of all the registered pages.
@@ -11,7 +13,9 @@ import java.util.List;
  */
 public final class Pages {
 
-    private static final List<Page> pageList = new ArrayList<>();
+    private static final Logger LOGGER = Logger.getLogger(Page.class);
+
+    private static final List<Page> pageList = new CopyOnWriteArrayList<>();
 
     /**
      * Registers a page in the list.
@@ -23,12 +27,59 @@ public final class Pages {
     }
 
     /**
+     * Register all pages from a given list.
+     * @param pages the list of pages to register
+     */
+    public static void registerAllPages(List<Page> pages) {
+        LOGGER.debug("Registering all pages...");
+        pages.forEach(Pages::registerPage);
+    }
+
+    /**
+     * The package from which to register all pages from.
+     * Note that this method instantiates all pages with their default constructors before registering them.
+     * @param pack the package of the pages to register
+     */
+    public static void registerAllPagesFromPackage(String pack) {
+        LOGGER.debug("Registering all pages...");
+        try {
+            for (Class clazz : PackageUtil.getClasses("pages")) {
+                if (clazz.getClass().isInstance(Page.class))
+                    LOGGER.debug("Registering: " + clazz.getSimpleName());
+                registerPage((Page) clazz.newInstance());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Deregisters a page from the list.
      * @param page the page to deregister from the list
      */
     public static void deregisterPage(Page page) {
         if (!pageList.contains(page)) throw new IllegalArgumentException("Page was not previously registered.");
         else pageList.remove(page);
+    }
+
+    /**
+     * Deregisters all pages from the list.
+     */
+    public static void deregisterAll() {
+        if (!pageList.isEmpty()) for (Page page : pageList) deregisterPage(page);
+    }
+
+    /**
+     * Searches for a page and returns it back if it was found.
+     * @param page the page to find in the list
+     * @return the page if found
+     */
+    public static Page getPage(Page page) {
+        Page res = null;
+        for (Page p : pageList) {
+            if (p.equals(page)) res = p;
+        }
+        return res;
     }
 
     /**
