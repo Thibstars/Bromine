@@ -61,7 +61,7 @@ public final class StatsTracker {
      */
     public void track(StatsAction action) {
         LOGGER.debug("Tracking action: " + action.toString());
-        plugins.forEach(plugin -> track(action));
+        plugins.forEach(plugin -> plugin.track(action));
     }
 
     /**
