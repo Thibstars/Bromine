@@ -13,9 +13,10 @@ os:
 - linux
 #- osx
 
-#script: ant build
+script: ant build
 
-script: ant test
+#Nearly there, check current travis output when running ant test: http://pastebin.com/9M4YUR0Q
+#script: ant test
 
 
 #before_install:
