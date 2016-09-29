@@ -2,7 +2,10 @@ sudo: true
 
 language: java
 
-#install: ant deps
+install:
+- sudo apt-get update
+
+- sudo apt-get install google-chrome-stable
 
 jdk:
   - oraclejdk8
