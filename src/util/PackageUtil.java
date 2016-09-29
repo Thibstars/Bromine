@@ -1,5 +1,7 @@
 package util;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -13,6 +15,8 @@ import java.util.List;
  */
 public final class PackageUtil {
 
+    private static final Logger LOGGER = Logger.getLogger(PackageUtil.class);
+
     /**
      * Returns an array of classes inside a given package.
      * @param packageName the package of which to retrieve the classes from
@@ -21,6 +25,7 @@ public final class PackageUtil {
      * @throws IOException when a file could not be found
      */
     public static Class[] getClasses(String packageName) throws ClassNotFoundException, IOException {
+        LOGGER.debug("Fetching all classes inside package: " + packageName);
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         assert classLoader != null;
         String path = packageName.replace('.', '/');

@@ -13,14 +13,19 @@ import java.net.URL;
  */
 public class InitFrameworkCommand implements Command {
 
+    private static final Logger LOGGER = Logger.getLogger(InitFrameworkCommand.class);
+
     private static boolean isInitialised = false;
 
     @Override
     public Object execute() {
         if (!isInitialised) {
+            LOGGER.debug("Initialising the framework...");
+
             URL chromeDriverURL;
             URL geckoDriverURL;
 
+            LOGGER.debug("Initialising OS dependant files... [" + System.getProperty("os.name") + "]");
             if (System.getProperty("os.name").toLowerCase().contains("windows")) {
                 chromeDriverURL = Thread.currentThread().getContextClassLoader().getResource("win/chromedriver.exe");
                 geckoDriverURL = Thread.currentThread().getContextClassLoader().getResource("win/geckodriver.exe");
@@ -37,6 +42,7 @@ public class InitFrameworkCommand implements Command {
             assert geckoDriverURL != null;
             System.setProperty("webdriver.gecko.driver", geckoDriverURL.getPath());
 
+            LOGGER.debug("Silencing noise...");
             //Remove noisy debug logs
             Logger.getLogger("org.apache.http")                                                     .setLevel(Level.WARN);
             Logger.getLogger("org.apache.http.wire")                                                .setLevel(Level.WARN);
@@ -48,11 +54,14 @@ public class InitFrameworkCommand implements Command {
             Logger.getLogger("org.apache.http.client.protocol.RequestAddCookies")                   .setLevel(Level.WARN);
             Logger.getLogger("org.apache.http.client.protocol.RequestAuthCache")                    .setLevel(Level.WARN);
 
+            LOGGER.debug("Creating default StatsTracker...");
             //Create default StatsTracker
             StatsTrackerFactory.createDefault();
 
+            LOGGER.debug("Framework initialised");
             isInitialised = true;
         }
+        else LOGGER.debug("The framework was already initialised.");
 
         return null;
     }

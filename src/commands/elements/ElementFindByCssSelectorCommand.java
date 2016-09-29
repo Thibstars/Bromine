@@ -2,14 +2,16 @@ package commands.elements;
 
 import commands.Command;
 import navigation.Navigator;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Command for finding WebElements by cssSelector.
  * @author Thibault Helsmoortel
  */
 public class ElementFindByCssSelectorCommand implements Command {
+
+    private static final Logger LOGGER = Logger.getLogger(ElementFindByCssSelectorCommand.class);
 
     private String selector;
 
@@ -27,6 +29,7 @@ public class ElementFindByCssSelectorCommand implements Command {
 
     @Override
     public Object execute() {
+        LOGGER.debug("Finding element using selector: " + selector);
         Navigator.getInstance().explicitlyWaitForElementPresent(By.cssSelector(selector));
         return Navigator.getInstance().getDriver().findElement(By.cssSelector(selector));
     }

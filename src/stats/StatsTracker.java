@@ -1,5 +1,7 @@
 package stats;
 
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
  */
 public final class StatsTracker {
     private static final StatsTracker statsTrackerInstance = new StatsTracker();
+
+    private static final Logger LOGGER = Logger.getLogger(StatsTracker.class);
 
     private static List<StatsPlugin> plugins;
 
@@ -25,7 +29,10 @@ public final class StatsTracker {
      */
     public void registerPlugin(StatsPlugin plugin) {
         if (plugins.contains(plugin)) throw new IllegalArgumentException("Plugin was already added.");
-        else plugins.add(plugin);
+        else {
+            LOGGER.debug("Registering plugin: " + plugin.toString());
+            plugins.add(plugin);
+        }
     }
 
     /**
@@ -34,7 +41,10 @@ public final class StatsTracker {
      */
     public void deregisterPlugin(StatsPlugin plugin) {
         if (!plugins.contains(plugin)) throw new IllegalArgumentException("Plugin wasn't previously registered.");
-        else plugins.remove(plugin);
+        else {
+            LOGGER.debug("Deregistering plugin " + plugin.toString());
+            plugins.remove(plugin);
+        }
     }
 
     /**
@@ -50,13 +60,15 @@ public final class StatsTracker {
      * @param action the action to track in all registered plugins
      */
     public void track(StatsAction action) {
-        for (StatsPlugin plugin : plugins) plugin.track(action);
+        LOGGER.debug("Tracking action: " + action.toString());
+        plugins.forEach(plugin -> track(action));
     }
 
     /**
      * Enables tracking on all registered plugins.
      */
     public void enableTracking() {
+        LOGGER.debug("Enabling tracking");
         plugins.forEach(StatsPlugin::enableTracking);
     }
 
@@ -64,6 +76,7 @@ public final class StatsTracker {
      * Disables tracking on all registered plugins.
      */
     public void disableTracking() {
+        LOGGER.debug("Disabling tracking");
         plugins.forEach(StatsPlugin::disableTracking);
     }
 

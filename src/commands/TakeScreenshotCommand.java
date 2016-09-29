@@ -2,6 +2,7 @@ package commands;
 
 import navigation.Navigator;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -19,6 +20,8 @@ import java.util.Date;
  */
 public class TakeScreenshotCommand implements Command {
 
+    private static final Logger LOGGER = Logger.getLogger(TakeScreenshotCommand.class);
+
     private String packageName;
     private String name;
 
@@ -34,22 +37,29 @@ public class TakeScreenshotCommand implements Command {
 
     @Override
     public Object execute() {
+        LOGGER.debug("Initiating screenshot capture...");
         File scrFile = ((TakesScreenshot) Navigator.getInstance().getDriver()).getScreenshotAs(OutputType.FILE);
         String fileName;
         fileName = name + "_" + getTimeStampValue() + ".png";
         File targetFile = new File(packageName + fileName);
+        boolean success = true;
         try {
+            LOGGER.debug("Copying screenshot file to target destination...");
             FileUtils.copyFile(scrFile, targetFile);
         } catch (IOException e) {
             e.printStackTrace();
+            success = false;
         }
 
         try {
             createOverlay(targetFile);
         } catch (IOException e) {
             e.printStackTrace();
+            success = false;
         }
 
+        if (success) LOGGER.debug("Screenshot successfully captured.");
+        else LOGGER.debug("Something went wrong capturing the screenshot.");
         return targetFile;
     }
 
@@ -59,6 +69,7 @@ public class TakeScreenshotCommand implements Command {
      * @throws IOException when the image could not be read/written
      */
     private void createOverlay(File targetFile) throws IOException {
+        LOGGER.debug("Creating overlay...");
         String overlay = "URL: " + Navigator.getInstance().getUrl();
         BufferedImage bufferedImage = ImageIO.read(targetFile);
         Graphics2D graphics = (Graphics2D) bufferedImage.getGraphics();
@@ -70,6 +81,7 @@ public class TakeScreenshotCommand implements Command {
         graphics.setColor(Color.BLACK);
         graphics.drawString(overlay, 10, 20);
         ImageIO.write(bufferedImage, "png", targetFile);
+        LOGGER.debug("Overlay created.");
     }
 
     /**

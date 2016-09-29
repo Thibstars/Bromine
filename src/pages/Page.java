@@ -1,10 +1,10 @@
 package pages;
 
 import navigation.Navigator;
+import org.apache.log4j.Logger;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -14,6 +14,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @author Thibault Helsmoortel
  */
 public abstract class Page {
+
+    private static final Logger LOGGER = Logger.getLogger(Page.class);
 
     private String url;
 
@@ -40,6 +42,7 @@ public abstract class Page {
 
     public void addSection(Section section) {
         if (sections.contains(section)) throw new IllegalArgumentException("Section was already added.");
+        LOGGER.debug("Adding section: " + section.getName());
         sections.add(section);
     }
 
@@ -54,6 +57,7 @@ public abstract class Page {
             for (Section section : sections) {
                 if (section.getName().equals(name)) {
                     found = true;
+                    LOGGER.debug("Removing section: " + section.getName());
                     sections.remove(section);
                 }
             }
@@ -136,7 +140,6 @@ public abstract class Page {
      * @return true if the WebDriver is currently located on the page, else if otherwise
      */
     public boolean isAt() {
-        String base = getBaseURL();
         return url != null && Navigator.getInstance().getUrl().equals(getCompleteURL().toString());
     }
 

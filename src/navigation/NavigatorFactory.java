@@ -1,6 +1,7 @@
 package navigation;
 
 import commands.InitFrameworkCommand;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +17,8 @@ import java.util.concurrent.TimeUnit;
  * @author Thibault Helsmoortel
  */
 public final class NavigatorFactory {
+
+    private static final Logger LOGGER = Logger.getLogger(NavigatorFactory.class);
 
     /**
      * (Re)creates and returns the default Navigator based on the given Environment.
@@ -39,7 +42,7 @@ public final class NavigatorFactory {
                 navigator = createChromeNavigator(environment, true);
                 break;
             case FIREFOX:
-                navigator = createFireFoxNavigator(environment);
+                navigator = createFirefoxNavigator(environment);
                 break;
             default:
                 navigator = createChromeNavigator(environment, true);
@@ -72,6 +75,7 @@ public final class NavigatorFactory {
      * @return the (re)created Navigator instance
      */
     public static Navigator createChromeNavigator(Environment environment, ChromeOptions chromeOptions) {
+        LOGGER.debug("Creating a Chrome Navigator for environment: " + environment.getName());
         //Destroy previous navigator
         destroyNavigator();
 
@@ -95,7 +99,8 @@ public final class NavigatorFactory {
      * @param environment the environment for the Navigator to operate on
      * @return  the (re)created Navigator instance
      */
-    public static Navigator createFireFoxNavigator(Environment environment) {
+    public static Navigator createFirefoxNavigator(Environment environment) {
+        LOGGER.debug("Creating a Firefox Navigator for environment: " + environment.getName());
         //Destroy previous navigator
         destroyNavigator();
 
@@ -119,6 +124,7 @@ public final class NavigatorFactory {
      * After calling this method, the Navigator will be rendered useless.
      */
     public static void destroyNavigator() {
+        LOGGER.debug("Destroying the Navigator to a useless state");
         if (Navigator.getInstance().getDriver() != null) Navigator.getInstance().getDriver().close();
         Navigator.getInstance().setDriver(null);
         Navigator.getInstance().setWait(null);

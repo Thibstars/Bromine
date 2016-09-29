@@ -59,13 +59,17 @@ public final class Pages {
      */
     public static void deregisterPage(Page page) {
         if (!pageList.contains(page)) throw new IllegalArgumentException("Page was not previously registered.");
-        else pageList.remove(page);
+        else{
+            LOGGER.debug("Deregistering page: " + page.toString());
+            pageList.remove(page);
+        }
     }
 
     /**
      * Deregisters all pages from the list.
      */
     public static void deregisterAll() {
+        LOGGER.debug("Deregistering all pages");
         if (!pageList.isEmpty()) for (Page page : pageList) deregisterPage(page);
     }
 

@@ -2,6 +2,7 @@ package commands.elements;
 
 import commands.Command;
 import navigation.Navigator;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 /**
@@ -9,6 +10,8 @@ import org.openqa.selenium.By;
  * @author Thibault Helsmoortel
  */
 public class ElementFindByIdCommand implements Command {
+
+    private static final Logger LOGGER = Logger.getLogger(ElementFindByIdCommand.class);
 
     private String id;
 
@@ -26,6 +29,7 @@ public class ElementFindByIdCommand implements Command {
 
     @Override
     public Object execute() {
+        LOGGER.debug("Finding element using id: " + id);
         Navigator.getInstance().explicitlyWaitForElementPresent(By.id(id));
         return Navigator.getInstance().getDriver().findElement(By.id(id));
     }

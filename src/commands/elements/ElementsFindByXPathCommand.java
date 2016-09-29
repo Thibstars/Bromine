@@ -2,6 +2,7 @@ package commands.elements;
 
 import commands.Command;
 import navigation.Navigator;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -13,6 +14,8 @@ import java.util.List;
  * @author Thibault Helsmoortel
  */
 public class ElementsFindByXPathCommand implements Command {
+
+    private static final Logger LOGGER = Logger.getLogger(ElementsFindByXPathCommand.class);
 
     private String xPath;
 
@@ -30,7 +33,8 @@ public class ElementsFindByXPathCommand implements Command {
 
     @Override
     public Object execute() {
-        List<WebElement> elements = new ArrayList<WebElement>();
+        LOGGER.debug("Finding element using XPath: " + xPath);
+        List<WebElement> elements = new ArrayList<>();
         elements.addAll(Navigator.getInstance().getDriver().findElements(new By.ByXPath(xPath)));
         return elements;
     }

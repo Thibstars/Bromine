@@ -1,5 +1,6 @@
 package navigation;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +23,8 @@ import java.util.concurrent.TimeUnit;
  */
 public final class Navigator {
     private static Navigator navigatorInstance = new Navigator();
+
+    private static final Logger LOGGER = Logger.getLogger(Navigator.class);
 
     private WebDriver driver;
     private Wait<WebDriver> wait;
@@ -54,6 +57,7 @@ public final class Navigator {
      * @param element the element to click on
      */
     public void click(WebElement element) {
+        LOGGER.debug("Performing click on " + element.toString());
         element.click();
         StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
     }
@@ -65,6 +69,7 @@ public final class Navigator {
      * @param element the element to click on
      */
     public void NGClick(WebElement element) {
+        LOGGER.debug("Performing ng-click on " + element.toString());
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
 
@@ -81,6 +86,7 @@ public final class Navigator {
      * @param element the element to double click
      */
     public void doubleClick(WebElement element) {
+        LOGGER.debug("Performing double click on " + element.toString());
         Actions actions = new Actions(driver);
         actions.doubleClick(element).perform();
         StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_DOUBLE_CLICK);
@@ -92,6 +98,7 @@ public final class Navigator {
      * @param charSequence the keys to send
      */
     public void sendKeys(WebElement element, String charSequence) {
+        LOGGER.debug("Sending keys [" + charSequence + "] to " + element.toString());
         Actions actions = new Actions(driver);
         actions.sendKeys(element, charSequence).perform();
         StatsTracker.getInstance().track(StatsAction.KEYBOARD_TYPE);
@@ -102,6 +109,7 @@ public final class Navigator {
      * @param charSequence the keys to send
      */
     public void sendKeys(String charSequence) {
+        LOGGER.debug("Sending keys [" + charSequence + "]");
         Actions actions = new Actions(driver);
         actions.sendKeys(charSequence).perform();
         StatsTracker.getInstance().track(StatsAction.KEYBOARD_TYPE);
@@ -112,6 +120,7 @@ public final class Navigator {
      * @param url the url to navigate to
      */
     public void navigateTo(URL url) {
+        LOGGER.debug("Navigating to " + url.toString());
         driver.navigate().to(url);
     }
 
@@ -120,6 +129,7 @@ public final class Navigator {
      * @param page the page to navigate to
      */
     public void navigateTo(Page page) {
+        LOGGER.debug("Navigating to " + page.toString());
         driver.navigate().to(page.getCompleteURL());
     }
 
@@ -127,6 +137,7 @@ public final class Navigator {
      * Navigates back to the previous page.
      */
     public void navigateBack() {
+        LOGGER.debug("Navigating back");
         driver.navigate().back();
     }
 
@@ -134,6 +145,7 @@ public final class Navigator {
      * Navigates to the next page.
      */
     public void navigateForward() {
+        LOGGER.debug("Navigating forward");
         driver.navigate().forward();
     }
 
@@ -141,6 +153,7 @@ public final class Navigator {
      * Refreshes the current page.
      */
     public void navigateRefresh() {
+        LOGGER.debug("Performing refresh");
         driver.navigate().refresh();
     }
 
@@ -149,6 +162,7 @@ public final class Navigator {
      * @param seconds the amount of seconds to implicitly wait
      */
     public void implicitlyWait(int seconds) {
+        LOGGER.debug("Implicitly wait for " + seconds + " seconds");
         implicitlyWait(seconds, TimeUnit.SECONDS);
     }
 
@@ -158,6 +172,7 @@ public final class Navigator {
      * @param timeUnit the time unit for the given amount to wait
      */
     public void implicitlyWait(long value, TimeUnit timeUnit) {
+        LOGGER.debug("Implicitly wait for " + value + " " + timeUnit.toString());
         driver.manage().timeouts().implicitlyWait(value, timeUnit);
     }
 
@@ -166,6 +181,7 @@ public final class Navigator {
      * @param locator the method used to find the element
      */
     public void explicitlyWaitForElementPresent(By locator) {
+        LOGGER.debug("Explicitly waiting for an element to be present");
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
@@ -174,6 +190,7 @@ public final class Navigator {
      * @param locator the method used to find the element
      */
     public void explicitlyWaitForElementVisible(By locator) {
+        LOGGER.debug("Explicitly waiting for an element to be visible");
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
@@ -182,6 +199,7 @@ public final class Navigator {
      * @param locator the method used to find the element
      */
     public void explicitlyWaitForElementInvisible(By locator) {
+        LOGGER.debug("Explicitly waiting for an element to be invisible");
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
@@ -190,6 +208,7 @@ public final class Navigator {
      * @param locator the method used to find the element
      */
     public void explicitlyWaitForElementClickable(By locator) {
+        LOGGER.debug("Explicitly waiting for an element to be clickable");
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
@@ -198,6 +217,7 @@ public final class Navigator {
      * @param element the element for which to wait until it is clickable
      */
     public void explicitlyWaitForElementClickable(WebElement element) {
+        LOGGER.debug("Explicitly waiting for element " + element.toString() + " to be clickable");
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
@@ -207,6 +227,7 @@ public final class Navigator {
      * @param element the element to scroll in the view
      */
     public void scrollElementIntoView(WebElement element) {
+        LOGGER.debug("Scrolling element " + element.toString() + " into view");
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
@@ -216,6 +237,7 @@ public final class Navigator {
      * @param element the element to which the mouse should move
      */
     public void moveToElement(WebElement element) {
+        LOGGER.debug("Moving to element: " + element.toString());
         Actions actions = new Actions(driver);
         actions.moveToElement(element).build().perform();
     }
@@ -227,6 +249,7 @@ public final class Navigator {
      * @return the parent element of the specified element
      */
     public WebElement getParent(WebElement element) {
+        LOGGER.debug("Retrieving parent element of: " + element.toString());
         return (WebElement) ((JavascriptExecutor) driver).executeScript(
                 "return arguments[0].parentNode;", element);
     }
@@ -239,6 +262,7 @@ public final class Navigator {
      * @param yOffset the y-axis offset
      */
     public void dragElement(WebElement element, int xOffset, int yOffset) {
+        LOGGER.debug("Dragging element: " + element.toString());
         Actions action = new Actions(driver);
         action.moveToElement(element);
         action.clickAndHold();
@@ -254,6 +278,7 @@ public final class Navigator {
      * @param target the target element that will accept the source element
      */
     public void dragAndDropElement(WebElement source, WebElement target) {
+        LOGGER.debug("Dragging element: " + source.toString() + " and dropping on: " + target.toString());
         Actions actions = new Actions(driver);
         actions.dragAndDrop(source, target);
     }
