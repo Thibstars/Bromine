@@ -11,6 +11,7 @@
         <pathelement location="lib/selenium-server-standalone-3.0.0-beta2.jar"/>
         <pathelement location="lib/commons-lang-2.1.jar"/>
         <pathelement location="lib/log4j-1.2-api-2.5.jar"/>
+        <pathelement location="/lib/log4j-api-2.5.jar"/>
         <pathelement location="lib/log4j-core-2.5.jar"/>
         <pathelement location="resources"/>
     </path>
