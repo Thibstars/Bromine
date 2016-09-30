@@ -92,7 +92,7 @@ public class TakeScreenshotCommand implements Command {
         Calendar cal = Calendar.getInstance();
         Date time = cal.getTime();
         String timestamp = time.toString();
-        String systime = timestamp.replace(":", "-");
-        return systime;
+        String sysTime = timestamp.replace(":", "-");
+        return sysTime;
     }
 }
