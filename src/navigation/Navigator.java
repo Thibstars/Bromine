@@ -162,7 +162,6 @@ public final class Navigator {
      * @param seconds the amount of seconds to implicitly wait
      */
     public void implicitlyWait(int seconds) {
-        LOGGER.debug("Implicitly wait for " + seconds + " seconds");
         implicitlyWait(seconds, TimeUnit.SECONDS);
     }
 
