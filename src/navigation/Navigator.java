@@ -171,7 +171,7 @@ public final class Navigator {
      * @param timeUnit the time unit for the given amount to wait
      */
     public void implicitlyWait(long value, TimeUnit timeUnit) {
-        LOGGER.debug("Implicitly wait for " + value + " " + timeUnit.toString());
+        LOGGER.debug("Implicitly wait for " + value + " " + timeUnit.toString().toLowerCase());
         driver.manage().timeouts().implicitlyWait(value, timeUnit);
     }
 
