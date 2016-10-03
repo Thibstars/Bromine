@@ -8,6 +8,7 @@ public interface StatsPlugin {
 
     void enableTracking();
     void disableTracking();
+    boolean isTrackingEnabled();
     void track(StatsAction statsAction);
     void reset();
     default String represent() { return toString();}

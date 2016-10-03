@@ -21,10 +21,6 @@ public class LMBClickStats implements StatsPlugin {
         return clicks;
     }
 
-    public boolean isTrackingEnabled() {
-        return trackingEnabled;
-    }
-
     @Override
     public void enableTracking() {
         this.trackingEnabled = true;
@@ -33,6 +29,11 @@ public class LMBClickStats implements StatsPlugin {
     @Override
     public void disableTracking() {
         this.trackingEnabled = false;
+    }
+
+    @Override
+    public boolean isTrackingEnabled() {
+        return trackingEnabled;
     }
 
     @Override
