@@ -13,6 +13,9 @@ import pages.Section;
 import stats.StatsTrackerFactory;
 import sut.Environment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.*;
 
@@ -38,6 +41,19 @@ public class PagesTests {
         Pages.registerPage(reposPage);
         assertFalse(Pages.isEmpty());
         Pages.deregisterAll();
+    }
+
+    @Test
+    public void shouldRegisterPages() {
+        Page homePage = new Page("/index.html") {};
+        Page reposPage = new Page("/repos.html") {};
+        List<Page> pages = new ArrayList<>(2);
+        pages.add(homePage);
+        pages.add(reposPage);
+        Pages.registerAllPages(pages);
+
+        assertNotNull(Pages.getPage(homePage.getUrl()));
+        assertNotNull(Pages.getPage(reposPage.getUrl()));
     }
 
     @Test
