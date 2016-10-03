@@ -29,6 +29,7 @@ public final class Navigator {
     private WebDriver driver;
     private Wait<WebDriver> wait;
     private Environment environment;
+    private boolean highlightingEnabled = false;
 
     /**
      * Class constructor. Publicly unavailable.
@@ -58,6 +59,7 @@ public final class Navigator {
      */
     public void click(WebElement element) {
         LOGGER.debug("Performing click on " + element.toString());
+        if (highlightingEnabled) Highlighter.highlightElement(element);
         element.click();
         StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
     }
@@ -70,6 +72,9 @@ public final class Navigator {
      */
     public void NGClick(WebElement element) {
         LOGGER.debug("Performing ng-click on " + element.toString());
+
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
 
@@ -87,6 +92,9 @@ public final class Navigator {
      */
     public void doubleClick(WebElement element) {
         LOGGER.debug("Performing double click on " + element.toString());
+
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+
         Actions actions = new Actions(driver);
         actions.doubleClick(element).perform();
         StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_DOUBLE_CLICK);
@@ -99,6 +107,9 @@ public final class Navigator {
      */
     public void sendKeys(WebElement element, String charSequence) {
         LOGGER.debug("Sending keys [" + charSequence + "] to " + element.toString());
+
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+
         Actions actions = new Actions(driver);
         actions.sendKeys(element, charSequence).perform();
         StatsTracker.getInstance().track(StatsAction.KEYBOARD_TYPE);
@@ -227,6 +238,9 @@ public final class Navigator {
      */
     public void scrollElementIntoView(WebElement element) {
         LOGGER.debug("Scrolling element " + element.toString() + " into view");
+
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
@@ -237,6 +251,9 @@ public final class Navigator {
      */
     public void moveToElement(WebElement element) {
         LOGGER.debug("Moving to element: " + element.toString());
+
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+
         Actions actions = new Actions(driver);
         actions.moveToElement(element).build().perform();
     }
@@ -262,6 +279,9 @@ public final class Navigator {
      */
     public void dragElement(WebElement element, int xOffset, int yOffset) {
         LOGGER.debug("Dragging element: " + element.toString());
+
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+
         Actions action = new Actions(driver);
         action.moveToElement(element);
         action.clickAndHold();
@@ -278,8 +298,21 @@ public final class Navigator {
      */
     public void dragAndDropElement(WebElement source, WebElement target) {
         LOGGER.debug("Dragging element: " + source.toString() + " and dropping on: " + target.toString());
+
+        if (highlightingEnabled) Highlighter.highlightElement(source);
+
         Actions actions = new Actions(driver);
         actions.dragAndDrop(source, target);
+
+        if (highlightingEnabled) Highlighter.highlightElement(target);
+    }
+
+    public boolean isHighlightingEnabled() {
+        return highlightingEnabled;
+    }
+
+    public void setHighlightingEnabled(boolean highlightingEnabled) {
+        this.highlightingEnabled = highlightingEnabled;
     }
 
     public String getUrl() {

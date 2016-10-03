@@ -52,6 +52,19 @@ public final class NavigatorFactory {
     }
 
     /**
+     * (Re)creates and returns the Navigator based on the given Environment and desired Browser.
+     * The navigator will be highlighting elements upon use.
+     * @param environment the environment for the Navigator to operate on
+     * @param browser the browser to use
+     * @return the (re)created Navigator instance
+     */
+    public static Navigator createHighlightingNavigator(Environment environment, Browser browser) {
+        Navigator navigator = createNavigator(environment, browser);
+        navigator.setHighlightingEnabled(true);
+        return navigator;
+    }
+
+    /**
      * (Re)creates and returns the Navigator based on the given Environment and the desired incognito mode.
      * @param environment the environment for the Navigator to operate on
      * @param incognito boolean value indicating whether or not to use incognito mode
@@ -129,5 +142,6 @@ public final class NavigatorFactory {
         Navigator.getInstance().setDriver(null);
         Navigator.getInstance().setWait(null);
         Navigator.getInstance().setEnvironment(null);
+        Navigator.getInstance().setHighlightingEnabled(false);
     }
 }

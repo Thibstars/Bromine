@@ -1,4 +1,5 @@
 import commands.InitFrameworkCommand;
+import navigation.Browser;
 import navigation.Navigator;
 import navigation.NavigatorFactory;
 import org.junit.AfterClass;
@@ -25,7 +26,7 @@ public class PagesTests {
     @BeforeClass
     public static void init() {
         new InitFrameworkCommand().execute();
-        NavigatorFactory.createNavigator(new Environment("Website", "http://thibaulthelsmoortel.be"));
+        NavigatorFactory.createHighlightingNavigator(new Environment("Website", "http://thibaulthelsmoortel.be"), Browser.CHROME);
         Pages.deregisterAll();
 
         StatsTrackerFactory.createDefault();
