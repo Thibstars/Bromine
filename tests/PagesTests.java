@@ -54,6 +54,7 @@ public class PagesTests {
 
         assertNotNull(Pages.getPage(homePage.getUrl()));
         assertNotNull(Pages.getPage(reposPage.getUrl()));
+        assertTrue(Pages.size() > 0);
     }
 
     @Test
