@@ -22,8 +22,9 @@ public final class StatsSummary {
      * @return a summary of all given plugins
      */
     public static String summarize(List<StatsPlugin> plugins) {
-        String summary = "Statistics Summary\n";
-        for (int i = 0; i < summary.length(); i++) {
+        String summaryTitle = "Statistics Summary\n";
+        String summary = summaryTitle;
+        for (int i = 0; i < summaryTitle.length(); i++) {
             summary += "=";
         }
         summary += "\n";
