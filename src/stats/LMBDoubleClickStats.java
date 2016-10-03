@@ -12,6 +12,11 @@ public class LMBDoubleClickStats extends LMBClickStats {
     }
 
     @Override
+    public void reset() {
+        super.reset();
+    }
+
+    @Override
     public String represent() {
         return "Double clicks: " + clicks;
     }

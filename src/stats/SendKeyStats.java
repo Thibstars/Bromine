@@ -41,6 +41,11 @@ public class SendKeyStats implements StatsPlugin {
     }
 
     @Override
+    public void reset() {
+        this.timesKeysSent = 0;
+    }
+
+    @Override
     public String represent() {
         return "Times keys sent: " + timesKeysSent;
     }

@@ -41,6 +41,11 @@ public class LMBClickStats implements StatsPlugin {
     }
 
     @Override
+    public void reset() {
+        this.clicks = 0;
+    }
+
+    @Override
     public String represent() {
         return "Clicks: " + clicks;
     }

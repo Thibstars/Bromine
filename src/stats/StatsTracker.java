@@ -65,6 +65,14 @@ public final class StatsTracker {
     }
 
     /**
+     * Resets all the registered plugins.
+     */
+    public void reset() {
+        LOGGER.debug("Resetting all plugins");
+        plugins.forEach(StatsPlugin::reset);
+    }
+
+    /**
      * Enables tracking on all registered plugins.
      */
     public void enableTracking() {
