@@ -14,16 +14,15 @@ public final class BrowserHistory {
      * @return true when the browser has a history, else if otherwise
      */
     public static boolean hasHistory() {
-        JavascriptExecutor js = (JavascriptExecutor) Navigator.getInstance().getDriver();
-        return (boolean) js.executeScript("return window.history.length > 0;");
+        return getHistoryLength() > 0;
     }
 
     /**
      * Returns the size of the browser history.
      * @return the size of the browser history
      */
-    public static int getHistoryLength() {
+    public static long getHistoryLength() {
         JavascriptExecutor js = (JavascriptExecutor) Navigator.getInstance().getDriver();
-        return (int) js.executeScript("return window.history.length;");
+        return (Long) js.executeScript("return window.history.length;");
     }
 }

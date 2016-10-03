@@ -261,7 +261,7 @@ public final class Navigator {
         LOGGER.debug("Explicitly waiting for the page to be loaded.");
         Wait<WebDriver> wait = new WebDriverWait(driver, 30);
         wait.until(d -> {
-            LOGGER.debug("Current Window State       : "
+            LOGGER.debug("Current Window State: "
                     + String.valueOf(((JavascriptExecutor) d).executeScript("return document.readyState")));
             return String
                     .valueOf(((JavascriptExecutor) d).executeScript("return document.readyState"))
