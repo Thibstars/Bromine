@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.Page;
 import stats.StatsAction;
 import stats.StatsTracker;
@@ -65,6 +66,15 @@ public final class Navigator {
     }
 
     /**
+     * Clicks on a specified element and waits for the page to load.
+     * @param element the element to click on
+     */
+    public void clickAndWait(WebElement element) {
+        click(element);
+        explicitlyWaitForPageLoaded();
+    }
+
+    /**
      * Clicks on a specified element using ng-click (Angular).
      * Using this method in stead of the default one has a slight
      * performance impact compared to the default click method.
@@ -84,6 +94,19 @@ public final class Navigator {
         explicitlyWaitForElementClickable(element);
         actions.moveToElement(element).click().perform();
         StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
+    }
+
+    /**
+     * Clicks on a specified element using ng-click (Angular).
+     * Using this method in stead of the default one has a slight
+     * performance impact compared to the default click method.
+     *
+     * After the click it will wait untill the page is loaded.
+     * @param element the element to click on
+     */
+    public void NGClickAndWait(WebElement element) {
+        NGClick(element);
+        explicitlyWaitForPageLoaded();
     }
 
     /**
@@ -229,6 +252,21 @@ public final class Navigator {
     public void explicitlyWaitForElementClickable(WebElement element) {
         LOGGER.debug("Explicitly waiting for element " + element.toString() + " to be clickable");
         wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    /**
+     * Performs an explicit wait until the page is loaded.
+     */
+    public void explicitlyWaitForPageLoaded() {
+        LOGGER.debug("Explicitly waiting for the page to be loaded.");
+        Wait<WebDriver> wait = new WebDriverWait(driver, 30);
+        wait.until(d -> {
+            LOGGER.debug("Current Window State       : "
+                    + String.valueOf(((JavascriptExecutor) d).executeScript("return document.readyState")));
+            return String
+                    .valueOf(((JavascriptExecutor) d).executeScript("return document.readyState"))
+                    .equals("complete");
+        });
     }
 
     /**
