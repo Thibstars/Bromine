@@ -60,7 +60,7 @@ public final class Pages {
     public static void deregisterPage(Page page) {
         if (!pageList.contains(page)) throw new IllegalArgumentException("Page was not previously registered.");
         else{
-            LOGGER.debug("Deregistering page: " + page.toString());
+            LOGGER.debug("Deregistering page: " + page.getClass().getSimpleName());
             pageList.remove(page);
         }
     }
