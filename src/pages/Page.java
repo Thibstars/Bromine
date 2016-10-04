@@ -33,11 +33,11 @@ public abstract class Page {
     }
 
     public String getUrl() {
-        return url;
+        return this.url;
     }
 
     public void setUrl(String pageUrl) {
-        url = pageUrl;
+        this.url = pageUrl;
     }
 
     public void addSection(Section section) {
@@ -128,7 +128,7 @@ public abstract class Page {
     public void goTo() {
         String base = getBaseURL();
         try {
-            Navigator.getInstance().navigateTo(new URL(base + url));
+            Navigator.getInstance().navigateTo(new URL(base + this.url));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
