@@ -60,7 +60,7 @@ public final class Highlighter {
      * Removes the highlight on the last element.
      */
     private static void unhighlightLast() {
-        if (lastElem != null) {
+        if (lastElem != null && lastBorder != null) {
             try {
                 LOGGER.debug("Unhighlighting element: " + lastElem.toString());
                 //If there already is a highlighted element, unhighlight it
