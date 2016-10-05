@@ -75,7 +75,7 @@ public class StatsTrackerTests {
 
         //Find the button that should lead to the home page
         WebElement btnElement = Navigator.getInstance().getDriver().findElement(
-                By.xpath("//*[@id=\"page-top\"]/nav/div/div[1]/a"));
+                By.xpath("//*[@id='page-top']/nav/div/div[1]/a"));
 
         //Click on the homepage
         Navigator.getInstance().click(btnElement);
