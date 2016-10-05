@@ -6,6 +6,7 @@ import stats.StatsSummary;
 import stats.StatsTrackerFactory;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class StatsSummaryTests {
 
@@ -25,6 +26,7 @@ public class StatsSummaryTests {
         }
         LOGGER.debug(StatsSummary.summarizeAll());
         assertNotNull(StatsSummary.summarizeAll());
+        assertTrue(StatsSummary.summarizeAll().length() > 0);
     }
 
     @AfterClass
