@@ -34,7 +34,7 @@ public class ElementsFindByClassCommand implements Command {
     @Override
     public Object execute() {
         LOGGER.debug("Finding element using class: " + clazz);
-        List<WebElement> elements = new ArrayList<WebElement>();
+        List<WebElement> elements = new ArrayList<>();
         elements.addAll(Navigator.getInstance().getDriver().findElements(new By.ByClassName(clazz)));
         return elements;
     }
