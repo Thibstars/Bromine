@@ -10,7 +10,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.Page;
 import pages.Pages;
-import stats.*;
+import stats.LMBClickStats;
+import stats.StatsPlugin;
+import stats.StatsTracker;
 import sut.Environment;
 
 import static org.junit.Assert.*;
@@ -27,9 +29,7 @@ public class StatsTrackerTests {
         });
         Pages.registerPage(new Page("/repos.html") {
         });
-
-        StatsTrackerFactory.createDefault();
-        StatsTracker.getInstance().reset();
+        //StatsTracker.getInstance().reset();
     }
 
     @Test
@@ -71,22 +71,29 @@ public class StatsTrackerTests {
 
     @Test
     public void shouldReset() {
-        Pages.getPage("/index.html").goTo();
+        Page homePage = Pages.getPage("/index.html");
+        if (!homePage.isAt()) {
+            homePage.goTo();
+            Navigator.getInstance().explicitlyWaitForPageLoaded();
+        }
 
         //Find the button that should lead to the home page
         WebElement btnElement = Navigator.getInstance().getDriver().findElement(
-                By.xpath("//*[@id='page-top']/nav/div/div[1]/a"));
+                By.xpath("//*[@id=\"page-top\"]/nav/div/div[1]/a"));
+
+        Navigator.getInstance().explicitlyWaitForElementClickable(btnElement);
+        if (!btnElement.isDisplayed()) Navigator.getInstance().scrollElementIntoView(btnElement);
+
+        LMBClickStats clicks = new LMBClickStats();
+        StatsTracker.getInstance().registerPlugin(clicks);
+        StatsTracker.getInstance().enableTracking();
 
         //Click on the homepage
         Navigator.getInstance().click(btnElement);
 
-        LMBClickStats clicks = null;
-        for (StatsPlugin plugin : StatsTracker.getPlugins()) {
-            if (plugin instanceof LMBClickStats && !(plugin instanceof LMBDoubleClickStats)) clicks = (LMBClickStats) plugin;
-        }
-
+        LOGGER.debug("Before reset: " + clicks.represent());
         StatsTracker.getInstance().reset();
-        LOGGER.debug(clicks.represent());
+        LOGGER.debug("After reset: " + clicks.represent());
         assertEquals(0, clicks.getClicks());
     }
 

@@ -33,8 +33,6 @@ public class NavigatorTests {
         });
         Pages.registerPage(new Page("/repos.html") {
         });
-
-        StatsTrackerFactory.createDefault();
     }
 
     @Test

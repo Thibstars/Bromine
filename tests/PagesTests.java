@@ -10,7 +10,6 @@ import org.openqa.selenium.StaleElementReferenceException;
 import pages.Page;
 import pages.Pages;
 import pages.Section;
-import stats.StatsTrackerFactory;
 import sut.Environment;
 
 import java.util.ArrayList;
@@ -31,8 +30,6 @@ public class PagesTests {
         new InitFrameworkCommand().execute();
         NavigatorFactory.createHighlightingNavigator(new Environment("Website", "http://thibaulthelsmoortel.be"), Browser.CHROME);
         Pages.deregisterAll();
-
-        StatsTrackerFactory.createDefault();
     }
 
     @Test
