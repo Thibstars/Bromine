@@ -202,6 +202,25 @@ public class NavigatorTests {
     }
 
     @Test
+    public void shouldFindElementUsingFluentWait() {
+        StatsTracker.getInstance().reset();
+
+        Page repos = Pages.getPage("/repos.html");
+
+        if (!repos.isAt()) repos.goTo();
+
+        //Find the button that should lead to the home page
+        WebElement btnElement = Navigator.getInstance().fluentWait(By.xpath("//*[@id=\"page-top\"]/nav/div/div[1]/a"));
+        assertNotNull(btnElement);
+
+        //Click on the homepage
+        Navigator.getInstance().click(btnElement);
+
+        Page homePage = Pages.getPage("/index.html");
+        assertTrue(homePage.isAt());
+    }
+
+    @Test
     public void shouldGetParentElement() {
         Pages.getPage("/index.html").goTo();
         WebElement element = Navigator.getInstance().getDriver().findElement(By.id("name"));

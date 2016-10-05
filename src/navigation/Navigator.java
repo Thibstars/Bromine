@@ -1,12 +1,10 @@
 package navigation;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.Page;
@@ -217,6 +215,49 @@ public final class Navigator {
         LOGGER.debug("Explicitly waiting for an element to be present");
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
+
+    /**
+     * Performs an explicit, fluent wait until an element is found, or a timeout (30 seconds) occurs.
+     * Returns the found element, if any.
+     * @param locator the method used to find the element
+     * @return the found element, if any
+     */
+    public WebElement fluentWait(By locator) {
+        return fluentWait(locator, 30, 5);
+    }
+
+    /**
+     * Performs an explicit, fluent wait until an element is found, or a timeout occurs.
+     * Returns the found element, if any.
+     * @param locator the method used to find the element
+     * @param timeout the timeout in seconds
+     * @param pollEvery the amount of seconds between each poll
+     * @return the found element, if any
+     */
+    public WebElement fluentWait(By locator, int timeout, int pollEvery) {
+        return fluentWait(locator, timeout, pollEvery, TimeUnit.SECONDS);
+    }
+
+    /**
+     * Performs an explicit, fluent wait until an element is found, or a timeout occurs.
+     * Returns the found element, if any.
+     * @param locator the method used to find the element
+     * @param timeout the timeout in seconds
+     * @param pollEvery the amount of seconds between each poll
+     * @param timeUnit the time unit used for the timeout and polling
+     * @return the found element, if any
+     */
+    public WebElement fluentWait(By locator, int timeout, int pollEvery, TimeUnit timeUnit) {
+        LOGGER.debug("Fluently waiting until an element is found with locator: " + locator);
+
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(timeout, timeUnit)
+                .pollingEvery(pollEvery, timeUnit)
+                .ignoring(NoSuchElementException.class);
+
+        return wait.until(driver1 -> driver1.findElement(locator));
+    }
+
 
     /**
      * Performs an explicit wait for an element until it is visible on the page.
