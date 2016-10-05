@@ -40,6 +40,7 @@ Thumbs.db
 #########################
 .clover/
 .idea/workspace.xml
+.idea/dictionaries
 out/
 
 # Dictionaries #
