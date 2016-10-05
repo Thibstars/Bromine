@@ -3,9 +3,9 @@ package navigation;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.SessionNotFoundException;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,7 +58,7 @@ public final class Highlighter {
         lastElem = elem;
         try {
             lastBorder = (String) (js.executeScript(SCRIPT_GET_ELEMENT_BORDER, elem));
-        } catch (SessionNotFoundException e) {
+        } catch (NoSuchSessionException e) {
             //Should for some reason be handled. The exception was raised
             // in the shouldReset test in the StatsTrackerTests class
             LOGGER.debug("Session wasn't found, couldn't get the last border.");
@@ -77,7 +77,7 @@ public final class Highlighter {
                 js.executeScript(SCRIPT_UNHIGHLIGHT_ELEMENT, lastElem, lastBorder);
             } catch (StaleElementReferenceException ignored) {
                 //The page got reloaded, the element isn't there
-            } catch (SessionNotFoundException e) {
+            } catch (NoSuchSessionException e) {
                 //Should for some reason be handled. The exception was raised
                 // in the shouldReset test in the StatsTrackerTests class
                 LOGGER.debug("Session wasn't found, couldn't unhighlight previous element.");
