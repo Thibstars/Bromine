@@ -30,7 +30,7 @@ public final class StatsTracker {
     public void registerPlugin(StatsPlugin plugin) {
         if (plugins.contains(plugin)) throw new IllegalArgumentException("Plugin was already added.");
         else {
-            LOGGER.debug("Registering plugin: " + plugin.toString());
+            LOGGER.debug("Registering plugin: " + plugin.getClass().getSimpleName());
             plugins.add(plugin);
         }
     }
@@ -42,7 +42,7 @@ public final class StatsTracker {
     public void deregisterPlugin(StatsPlugin plugin) {
         if (!plugins.contains(plugin)) throw new IllegalArgumentException("Plugin wasn't previously registered.");
         else {
-            LOGGER.debug("Deregistering plugin " + plugin.toString());
+            LOGGER.debug("Deregistering plugin " + plugin.getClass().getSimpleName());
             plugins.remove(plugin);
         }
     }
