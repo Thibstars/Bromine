@@ -22,7 +22,7 @@ Selenium tools for Java. Offers means to simplify the setup of a Selenium projec
 * Copy al the resources into your project (important, won't work otherwise!);
 
 
-### Projects using this library ###
+## Projects using this library ##
 Here's a [wikipage list of live projects using Bromine](https://github.com/Thibstars/Bromine/wiki/Projects-using-Bromine).
 
 *If you are using `Bromine` in a live application, please [add it to this list](https://github.com/Thibstars/Bromine/wiki/Projects-using-Bromine).*
