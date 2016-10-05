@@ -6,7 +6,7 @@ package stats;
  */
 public class LMBClickStats implements StatsPlugin {
 
-    protected boolean trackingEnabled;
+    boolean trackingEnabled;
     protected int clicks;
 
     /**
@@ -14,7 +14,7 @@ public class LMBClickStats implements StatsPlugin {
      */
     public LMBClickStats() {
         this.trackingEnabled = false;
-        clicks = 0;
+        this.clicks = 0;
     }
 
     public int getClicks() {
