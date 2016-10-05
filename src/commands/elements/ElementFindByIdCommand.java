@@ -30,7 +30,6 @@ public class ElementFindByIdCommand implements Command {
     @Override
     public Object execute() {
         LOGGER.debug("Finding element using id: " + id);
-        Navigator.getInstance().explicitlyWaitForElementPresent(By.id(id));
-        return Navigator.getInstance().getDriver().findElement(By.id(id));
+        return Navigator.getInstance().fluentWait(By.id(id));
     }
 }

@@ -30,7 +30,6 @@ public class ElementFindByCssSelectorCommand implements Command {
     @Override
     public Object execute() {
         LOGGER.debug("Finding element using selector: " + selector);
-        Navigator.getInstance().explicitlyWaitForElementPresent(By.cssSelector(selector));
-        return Navigator.getInstance().getDriver().findElement(By.cssSelector(selector));
+        return Navigator.getInstance().fluentWait(By.cssSelector(selector));
     }
 }

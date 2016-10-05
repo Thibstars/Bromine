@@ -30,7 +30,6 @@ public class ElementFindByLinkTextCommand implements Command {
     @Override
     public Object execute() {
         LOGGER.debug("Finding element using link text: " + linkText);
-        Navigator.getInstance().explicitlyWaitForElementPresent(By.linkText(linkText));
-        return Navigator.getInstance().getDriver().findElement(By.linkText(linkText));
+        return Navigator.getInstance().fluentWait(By.linkText(linkText));
     }
 }
