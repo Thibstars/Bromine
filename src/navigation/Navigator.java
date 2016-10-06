@@ -1,12 +1,13 @@
 package navigation;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Wait;
 import pages.Page;
-import stats.StatsAction;
-import stats.StatsTracker;
 import sut.Environment;
 
 import java.net.URL;
@@ -26,6 +27,8 @@ public final class Navigator {
     private WebDriver driver;
     private Wait<WebDriver> wait;
     private Environment environment;
+    private ActionBot actionBot;
+    private WaiterBot waiterBot;
     private boolean highlightingEnabled = false;
 
     /**
@@ -48,118 +51,6 @@ public final class Navigator {
 
     public void setWait(Wait<WebDriver> wait) {
         this.wait = wait;
-    }
-
-    /**
-     * Clicks on a specified element.
-     *
-     * @param element the element to click on
-     */
-    public void click(WebElement element) {
-        LOGGER.debug("Performing click on " + element.toString());
-        if (highlightingEnabled) Highlighter.highlightElement(element);
-        element.click();
-        StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
-    }
-
-    /**
-     * Clicks on a specified element and waits for the page to load.
-     *
-     * @param element the element to click on
-     */
-    public void clickAndWait(WebElement element) {
-        click(element);
-        explicitlyWaitForPageLoaded();
-    }
-
-    /**
-     * Clicks on a specified element using ng-click (Angular).
-     * Using this method in stead of the default one has a slight
-     * performance impact compared to the default click method.
-     *
-     * @param element the element to click on
-     */
-    public void NGClick(WebElement element) {
-        LOGGER.debug("Performing ng-click on " + element.toString());
-
-        if (highlightingEnabled) Highlighter.highlightElement(element);
-
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element).perform();
-
-        //Implicit wait is needed because Selenium doesn't know how angular loads and works
-        implicitlyWait(1);
-
-        explicitlyWaitForElementClickable(element);
-        actions.moveToElement(element).click().perform();
-        StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
-    }
-
-    /**
-     * Clicks on a specified element using ng-click (Angular).
-     * Using this method in stead of the default one has a slight
-     * performance impact compared to the default click method.
-     * <p>
-     * After the click it will wait untill the page is loaded.
-     *
-     * @param element the element to click on
-     */
-    public void NGClickAndWait(WebElement element) {
-        NGClick(element);
-        explicitlyWaitForPageLoaded();
-    }
-
-    /**
-     * Double clicks on a specified element.
-     *
-     * @param element the element to double click
-     */
-    public void doubleClick(WebElement element) {
-        LOGGER.debug("Performing double click on " + element.toString());
-
-        if (highlightingEnabled) Highlighter.highlightElement(element);
-
-        Actions actions = new Actions(driver);
-        actions.doubleClick(element).perform();
-        StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_DOUBLE_CLICK);
-    }
-
-    /**
-     * Sends keys on a specified element.
-     *
-     * @param element      the element to send keys to
-     * @param charSequence the keys to send
-     */
-    public void sendKeys(WebElement element, String charSequence) {
-        LOGGER.debug("Sending keys [" + charSequence + "] to " + element.toString());
-
-        if (highlightingEnabled) Highlighter.highlightElement(element);
-
-        Actions actions = new Actions(driver);
-        actions.sendKeys(element, charSequence).perform();
-        StatsTracker.getInstance().track(StatsAction.KEYBOARD_TYPE);
-    }
-
-    /**
-     * Sends specified keys.
-     *
-     * @param charSequence the keys to send
-     */
-    public void sendKeys(String charSequence) {
-        LOGGER.debug("Sending keys [" + charSequence + "]");
-        Actions actions = new Actions(driver);
-        actions.sendKeys(charSequence).perform();
-        StatsTracker.getInstance().track(StatsAction.KEYBOARD_TYPE);
-    }
-
-    /**
-     * Uploads a file from a specified file path to a target element.
-     *
-     * @param element  the element accepting the upload
-     * @param filePath the path of the file to upload
-     */
-    public void uploadFile(WebElement element, String filePath) {
-        element.sendKeys(filePath);
     }
 
     /**
@@ -207,14 +98,164 @@ public final class Navigator {
     }
 
     /**
+     * Returns the parent WebElement of the specified element.
+     *
+     * @param element the element from which to find the parent
+     * @return the parent element of the specified element
+     */
+    public WebElement getParent(WebElement element) {
+        LOGGER.debug("Retrieving parent element of: " + element.toString());
+        return (WebElement) ((JavascriptExecutor) driver).executeScript(
+                "return arguments[0].parentNode;", element);
+    }
+
+    /**
+     * Clicks on a specified element.
+     *
+     * @param element the element to click on
+     */
+    public void click(WebElement element) {
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+        actionBot.click(element);
+    }
+
+    /**
+     * Clicks on a specified element and waits for the page to load.
+     *
+     * @param element the element to click on
+     */
+    public void clickAndWait(WebElement element) {
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+        actionBot.clickAndWait(element);
+    }
+
+    /**
+     * Clicks on a specified element using ng-click (Angular).
+     * Using this method in stead of the default one has a slight
+     * performance impact compared to the default click method.
+     *
+     * @param element the element to click on
+     */
+    public void NGClick(WebElement element) {
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+        actionBot.NGClick(element);
+    }
+
+    /**
+     * Clicks on a specified element using ng-click (Angular).
+     * Using this method in stead of the default one has a slight
+     * performance impact compared to the default click method.
+     * <p>
+     * After the click it will wait untill the page is loaded.
+     *
+     * @param element the element to click on
+     */
+    public void NGClickAndWait(WebElement element) {
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+        actionBot.NGClickAndWait(element);
+    }
+
+    /**
+     * Double clicks on a specified element.
+     *
+     * @param element the element to double click
+     */
+    public void doubleClick(WebElement element) {
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+        actionBot.doubleClick(element);
+    }
+
+    /**
+     * Sends keys on a specified element.
+     *
+     * @param element      the element to send keys to
+     * @param charSequence the keys to send
+     */
+    public void sendKeys(WebElement element, String charSequence) {
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+        actionBot.sendKeys(element, charSequence);
+    }
+
+    /**
+     * Sends specified keys.
+     *
+     * @param charSequence the keys to send
+     */
+    public void sendKeys(String charSequence) {
+        actionBot.sendKeys(charSequence);
+    }
+
+    /**
+     * Uploads a file from a specified file path to a target element.
+     *
+     * @param element  the element accepting the upload
+     * @param filePath the path of the file to upload
+     */
+    public void uploadFile(WebElement element, String filePath) {
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+        actionBot.uploadFile(element, filePath);
+    }
+
+    /**
+     * Scrolls the specified element into the view.
+     *
+     * @param element the element to scroll in the view
+     */
+    public void scrollElementIntoView(WebElement element) {
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+        actionBot.scrollElementIntoView(element);
+    }
+
+    /**
+     * Moves te mouse to the specified element.
+     *
+     * @param element the element to which the mouse should move
+     */
+    public void moveToElement(WebElement element) {
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+        actionBot.moveToElement(element);
+    }
+
+    /**
+     * Drags an element with an offset of the current position.
+     *
+     * @param element the element to drag
+     * @param xOffset the x-axis offset
+     * @param yOffset the y-axis offset
+     */
+    public void dragElement(WebElement element, int xOffset, int yOffset) {
+        if (highlightingEnabled) Highlighter.highlightElement(element);
+        actionBot.dragElement(element, xOffset, yOffset);
+    }
+
+    /**
+     * Drags and drops a source element onto a target element.
+     *
+     * @param source the source element to drag to the target element
+     * @param target the target element that will accept the source element
+     */
+    public void dragAndDropElement(WebElement source, WebElement target) {
+        if (highlightingEnabled) Highlighter.highlightElement(source);
+        actionBot.dragAndDropElement(source, target);
+        if (highlightingEnabled) Highlighter.highlightElement(target);
+    }
+
+    /**
+     * Focuses a specified element.
+     *
+     * @param element the element to focus
+     */
+    public void focusElement(WebElement element) {
+        actionBot.focusElement(element);
+    }
+
+    /**
      * Performs an implicit wait until a given expected condition is met.
      *
      * @param expectedCondition the expected condition
      */
     public void implicitlyWait(ExpectedCondition expectedCondition) {
-        LOGGER.debug("Implicitly waiting until a condition is met.");
-        wait.until(expectedCondition);
-        StatsTracker.getInstance().track(StatsAction.WAIT_IMPLICIT);
+        waiterBot.implicitlyWait(expectedCondition);
     }
 
     /**
@@ -223,7 +264,7 @@ public final class Navigator {
      * @param seconds the amount of seconds to implicitly wait
      */
     public void implicitlyWait(int seconds) {
-        implicitlyWait(seconds, TimeUnit.SECONDS);
+        waiterBot.implicitlyWait(seconds);
     }
 
     /**
@@ -233,9 +274,7 @@ public final class Navigator {
      * @param timeUnit the time unit for the given amount to wait
      */
     public void implicitlyWait(long value, TimeUnit timeUnit) {
-        LOGGER.debug("Implicitly wait for " + value + " " + timeUnit.toString().toLowerCase());
-        driver.manage().timeouts().implicitlyWait(value, timeUnit);
-        StatsTracker.getInstance().track(StatsAction.WAIT_IMPLICIT);
+        waiterBot.implicitlyWait(value, timeUnit);
     }
 
     /**
@@ -244,9 +283,50 @@ public final class Navigator {
      * @param locator the method used to find the element
      */
     public void explicitlyWaitForElementPresent(By locator) {
-        LOGGER.debug("Explicitly waiting for an element to be present");
-        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
+        waiterBot.explicitlyWaitForElementPresent(locator);
+    }
+
+    /**
+     * Performs an explicit wait for an element until it is visible on the page.
+     *
+     * @param locator the method used to find the element
+     */
+    public void explicitlyWaitForElementVisible(By locator) {
+        waiterBot.explicitlyWaitForElementVisible(locator);
+    }
+
+    /**
+     * Performs an explicit wait for an element until it is invisible on the page.
+     *
+     * @param locator the method used to find the element
+     */
+    public void explicitlyWaitForElementInvisible(By locator) {
+        waiterBot.explicitlyWaitForElementInvisible(locator);
+    }
+
+    /**
+     * Performs an explicit wait for an element until it is clickable.
+     *
+     * @param locator the method used to find the element
+     */
+    public void explicitlyWaitForElementClickable(By locator) {
+        waiterBot.explicitlyWaitForElementClickable(locator);
+    }
+
+    /**
+     * Performs an explicit wait for given WebElement until it is clickable.
+     *
+     * @param element the element for which to wait until it is clickable
+     */
+    public void explicitlyWaitForElementClickable(WebElement element) {
+        waiterBot.explicitlyWaitForElementClickable(element);
+    }
+
+    /**
+     * Performs an explicit wait until the page is loaded.
+     */
+    public void explicitlyWaitForPageLoaded() {
+        waiterBot.explicitlyWaitForPageLoaded();
     }
 
     /**
@@ -257,7 +337,7 @@ public final class Navigator {
      * @return the found element, if any
      */
     public WebElement fluentWait(By locator) {
-        return fluentWait(locator, 30, 5);
+        return waiterBot.fluentWait(locator);
     }
 
     /**
@@ -270,7 +350,7 @@ public final class Navigator {
      * @return the found element, if any
      */
     public WebElement fluentWait(By locator, int timeout, int pollEvery) {
-        return fluentWait(locator, timeout, pollEvery, TimeUnit.SECONDS);
+        return waiterBot.fluentWait(locator, timeout, pollEvery);
     }
 
     /**
@@ -284,164 +364,23 @@ public final class Navigator {
      * @return the found element, if any
      */
     public WebElement fluentWait(By locator, int timeout, int pollEvery, TimeUnit timeUnit) {
-        LOGGER.debug("Fluently waiting until an element is found with locator: " + locator);
-
-        Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(timeout, timeUnit)
-                .pollingEvery(pollEvery, timeUnit)
-                .ignoring(NoSuchElementException.class);
-
-        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
-
-        return wait.until(driver1 -> driver1.findElement(locator));
+        return waiterBot.fluentWait(locator, timeout, pollEvery, timeUnit);
     }
 
-
-    /**
-     * Performs an explicit wait for an element until it is visible on the page.
-     *
-     * @param locator the method used to find the element
-     */
-    public void explicitlyWaitForElementVisible(By locator) {
-        LOGGER.debug("Explicitly waiting for an element to be visible");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
+    public ActionBot getActionBot() {
+        return actionBot;
     }
 
-    /**
-     * Performs an explicit wait for an element until it is invisible on the page.
-     *
-     * @param locator the method used to find the element
-     */
-    public void explicitlyWaitForElementInvisible(By locator) {
-        LOGGER.debug("Explicitly waiting for an element to be invisible");
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
+    public void setActionBot(ActionBot actionBot) {
+        this.actionBot = actionBot;
     }
 
-    /**
-     * Performs an explicit wait for an element until it is clickable.
-     *
-     * @param locator the method used to find the element
-     */
-    public void explicitlyWaitForElementClickable(By locator) {
-        LOGGER.debug("Explicitly waiting for an element to be clickable");
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
-        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
+    public WaiterBot getWaiterBot() {
+        return waiterBot;
     }
 
-    /**
-     * Performs an explicit wait for given WebElement until it is clickable.
-     *
-     * @param element the element for which to wait until it is clickable
-     */
-    public void explicitlyWaitForElementClickable(WebElement element) {
-        LOGGER.debug("Explicitly waiting for element " + element.toString() + " to be clickable");
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
-    }
-
-    /**
-     * Performs an explicit wait until the page is loaded.
-     */
-    public void explicitlyWaitForPageLoaded() {
-        LOGGER.debug("Explicitly waiting for the page to be loaded.");
-        Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-        wait.until(d -> {
-            assert d != null;
-            LOGGER.debug("Current Window State: "
-                    + String.valueOf(((JavascriptExecutor) d).executeScript("return document.readyState")));
-            return String
-                    .valueOf(((JavascriptExecutor) d).executeScript("return document.readyState"))
-                    .equals("complete");
-        });
-        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
-    }
-
-    /**
-     * Scrolls the specified element into the view.
-     *
-     * @param element the element to scroll in the view
-     */
-    public void scrollElementIntoView(WebElement element) {
-        LOGGER.debug("Scrolling element " + element.toString() + " into view");
-
-        if (highlightingEnabled) Highlighter.highlightElement(element);
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
-    /**
-     * Moves te mouse to the specified element.
-     *
-     * @param element the element to which the mouse should move
-     */
-    public void moveToElement(WebElement element) {
-        LOGGER.debug("Moving to element: " + element.toString());
-
-        if (highlightingEnabled) Highlighter.highlightElement(element);
-
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element).build().perform();
-    }
-
-    /**
-     * Drags an element with an offset of the current position.
-     *
-     * @param element the element to drag
-     * @param xOffset the x-axis offset
-     * @param yOffset the y-axis offset
-     */
-    public void dragElement(WebElement element, int xOffset, int yOffset) {
-        LOGGER.debug("Dragging element: " + element.toString());
-
-        if (highlightingEnabled) Highlighter.highlightElement(element);
-
-        Actions action = new Actions(driver);
-        action.moveToElement(element);
-        action.clickAndHold();
-        action.moveByOffset(xOffset, yOffset);
-        action.release();
-        action.build().perform();
-    }
-
-    /**
-     * Drags and drops a source element onto a target element.
-     *
-     * @param source the source element to drag to the target element
-     * @param target the target element that will accept the source element
-     */
-    public void dragAndDropElement(WebElement source, WebElement target) {
-        LOGGER.debug("Dragging element: " + source.toString() + " and dropping on: " + target.toString());
-
-        if (highlightingEnabled) Highlighter.highlightElement(source);
-
-        Actions actions = new Actions(driver);
-        actions.dragAndDrop(source, target);
-
-        if (highlightingEnabled) Highlighter.highlightElement(target);
-    }
-
-    /**
-     * Focuses a specified element.
-     *
-     * @param element the element to focus
-     */
-    public void focusElement(WebElement element) {
-        LOGGER.debug("Focusing element: " + element.toString());
-        ((JavascriptExecutor) driver).executeScript("arguments[0].focus();", element);
-    }
-
-    /**
-     * Returns the parent WebElement of the specified element.
-     *
-     * @param element the element from which to find the parent
-     * @return the parent element of the specified element
-     */
-    public WebElement getParent(WebElement element) {
-        LOGGER.debug("Retrieving parent element of: " + element.toString());
-        return (WebElement) ((JavascriptExecutor) driver).executeScript(
-                "return arguments[0].parentNode;", element);
+    public void setWaiterBot(WaiterBot waiterBot) {
+        this.waiterBot = waiterBot;
     }
 
     public boolean isHighlightingEnabled() {

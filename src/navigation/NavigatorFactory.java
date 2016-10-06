@@ -48,6 +48,11 @@ public final class NavigatorFactory {
                 navigator = createChromeNavigator(environment, true);
         }
 
+        //Set default action bot
+        navigator.setActionBot(new ActionBot());
+        //Set default waiter bot
+        navigator.setWaiterBot(new WaiterBot());
+
         return navigator;
     }
 
