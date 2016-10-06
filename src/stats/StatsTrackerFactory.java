@@ -25,6 +25,8 @@ public final class StatsTrackerFactory {
         statsTracker.registerPlugin(new LMBDoubleClickStats());
         statsTracker.registerPlugin(new SendKeyStats());
         statsTracker.registerPlugin(new WaitStats());
+        statsTracker.registerPlugin(new ImplicitWaitStats());
+        statsTracker.registerPlugin(new ExplicitWaitStats());
 
         //Enable tracking on all the plugins straight away
         statsTracker.enableTracking();

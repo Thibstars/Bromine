@@ -205,7 +205,7 @@ public final class Navigator {
     public void implicitlyWait(long value, TimeUnit timeUnit) {
         LOGGER.debug("Implicitly wait for " + value + " " + timeUnit.toString().toLowerCase());
         driver.manage().timeouts().implicitlyWait(value, timeUnit);
-        StatsTracker.getInstance().track(StatsAction.WAIT);
+        StatsTracker.getInstance().track(StatsAction.WAIT_IMPLICIT);
     }
 
     /**
@@ -215,7 +215,7 @@ public final class Navigator {
     public void explicitlyWaitForElementPresent(By locator) {
         LOGGER.debug("Explicitly waiting for an element to be present");
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-        StatsTracker.getInstance().track(StatsAction.WAIT);
+        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
     }
 
     /**
@@ -257,7 +257,7 @@ public final class Navigator {
                 .pollingEvery(pollEvery, timeUnit)
                 .ignoring(NoSuchElementException.class);
 
-        StatsTracker.getInstance().track(StatsAction.WAIT);
+        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
 
         return wait.until(driver1 -> driver1.findElement(locator));
     }
@@ -270,7 +270,7 @@ public final class Navigator {
     public void explicitlyWaitForElementVisible(By locator) {
         LOGGER.debug("Explicitly waiting for an element to be visible");
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        StatsTracker.getInstance().track(StatsAction.WAIT);
+        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
     }
 
     /**
@@ -280,7 +280,7 @@ public final class Navigator {
     public void explicitlyWaitForElementInvisible(By locator) {
         LOGGER.debug("Explicitly waiting for an element to be invisible");
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-        StatsTracker.getInstance().track(StatsAction.WAIT);
+        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
     }
 
     /**
@@ -290,7 +290,7 @@ public final class Navigator {
     public void explicitlyWaitForElementClickable(By locator) {
         LOGGER.debug("Explicitly waiting for an element to be clickable");
         wait.until(ExpectedConditions.elementToBeClickable(locator));
-        StatsTracker.getInstance().track(StatsAction.WAIT);
+        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
     }
 
     /**
@@ -300,7 +300,7 @@ public final class Navigator {
     public void explicitlyWaitForElementClickable(WebElement element) {
         LOGGER.debug("Explicitly waiting for element " + element.toString() + " to be clickable");
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        StatsTracker.getInstance().track(StatsAction.WAIT);
+        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
     }
 
     /**
@@ -316,7 +316,7 @@ public final class Navigator {
                     .valueOf(((JavascriptExecutor) d).executeScript("return document.readyState"))
                     .equals("complete");
         });
-        StatsTracker.getInstance().track(StatsAction.WAIT);
+        StatsTracker.getInstance().track(StatsAction.WAIT_EXPLICIT);
     }
 
     /**

@@ -7,7 +7,7 @@ package stats;
 public class WaitStats implements StatsPlugin {
 
     private boolean trackingEnabled;
-    private int timesWaited;
+    int timesWaited;
 
     public WaitStats() {
         this.trackingEnabled = false;
@@ -31,7 +31,8 @@ public class WaitStats implements StatsPlugin {
 
     @Override
     public void track(StatsAction statsAction) {
-        if (statsAction.equals(StatsAction.WAIT) && trackingEnabled) timesWaited++;
+        if ((statsAction.equals(StatsAction.WAIT_IMPLICIT) || statsAction.equals(StatsAction.WAIT_EXPLICIT))
+                && trackingEnabled) timesWaited++;
     }
 
     @Override
