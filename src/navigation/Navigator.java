@@ -191,6 +191,7 @@ public final class Navigator {
      * @param expectedCondition the expected condition
      */
     public void implicitlyWait(ExpectedCondition expectedCondition) {
+        LOGGER.debug("Implicitly waiting until a condition is met.");
         wait.until(expectedCondition);
         StatsTracker.getInstance().track(StatsAction.WAIT_IMPLICIT);
     }
