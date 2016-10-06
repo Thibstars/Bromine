@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Representation of a Navigator. This (Singleton) class is responsible for
  * properly using the WebDriver and some additional functionality.
+ *
  * @author Thibault Helsmoortel
  */
 public final class Navigator {
@@ -51,6 +52,7 @@ public final class Navigator {
 
     /**
      * Clicks on a specified element.
+     *
      * @param element the element to click on
      */
     public void click(WebElement element) {
@@ -62,6 +64,7 @@ public final class Navigator {
 
     /**
      * Clicks on a specified element and waits for the page to load.
+     *
      * @param element the element to click on
      */
     public void clickAndWait(WebElement element) {
@@ -73,6 +76,7 @@ public final class Navigator {
      * Clicks on a specified element using ng-click (Angular).
      * Using this method in stead of the default one has a slight
      * performance impact compared to the default click method.
+     *
      * @param element the element to click on
      */
     public void NGClick(WebElement element) {
@@ -95,8 +99,9 @@ public final class Navigator {
      * Clicks on a specified element using ng-click (Angular).
      * Using this method in stead of the default one has a slight
      * performance impact compared to the default click method.
-     *
+     * <p>
      * After the click it will wait untill the page is loaded.
+     *
      * @param element the element to click on
      */
     public void NGClickAndWait(WebElement element) {
@@ -106,6 +111,7 @@ public final class Navigator {
 
     /**
      * Double clicks on a specified element.
+     *
      * @param element the element to double click
      */
     public void doubleClick(WebElement element) {
@@ -120,7 +126,8 @@ public final class Navigator {
 
     /**
      * Sends keys on a specified element.
-     * @param element the element to send keys to
+     *
+     * @param element      the element to send keys to
      * @param charSequence the keys to send
      */
     public void sendKeys(WebElement element, String charSequence) {
@@ -135,6 +142,7 @@ public final class Navigator {
 
     /**
      * Sends specified keys.
+     *
      * @param charSequence the keys to send
      */
     public void sendKeys(String charSequence) {
@@ -146,7 +154,8 @@ public final class Navigator {
 
     /**
      * Uploads a file from a specified file path to a target element.
-     * @param element the element accepting the upload
+     *
+     * @param element  the element accepting the upload
      * @param filePath the path of the file to upload
      */
     public void uploadFile(WebElement element, String filePath) {
@@ -155,6 +164,7 @@ public final class Navigator {
 
     /**
      * Navigates to a specified url.
+     *
      * @param url the url to navigate to
      */
     public void navigateTo(URL url) {
@@ -164,6 +174,7 @@ public final class Navigator {
 
     /**
      * Navigates to a specified page.
+     *
      * @param page the page to navigate to
      */
     public void navigateTo(Page page) {
@@ -197,6 +208,7 @@ public final class Navigator {
 
     /**
      * Performs an implicit wait until a given expected condition is met.
+     *
      * @param expectedCondition the expected condition
      */
     public void implicitlyWait(ExpectedCondition expectedCondition) {
@@ -207,6 +219,7 @@ public final class Navigator {
 
     /**
      * Performs an implicit wait for a given amount of seconds.
+     *
      * @param seconds the amount of seconds to implicitly wait
      */
     public void implicitlyWait(int seconds) {
@@ -215,7 +228,8 @@ public final class Navigator {
 
     /**
      * Performs an implicit wait for a given amount of time and the corresponding time unit.
-     * @param value the amount of time to wait
+     *
+     * @param value    the amount of time to wait
      * @param timeUnit the time unit for the given amount to wait
      */
     public void implicitlyWait(long value, TimeUnit timeUnit) {
@@ -226,6 +240,7 @@ public final class Navigator {
 
     /**
      * Performs an explicit wait for an element until it is present on the page.
+     *
      * @param locator the method used to find the element
      */
     public void explicitlyWaitForElementPresent(By locator) {
@@ -237,6 +252,7 @@ public final class Navigator {
     /**
      * Performs an explicit, fluent wait until an element is found, or a timeout (30 seconds) occurs.
      * Returns the found element, if any.
+     *
      * @param locator the method used to find the element
      * @return the found element, if any
      */
@@ -247,8 +263,9 @@ public final class Navigator {
     /**
      * Performs an explicit, fluent wait until an element is found, or a timeout occurs.
      * Returns the found element, if any.
-     * @param locator the method used to find the element
-     * @param timeout the timeout in seconds
+     *
+     * @param locator   the method used to find the element
+     * @param timeout   the timeout in seconds
      * @param pollEvery the amount of seconds between each poll
      * @return the found element, if any
      */
@@ -259,10 +276,11 @@ public final class Navigator {
     /**
      * Performs an explicit, fluent wait until an element is found, or a timeout occurs.
      * Returns the found element, if any.
-     * @param locator the method used to find the element
-     * @param timeout the timeout in seconds
+     *
+     * @param locator   the method used to find the element
+     * @param timeout   the timeout in seconds
      * @param pollEvery the amount of seconds between each poll
-     * @param timeUnit the time unit used for the timeout and polling
+     * @param timeUnit  the time unit used for the timeout and polling
      * @return the found element, if any
      */
     public WebElement fluentWait(By locator, int timeout, int pollEvery, TimeUnit timeUnit) {
@@ -281,6 +299,7 @@ public final class Navigator {
 
     /**
      * Performs an explicit wait for an element until it is visible on the page.
+     *
      * @param locator the method used to find the element
      */
     public void explicitlyWaitForElementVisible(By locator) {
@@ -291,6 +310,7 @@ public final class Navigator {
 
     /**
      * Performs an explicit wait for an element until it is invisible on the page.
+     *
      * @param locator the method used to find the element
      */
     public void explicitlyWaitForElementInvisible(By locator) {
@@ -301,6 +321,7 @@ public final class Navigator {
 
     /**
      * Performs an explicit wait for an element until it is clickable.
+     *
      * @param locator the method used to find the element
      */
     public void explicitlyWaitForElementClickable(By locator) {
@@ -311,6 +332,7 @@ public final class Navigator {
 
     /**
      * Performs an explicit wait for given WebElement until it is clickable.
+     *
      * @param element the element for which to wait until it is clickable
      */
     public void explicitlyWaitForElementClickable(WebElement element) {
@@ -364,18 +386,6 @@ public final class Navigator {
     }
 
     /**
-     * Returns the parent WebElement of the specified element.
-     *
-     * @param element the element from which to find the parent
-     * @return the parent element of the specified element
-     */
-    public WebElement getParent(WebElement element) {
-        LOGGER.debug("Retrieving parent element of: " + element.toString());
-        return (WebElement) ((JavascriptExecutor) driver).executeScript(
-                "return arguments[0].parentNode;", element);
-    }
-
-    /**
      * Drags an element with an offset of the current position.
      *
      * @param element the element to drag
@@ -412,6 +422,28 @@ public final class Navigator {
         if (highlightingEnabled) Highlighter.highlightElement(target);
     }
 
+    /**
+     * Focuses a specified element.
+     *
+     * @param element the element to focus
+     */
+    public void focusElement(WebElement element) {
+        LOGGER.debug("Focusing element: " + element.toString());
+        ((JavascriptExecutor) driver).executeScript("arguments[0].focus();", element);
+    }
+
+    /**
+     * Returns the parent WebElement of the specified element.
+     *
+     * @param element the element from which to find the parent
+     * @return the parent element of the specified element
+     */
+    public WebElement getParent(WebElement element) {
+        LOGGER.debug("Retrieving parent element of: " + element.toString());
+        return (WebElement) ((JavascriptExecutor) driver).executeScript(
+                "return arguments[0].parentNode;", element);
+    }
+
     public boolean isHighlightingEnabled() {
         return highlightingEnabled;
     }
@@ -426,6 +458,7 @@ public final class Navigator {
 
     /**
      * Returns the title of the current page.
+     *
      * @return the title of the current page
      */
     public String getTitle() {

@@ -148,6 +148,17 @@ public class NavigatorTests {
     }
 
     @Test
+    public void shouldFocusElement() {
+        Page home = Pages.getPage("/index.html");
+        if (!home.isAt()) home.goTo();
+        WebElement nameField = Navigator.getInstance().getDriver().findElement(By.id("name"));
+        Navigator.getInstance().scrollElementIntoView(nameField);
+
+        Navigator.getInstance().focusElement(nameField);
+        assertEquals(nameField, Navigator.getInstance().getDriver().switchTo().activeElement());
+    }
+
+    @Test
     public void shouldNavigateBack() {
         Page homePage = Pages.getPage("/index.html");
         homePage.goTo();
