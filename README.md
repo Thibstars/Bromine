@@ -11,6 +11,7 @@ Selenium tools for Java. Offers means to simplify the setup of a Selenium projec
 * Structure for the SUT/Project environment and accounts;
 * Highlighting WebElements;
 * Cookies management;
+* Customizable action and wait implementations;
 
 ## Dependencies ##
 * Selenium Server Standalone 3.0.0 - beta 2;
