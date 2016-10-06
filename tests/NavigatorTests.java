@@ -11,7 +11,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.Page;
 import pages.Pages;
-import stats.*;
+import stats.SendKeyStats;
+import stats.StatsPlugin;
+import stats.StatsTracker;
+import stats.defaultPlugins.LMBClickStats;
+import stats.defaultPlugins.LMBDoubleClickStats;
 import sut.Environment;
 
 import static org.junit.Assert.*;

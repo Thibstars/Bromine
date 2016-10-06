@@ -1,6 +1,7 @@
 package stats;
 
 import org.apache.log4j.Logger;
+import stats.defaultPlugins.*;
 
 /**
  * Factory responsible for creating the StatsTracker.

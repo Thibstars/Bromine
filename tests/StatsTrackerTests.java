@@ -10,9 +10,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.Page;
 import pages.Pages;
-import stats.LMBClickStats;
 import stats.StatsPlugin;
 import stats.StatsTracker;
+import stats.defaultPlugins.LMBClickStats;
 import sut.Environment;
 
 import static org.junit.Assert.*;

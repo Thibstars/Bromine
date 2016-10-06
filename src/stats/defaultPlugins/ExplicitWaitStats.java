@@ -1,4 +1,6 @@
-package stats;
+package stats.defaultPlugins;
+
+import stats.StatsAction;
 
 /**
  * StatsPlugin tracking explicit waits.

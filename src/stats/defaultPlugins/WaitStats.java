@@ -1,4 +1,7 @@
-package stats;
+package stats.defaultPlugins;
+
+import stats.StatsAction;
+import stats.StatsPlugin;
 
 /**
  * StatsPlugin tracking waits.

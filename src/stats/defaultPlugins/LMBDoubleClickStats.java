@@ -1,4 +1,6 @@
-package stats;
+package stats.defaultPlugins;
+
+import stats.StatsAction;
 
 /**
  * StatsPlugin tracking only LMB double clicks.
