@@ -145,6 +145,15 @@ public final class Navigator {
     }
 
     /**
+     * Uploads a file from a specified file path to a target element.
+     * @param element the element accepting the upload
+     * @param filePath the path of the file to upload
+     */
+    public void uploadFile(WebElement element, String filePath) {
+        element.sendKeys(filePath);
+    }
+
+    /**
      * Navigates to a specified url.
      * @param url the url to navigate to
      */
