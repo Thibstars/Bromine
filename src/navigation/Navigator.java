@@ -3,10 +3,7 @@ package navigation;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 import pages.Page;
 import stats.StatsAction;
 import stats.StatsTracker;
@@ -190,6 +187,15 @@ public final class Navigator {
     }
 
     /**
+     * Performs an implicit wait until a given expected condition is met.
+     * @param expectedCondition the expected condition
+     */
+    public void implicitlyWait(ExpectedCondition expectedCondition) {
+        wait.until(expectedCondition);
+        StatsTracker.getInstance().track(StatsAction.WAIT_IMPLICIT);
+    }
+
+    /**
      * Performs an implicit wait for a given amount of seconds.
      * @param seconds the amount of seconds to implicitly wait
      */
@@ -310,6 +316,7 @@ public final class Navigator {
         LOGGER.debug("Explicitly waiting for the page to be loaded.");
         Wait<WebDriver> wait = new WebDriverWait(driver, 30);
         wait.until(d -> {
+            assert d != null;
             LOGGER.debug("Current Window State: "
                     + String.valueOf(((JavascriptExecutor) d).executeScript("return document.readyState")));
             return String
