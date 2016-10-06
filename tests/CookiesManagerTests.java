@@ -11,8 +11,7 @@ import sut.Environment;
 
 import java.util.Set;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class CookiesManagerTests {
 
@@ -34,6 +33,45 @@ public class CookiesManagerTests {
 
         assertNotNull(cookies);
         assertTrue(cookies.size() > 0);
+    }
+
+    @Test
+    public void shouldGetCookie() {
+        assertNotNull(CookiesManager.getCookie("_ga"));
+    }
+
+    @Test
+    public void shouldAddCookie() {
+        addTestCookie();
+        assertNotNull(CookiesManager.getCookie("testCookie"));
+    }
+
+    @Test
+    public void shouldDeleteCookie() {
+        Cookie cookie = addTestCookie();
+
+        CookiesManager.deleteCookie(cookie);
+        assertNull(CookiesManager.getCookie(cookie.getName()));
+
+        cookie = addTestCookie();
+
+        CookiesManager.deleteCookie(cookie.getName());
+        assertNull(CookiesManager.getCookie(cookie.getName()));
+    }
+
+    @Test
+    public void shouldDeleteAllCookies() {
+        Cookie cookie = addTestCookie();
+
+        CookiesManager.deleteAllCookies();
+        assertTrue(CookiesManager.getCookies() == null || CookiesManager.getCookies().size() == 0);
+        assertNull(CookiesManager.getCookie(cookie.getName()));
+    }
+
+    private Cookie addTestCookie() {
+        Cookie cookie = new Cookie("testCookie", "1", "/");
+        CookiesManager.addCookie(cookie);
+        return cookie;
     }
 
     @AfterClass
