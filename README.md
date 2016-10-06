@@ -20,7 +20,13 @@ Selenium tools for Java. Offers means to simplify the setup of a Selenium projec
 
 ## Getting started ##
 * Copy al the resources into your project (important, won't work otherwise!);
+* Execute `new InitFrameworkCommand().execute();`;
+* Create a new Navigator: `NavigatorFactory.createNavigator(myEnvironment);`;
+* Register your pages: `Pages.registerPage(myPage);`;
+* Add sections to your pages if any: `myPage.addSection(mySection);`;
 
+You're now good to go. You can now start building your framework. 
+A good start could be `myPage.goTo();`.
 
 ## Projects using this library ##
 Here's a [wikipage list of live projects using Bromine](https://github.com/Thibstars/Bromine/wiki/Projects-using-Bromine).
