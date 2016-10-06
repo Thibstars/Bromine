@@ -1,5 +1,6 @@
-package navigation;
+package navigation.bots;
 
+import navigation.Navigator;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;

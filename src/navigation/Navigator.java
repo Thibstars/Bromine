@@ -1,5 +1,7 @@
 package navigation;
 
+import navigation.bots.ActionBot;
+import navigation.bots.WaiterBot;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

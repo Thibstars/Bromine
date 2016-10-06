@@ -1,6 +1,8 @@
 package navigation;
 
 import commands.InitFrameworkCommand;
+import navigation.bots.ActionBot;
+import navigation.bots.WaiterBot;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
