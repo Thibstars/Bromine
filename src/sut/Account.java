@@ -1,37 +1,27 @@
 package sut;
 
+import org.openqa.selenium.security.UserAndPassword;
+
 /**
  * Representation of an account under test.
  * Use only in applications where a user has to login at some point.
  * @author Thibault Helsmoortel
  */
-public class Account {
-    private String mail;
-    private String password;
-
+public class Account extends UserAndPassword {
     /**
      * Class constructor specifying email and password.
      * @param mail the account's email address
      * @param password the account's password
      */
     public Account(String mail, String password) {
-        this.mail = mail;
-        this.password = password;
+        super(mail, password);
     }
 
     public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
+        return super.getUsername();
     }
 
     public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        return super.getPassword();
     }
 }
