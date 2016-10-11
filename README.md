@@ -4,6 +4,7 @@ Selenium tools for Java. Offers means to simplify the setup of a Selenium projec
 ## Features ##
 * Commands to find elements;
 * Screenshot support (and a JUnit Rule capturing screenshots on test failure);
+* Custom JUnit rules with various purposes;
 * Improved general navigation;
 * Support for multitude of wait methods for the WebDriver;
 * Structure for pages and their sections in your SUT/Project;
