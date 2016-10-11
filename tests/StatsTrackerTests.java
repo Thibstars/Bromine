@@ -17,10 +17,17 @@ import sut.Environment;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test class testing the StatsTracker.
+ * @author Thibault Helsmoortel
+ */
 public class StatsTrackerTests {
 
     private static final Logger LOGGER = Logger.getLogger(StatsTrackerTests.class);
 
+    /**
+     * Initializes the test class.
+     */
     @BeforeClass
     public static void init() {
         new InitFrameworkCommand().execute();
@@ -32,6 +39,9 @@ public class StatsTrackerTests {
         //StatsTracker.getInstance().reset();
     }
 
+    /**
+     * Tests if tracking is properly enabled.
+     */
     @Test
     public void shouldEnableTracking() {
         StatsTracker.getInstance().disableTracking();
@@ -42,6 +52,9 @@ public class StatsTrackerTests {
         }
     }
 
+    /**
+     * Tests if tracking is properly disabled.
+     */
     @Test
     public void shouldDisableTracking() {
         StatsTracker.getInstance().enableTracking();
@@ -52,6 +65,9 @@ public class StatsTrackerTests {
         }
     }
 
+    /**
+     * Tests if plugin is properly registered.
+     */
     @Test
     public void shouldRegisterPlugin() {
         StatsPlugin customClicks = new LMBClickStats();
@@ -60,6 +76,9 @@ public class StatsTrackerTests {
         assertTrue(StatsTracker.getPlugins().contains(customClicks));
     }
 
+    /**
+     * Tests if plugin is properly deregistered.
+     */
     @Test
     public void shouldDeregisterPlugin() {
         StatsPlugin customClicks = new LMBClickStats();
@@ -69,6 +88,9 @@ public class StatsTrackerTests {
         assertFalse(StatsTracker.getPlugins().contains(customClicks));
     }
 
+    /**
+     * Tests if tracker is properly reset.
+     */
     @Test
     public void shouldReset() {
         Page homePage = Pages.getPage("/index.html");
@@ -97,6 +119,9 @@ public class StatsTrackerTests {
         assertEquals(0, clicks.getClicks());
     }
 
+    /**
+     * Destroys the setup.
+     */
     @AfterClass
     public static void tearDown() {
         NavigatorFactory.destroyNavigator();

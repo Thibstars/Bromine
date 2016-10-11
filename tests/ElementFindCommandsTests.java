@@ -20,11 +20,17 @@ import java.util.List;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Test class testing the element find commands.
+ *
+ * @author Thibault Helsmoortel
+ */
 @RunWith(Theories.class)
 public class ElementFindCommandsTests {
 
     private static final Logger LOGGER = Logger.getLogger(ElementFindCommandsTests.class);
 
+    //Set of test data, commands finding elements
     @DataPoints
     public static Command[] commands = {
             new ElementFindByCssSelectorCommand("#page-top > nav > div > div.navbar-header.page-scroll > a"),
@@ -34,11 +40,15 @@ public class ElementFindCommandsTests {
             new ElementsFindByXPathCommand("//*[@id=\"page-top\"]/nav/div/div[1]/a"),
     };
 
+    /**
+     * Initializes the test class.
+     */
     @BeforeClass
     public static void init() {
         new InitFrameworkCommand().execute();
         NavigatorFactory.createHighlightingNavigator(new Environment("Website", "http://thibaulthelsmoortel.be"), Browser.CHROME);
-        Page homePage = new Page("/index.html") {};
+        Page homePage = new Page("/index.html") {
+        };
         Pages.registerPage(homePage);
         if (!homePage.isAt()) {
             homePage.goTo();
@@ -46,6 +56,11 @@ public class ElementFindCommandsTests {
         }
     }
 
+    /**
+     * Tests if at least one element could be found using a specified command.
+     *
+     * @param command the command to use to find the element
+     */
     @Theory
     public void shouldFindAtLeastOneElement(Command command) {
         LOGGER.debug("Testing execution of command: " + command.getClass().getSimpleName());
@@ -59,6 +74,9 @@ public class ElementFindCommandsTests {
         }
     }
 
+    /**
+     * Destroys the setup.
+     */
     @AfterClass
     public static void tearDown() {
         NavigatorFactory.destroyNavigator();

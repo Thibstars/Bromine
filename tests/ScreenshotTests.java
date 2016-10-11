@@ -9,17 +9,28 @@ import sut.Environment;
 
 import java.io.IOException;
 
+/**
+ * Test class testing screenshot functionality.
+ * @author Thibault Helsmoortel
+ */
 public class ScreenshotTests {
 
     @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
+    /**
+     * Initializes the test class.
+     */
     @BeforeClass
     public static void init() {
         new InitFrameworkCommand().execute();
         NavigatorFactory.createHighlightingNavigator(new Environment("Website", "http://thibaulthelsmoortel.be"), Browser.CHROME);
     }
 
+    /**
+     * Tests if a screenshot is successfully captured.
+     * @throws IOException thrown when the file couldn't be saved
+     */
     @Test
     public void shouldCaptureScreenshot() throws IOException {
         temporaryFolder.create();
@@ -28,6 +39,9 @@ public class ScreenshotTests {
         temporaryFolder.delete();
     }
 
+    /**
+     * Destroys the setup.
+     */
     @AfterClass
     public static void tearDown() {
         NavigatorFactory.destroyNavigator();

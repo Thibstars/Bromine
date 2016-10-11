@@ -14,6 +14,11 @@ import sut.Environment;
 
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Test class testing the BrowserHistory.
+ *
+ * @author Thibault Helsmoortel
+ */
 public class HistoryTests {
 
     private static final Logger LOGGER = Logger.getLogger(HistoryTests.class);
@@ -23,6 +28,9 @@ public class HistoryTests {
     public ScreenShotOnFailure failure = new ScreenShotOnFailure();
     */
 
+    /**
+     * Initialization of the test class.
+     */
     @BeforeClass
     public static void init() {
         new InitFrameworkCommand().execute();
@@ -35,6 +43,9 @@ public class HistoryTests {
         StatsTrackerFactory.createDefault();
     }
 
+    /**
+     * Tests if the history is correctly tracked.
+     */
     @Test
     public void shouldHaveAHistory() {
         Pages.getPage("/index.html").goTo();
@@ -46,6 +57,9 @@ public class HistoryTests {
         assertTrue(BrowserHistory.getHistoryLength() > 0);
     }
 
+    /**
+     * Destroys the test setup.
+     */
     @AfterClass
     public static void tearDown() {
         NavigatorFactory.destroyNavigator();

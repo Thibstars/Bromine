@@ -20,6 +20,9 @@ import sut.Environment;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test class testing the Navigator.
+ */
 public class NavigatorTests {
 
     private static Logger LOGGER = Logger.getLogger(NavigatorTests.class);
@@ -29,6 +32,9 @@ public class NavigatorTests {
     public ScreenShotOnFailure failure = new ScreenShotOnFailure();
     */
 
+    /**
+     * Initializes the test class.
+     */
     @BeforeClass
     public static void init() {
         new InitFrameworkCommand().execute();
@@ -39,6 +45,9 @@ public class NavigatorTests {
         });
     }
 
+    /**
+     * Tests if we are at a specific page, if not we should properly go to that page.
+     */
     @Test
     public void shouldBeAtOrGotoPage() {
         Page repos = Pages.getPage("/repos.html");
@@ -47,6 +56,9 @@ public class NavigatorTests {
         assertTrue(repos.isAt());
     }
 
+    /**
+     * Tests if home is correctly clicked.
+     */
     @Test
     public void shouldClickHome() {
         StatsTracker.getInstance().reset();
@@ -66,12 +78,16 @@ public class NavigatorTests {
         assertTrue(homePage.isAt());
         LMBClickStats clicks = null;
         for (StatsPlugin plugin : StatsTracker.getPlugins()) {
-            if (plugin instanceof LMBClickStats && !(plugin instanceof LMBDoubleClickStats)) clicks = (LMBClickStats) plugin;
+            if (plugin instanceof LMBClickStats && !(plugin instanceof LMBDoubleClickStats))
+                clicks = (LMBClickStats) plugin;
         }
         LOGGER.debug(clicks.represent());
         assertEquals(1, clicks.getClicks());
     }
 
+    /**
+     * Tests if home is correctly clicked and that the wait is properly performed.
+     */
     @Test
     public void shouldClickAndWaitHome() {
         StatsTracker.getInstance().reset();
@@ -91,7 +107,8 @@ public class NavigatorTests {
         assertTrue(homePage.isAt());
         LMBClickStats clicks = null;
         for (StatsPlugin plugin : StatsTracker.getPlugins()) {
-            if (plugin instanceof LMBClickStats && !(plugin instanceof LMBDoubleClickStats)) clicks = (LMBClickStats) plugin;
+            if (plugin instanceof LMBClickStats && !(plugin instanceof LMBDoubleClickStats))
+                clicks = (LMBClickStats) plugin;
         }
         LOGGER.debug(clicks.represent());
         assertEquals(1, clicks.getClicks());
@@ -120,7 +137,7 @@ public class NavigatorTests {
 
         SendKeyStats keys = null;
         for (StatsPlugin plugin : StatsTracker.getPlugins()) {
-            if (plugin instanceof  SendKeyStats) keys = (SendKeyStats) plugin;
+            if (plugin instanceof SendKeyStats) keys = (SendKeyStats) plugin;
         }
         LOGGER.debug(keys.represent());
         assertEquals(1, keys.getTimesKeysSent());
@@ -145,12 +162,15 @@ public class NavigatorTests {
 
         SendKeyStats keys = null;
         for (StatsPlugin plugin : StatsTracker.getPlugins()) {
-            if (plugin instanceof  SendKeyStats) keys = (SendKeyStats) plugin;
+            if (plugin instanceof SendKeyStats) keys = (SendKeyStats) plugin;
         }
         LOGGER.debug(keys.represent());
         assertEquals(1, keys.getTimesKeysSent());
     }
 
+    /**
+     * Tests if an element is properly focused.
+     */
     @Test
     public void shouldFocusElement() {
         Page home = Pages.getPage("/index.html");
@@ -162,6 +182,9 @@ public class NavigatorTests {
         assertEquals(nameField, Navigator.getInstance().getDriver().switchTo().activeElement());
     }
 
+    /**
+     * Tests if the driver successfully navigates back.
+     */
     @Test
     public void shouldNavigateBack() {
         Page homePage = Pages.getPage("/index.html");
@@ -172,6 +195,9 @@ public class NavigatorTests {
         assertTrue(homePage.isAt());
     }
 
+    /**
+     * Tests if the driver successfully navigates forward.
+     */
     @Test
     public void shouldNavigateForward() {
         Page homePage = Pages.getPage("/index.html");
@@ -187,6 +213,9 @@ public class NavigatorTests {
         assertTrue(reposPage.isAt());
     }
 
+    /**
+     * Tests if the driver properly refreshes.
+     */
     @Test
     public void shouldRefresh() {
         Pages.getPage("/index.html").goTo();
@@ -203,9 +232,12 @@ public class NavigatorTests {
 
         if (!nameField.isDisplayed()) Navigator.getInstance().scrollElementIntoView(nameField);
 
-        assertTrue(nameField.getText().isEmpty()|| nameField.getText() == null);
+        assertTrue(nameField.getText().isEmpty() || nameField.getText() == null);
     }
 
+    /**
+     * Tests if an element is properly scrolled into view.
+     */
     @Test
     public void shouldScrollElementIntoView() {
         Pages.getPage("/index.html").goTo();
@@ -216,6 +248,9 @@ public class NavigatorTests {
         assertTrue(nameField.isDisplayed());
     }
 
+    /**
+     * Tests if an element is properly found using a fluent wait.
+     */
     @Test
     public void shouldFindElementUsingFluentWait() {
         StatsTracker.getInstance().reset();
@@ -235,6 +270,9 @@ public class NavigatorTests {
         assertTrue(homePage.isAt());
     }
 
+    /**
+     * Tests if the parent element is successfully fetched from a child element.
+     */
     @Test
     public void shouldGetParentElement() {
         Pages.getPage("/index.html").goTo();
@@ -247,6 +285,9 @@ public class NavigatorTests {
         assertEquals(element, parent.findElement(By.id("name")));
     }
 
+    /**
+     * Destroys the setup.
+     */
     @AfterClass
     public static void tearDown() {
         NavigatorFactory.destroyNavigator();

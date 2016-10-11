@@ -18,6 +18,10 @@ import java.util.List;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.*;
 
+/**
+ * Test class testing Pages.
+ * @author Thibault Helsmoortel
+ */
 public class PagesTests {
 
     /*
@@ -25,6 +29,9 @@ public class PagesTests {
     public ScreenShotOnFailure failure = new ScreenShotOnFailure();
     */
 
+    /**
+     * Initializes the test class.
+     */
     @BeforeClass
     public static void init() {
         new InitFrameworkCommand().execute();
@@ -32,6 +39,9 @@ public class PagesTests {
         Pages.deregisterAll();
     }
 
+    /**
+     * Tests if a page is properly registered.
+     */
     @Test
     public void shouldRegisterPage() {
         Page reposPage = new Page("/repos.html") {};
@@ -40,6 +50,9 @@ public class PagesTests {
         Pages.deregisterAll();
     }
 
+    /**
+     * Tests if multiple pages are properly registered.
+     */
     @Test
     public void shouldRegisterPages() {
         Page homePage = new Page("/index.html") {};
@@ -54,6 +67,9 @@ public class PagesTests {
         assertTrue(Pages.size() > 0);
     }
 
+    /**
+     * Tests if pages are properly deregistered.
+     */
     @Test
     public void shouldDeregisterPage() {
         Pages.deregisterAll();
@@ -63,6 +79,9 @@ public class PagesTests {
         assertNull(Pages.getPage("/index.html"));
     }
 
+    /**
+     * Tests if section can be added, displayed and removed.
+     */
     @Test
     public void shouldAddDisplayAndRemoveSection() {
 
@@ -91,6 +110,9 @@ public class PagesTests {
         assertNull(indexPage.getSection("portoflio"));
     }
 
+    /**
+     * Destroys the setup.
+     */
     @AfterClass
     public static void tearDown() {
         NavigatorFactory.destroyNavigator();

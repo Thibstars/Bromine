@@ -1,8 +1,12 @@
+
 commands
 commands.elements
 navigation
+navigation.bots
 pages
 rules
+session
 stats
+stats.defaultPlugins
 sut
 util
