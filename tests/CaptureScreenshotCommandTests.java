@@ -3,17 +3,23 @@ import commands.InitFrameworkCommand;
 import navigation.Browser;
 import navigation.Navigator;
 import navigation.NavigatorFactory;
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import sut.Environment;
 
 import java.io.IOException;
 
+import static org.junit.Assert.assertNotNull;
+
 /**
  * Test class testing screenshot functionality.
+ *
  * @author Thibault Helsmoortel
  */
-public class ScreenshotTests {
+public class CaptureScreenshotCommandTests {
 
     @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -29,13 +35,14 @@ public class ScreenshotTests {
 
     /**
      * Tests if a screenshot is successfully captured.
-     * @throws IOException thrown when the file couldn't be saved
+     *
+     * @throws IOException thrown when the temporary folder couldn't be created
      */
     @Test
     public void shouldCaptureScreenshot() throws IOException {
         temporaryFolder.create();
         Navigator.getInstance().explicitlyWaitForPageLoaded();
-        Assert.assertNotNull(new CaptureScreenshotCommand(temporaryFolder.getRoot().getPath(), "testScreenshot").execute());
+        assertNotNull(new CaptureScreenshotCommand(temporaryFolder.getRoot().getPath(), "testScreenshot").execute());
         temporaryFolder.delete();
     }
 
