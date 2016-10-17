@@ -30,7 +30,7 @@ public class CaptureLogsCommand implements Command {
     @Override
     public Object execute() {
         LOGGER.debug("Initiating log capture...");
-        File scrFile = new File(this.getClass().getClassLoader().getResource("all.log").getFile());
+        File scrFile = new File("all.log");
         String fileName;
         fileName = name + "_" + TimeStampUtil.getTimeStampValue() + ".log";
         File targetFile = new File(packageName + fileName);
