@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * Utility class for providing time stamps.
+ *
  * @author Thibault Helsmoortel
  */
 public final class TimeStampUtil {
