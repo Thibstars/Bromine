@@ -15,6 +15,9 @@ public class TimeStampUtilTests {
 
     private static final Logger LOGGER = Logger.getLogger(TimeStampUtilTests.class);
 
+    /**
+     * Tests if a time stamp is successfully generated and returned.
+     */
     @Test
     public void shouldReturnTimeStampString() {
         LOGGER.debug("Time stamp: " + TimeStampUtil.getTimeStampValue());
