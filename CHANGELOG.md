@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.4-alpha](https://github.com/Thibstars/Bromine/tree/v0.4-alpha) (2016-10-17)
+[Full Changelog](https://github.com/Thibstars/Bromine/compare/v0.3-alpha...v0.4-alpha)
+
 ## [v0.3-alpha](https://github.com/Thibstars/Bromine/tree/v0.3-alpha) (2016-10-05)
 [Full Changelog](https://github.com/Thibstars/Bromine/compare/v0.2-alpha...v0.3-alpha)
 
