@@ -54,7 +54,6 @@ public class InitFrameworkCommand implements Command {
             Logger.getLogger("org.apache.http.client.protocol.RequestAddCookies")                   .setLevel(Level.WARN);
             Logger.getLogger("org.apache.http.client.protocol.RequestAuthCache")                    .setLevel(Level.WARN);
 
-            LOGGER.debug("Creating default StatsTracker...");
             //Create default StatsTracker
             StatsTrackerFactory.createDefault();
 
