@@ -1,6 +1,6 @@
 package rules;
 
-import commands.TakeScreenshotCommand;
+import commands.CaptureScreenshotCommand;
 import org.apache.log4j.Logger;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
@@ -45,7 +45,7 @@ public class ScreenShotOnFailure implements MethodRule {
              */
             public void captureScreenShot(String fileName) {
                 LOGGER.debug("Firing screenshot capture command due to test failure");
-                new TakeScreenshotCommand(packagePath, fileName).execute();
+                new CaptureScreenshotCommand(packagePath, fileName).execute();
             }
         };
     }

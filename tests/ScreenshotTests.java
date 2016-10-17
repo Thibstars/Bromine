@@ -1,5 +1,5 @@
+import commands.CaptureScreenshotCommand;
 import commands.InitFrameworkCommand;
-import commands.TakeScreenshotCommand;
 import navigation.Browser;
 import navigation.Navigator;
 import navigation.NavigatorFactory;
@@ -35,7 +35,7 @@ public class ScreenshotTests {
     public void shouldCaptureScreenshot() throws IOException {
         temporaryFolder.create();
         Navigator.getInstance().explicitlyWaitForPageLoaded();
-        Assert.assertNotNull(new TakeScreenshotCommand(temporaryFolder.getRoot().getPath(), "testScreenshot").execute());
+        Assert.assertNotNull(new CaptureScreenshotCommand(temporaryFolder.getRoot().getPath(), "testScreenshot").execute());
         temporaryFolder.delete();
     }
 
