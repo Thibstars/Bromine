@@ -23,7 +23,7 @@ public class WaiterBot {
      * @param expectedCondition the expected condition
      */
     public void implicitlyWait(ExpectedCondition expectedCondition) {
-        LOGGER.debug("Implicitly waiting until a condition is met.");
+        LOGGER.warn("Implicitly waiting until a condition is met.");
         Navigator.getInstance().getWait().until(expectedCondition);
         StatsTracker.getInstance().track(StatsAction.WAIT_IMPLICIT);
     }
@@ -44,7 +44,7 @@ public class WaiterBot {
      * @param timeUnit the time unit for the given amount to wait
      */
     public void implicitlyWait(long value, TimeUnit timeUnit) {
-        LOGGER.debug("Implicitly wait for " + value + " " + timeUnit.toString().toLowerCase());
+        LOGGER.warn("Implicitly wait for " + value + " " + timeUnit.toString().toLowerCase());
         Navigator.getInstance().getDriver().manage().timeouts().implicitlyWait(value, timeUnit);
         StatsTracker.getInstance().track(StatsAction.WAIT_IMPLICIT);
     }
