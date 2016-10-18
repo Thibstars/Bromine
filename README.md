@@ -9,6 +9,7 @@ Selenium tools for Java. Offers means to simplify the setup of a Selenium projec
 * Support for multitude of wait methods for the WebDriver;
 * Structure for pages and their sections in your SUT/Project;
 * Functionality for tracking of events, such as mouse clicks;
+* Reporting features (cases with steps, defects, case filtering in features);
 * Structure for the SUT/Project environment and accounts;
 * Highlighting WebElements;
 * Cookies management;
