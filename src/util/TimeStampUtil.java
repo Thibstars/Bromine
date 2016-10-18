@@ -1,5 +1,6 @@
 package util;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -21,5 +22,18 @@ public final class TimeStampUtil {
         String timestamp = time.toString();
         String sysTime = timestamp.replace(":", "-");
         return sysTime;
+    }
+
+    /**
+     * Returns a short timestamp String of the current system time.
+     *
+     * @return a timestamp String of the current system time
+     */
+    public static String getShortTimeStamp() {
+        Calendar cal = Calendar.getInstance();
+        Date time = cal.getTime();
+        SimpleDateFormat df = new SimpleDateFormat("[HH:mm:ss]");
+        String formatTime = df.format(time);
+        return formatTime;
     }
 }

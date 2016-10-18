@@ -27,4 +27,14 @@ public class TimeStampUtilTests {
         String dateString = new Date().toString().substring(0, 10);
         assertEquals(dateString, TimeStampUtil.getTimeStampValue().substring(0, 10));
     }
+
+    /**
+     * Tests if a short time stamp is successfully generated and returned.
+     */
+    @Test
+    public void shouldReturnShortTimeStampString() {
+        LOGGER.debug("Time stamp: " + TimeStampUtil.getShortTimeStamp());
+        assertNotNull(TimeStampUtil.getShortTimeStamp());
+        assertTrue(TimeStampUtil.getShortTimeStamp().length() > 0);
+    }
 }
