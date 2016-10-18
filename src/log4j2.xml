@@ -6,7 +6,7 @@
             <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n}{FATAL=bright/red, ERROR=bright/red, WARN=yellow, INFO=green, DEBUG=cyan, TRACE=black}"/>
         </Console>
         <File name="AllLogs" fileName="all.log" immediateFlush="false" append="false">
-            <PatternLayout pattern="%highlight{%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n}{FATAL=bright/red, ERROR=bright/red, WARN=yellow, INFO=green, DEBUG=cyan, TRACE=black}"/>
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
     </Appenders>
     <Loggers>
