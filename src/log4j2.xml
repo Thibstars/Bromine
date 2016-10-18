@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
     <Appenders>
-        //For layouts refer to: https://logging.apache.org/log4j/2.x/manual/layouts.html
+        <!-- For layouts refer to: https://logging.apache.org/log4j/2.x/manual/layouts.html -->
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n}{FATAL=bright/red, ERROR=bright/red, WARN=yellow, INFO=green, DEBUG=cyan, TRACE=black}"/>
         </Console>
         <File name="AllLogs" fileName="all.log" immediateFlush="false" append="false">
-            <PatternLayout pattern="%highlight{%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n}{FATAL=bright/red, ERROR=bright/red, WARN=yellow, INFO=green, DEBUG=cyan, TRACE=black}"/>
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
     </Appenders>
     <Loggers>

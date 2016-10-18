@@ -20,11 +20,21 @@ public class TimeStampUtilTests {
      */
     @Test
     public void shouldReturnTimeStampString() {
-        LOGGER.debug("Time stamp: " + TimeStampUtil.getTimeStampValue());
-        assertNotNull(TimeStampUtil.getTimeStampValue());
-        assertTrue(TimeStampUtil.getTimeStampValue().length() > 0);
+        LOGGER.debug("Time stamp: " + TimeStampUtil.getTimeStamp());
+        assertNotNull(TimeStampUtil.getTimeStamp());
+        assertTrue(TimeStampUtil.getTimeStamp().length() > 0);
 
         String dateString = new Date().toString().substring(0, 10);
-        assertEquals(dateString, TimeStampUtil.getTimeStampValue().substring(0, 10));
+        assertEquals(dateString, TimeStampUtil.getTimeStamp().substring(0, 10));
+    }
+
+    /**
+     * Tests if a short time stamp is successfully generated and returned.
+     */
+    @Test
+    public void shouldReturnShortTimeStampString() {
+        LOGGER.debug("Time stamp: " + TimeStampUtil.getShortTimeStamp());
+        assertNotNull(TimeStampUtil.getShortTimeStamp());
+        assertTrue(TimeStampUtil.getShortTimeStamp().length() > 0);
     }
 }
