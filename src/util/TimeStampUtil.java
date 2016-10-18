@@ -16,7 +16,7 @@ public final class TimeStampUtil {
      *
      * @return a timestamp String of the current system time
      */
-    public static String getTimeStampValue() {
+    public static String getTimeStamp() {
         Calendar cal = Calendar.getInstance();
         Date time = cal.getTime();
         String timestamp = time.toString();

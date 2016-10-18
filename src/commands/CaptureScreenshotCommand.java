@@ -41,7 +41,7 @@ public class CaptureScreenshotCommand implements Command {
         LOGGER.debug("Initiating screenshot capture...");
         File scrFile = ((TakesScreenshot) Navigator.getInstance().getDriver()).getScreenshotAs(OutputType.FILE);
         String fileName;
-        fileName = name + "_" + TimeStampUtil.getTimeStampValue() + ".png";
+        fileName = name + "_" + TimeStampUtil.getTimeStamp() + ".png";
         File targetFile = new File(packageName + fileName);
         boolean success = true;
         try {

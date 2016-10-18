@@ -20,12 +20,12 @@ public class TimeStampUtilTests {
      */
     @Test
     public void shouldReturnTimeStampString() {
-        LOGGER.debug("Time stamp: " + TimeStampUtil.getTimeStampValue());
-        assertNotNull(TimeStampUtil.getTimeStampValue());
-        assertTrue(TimeStampUtil.getTimeStampValue().length() > 0);
+        LOGGER.debug("Time stamp: " + TimeStampUtil.getTimeStamp());
+        assertNotNull(TimeStampUtil.getTimeStamp());
+        assertTrue(TimeStampUtil.getTimeStamp().length() > 0);
 
         String dateString = new Date().toString().substring(0, 10);
-        assertEquals(dateString, TimeStampUtil.getTimeStampValue().substring(0, 10));
+        assertEquals(dateString, TimeStampUtil.getTimeStamp().substring(0, 10));
     }
 
     /**

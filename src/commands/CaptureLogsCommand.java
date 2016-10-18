@@ -32,7 +32,7 @@ public class CaptureLogsCommand implements Command {
         LOGGER.debug("Initiating log capture...");
         File scrFile = new File("all.log");
         String fileName;
-        fileName = name + "_" + TimeStampUtil.getTimeStampValue() + ".log";
+        fileName = name + "_" + TimeStampUtil.getTimeStamp() + ".log";
         File targetFile = new File(packageName + fileName);
         boolean success = true;
         try {
