@@ -42,11 +42,17 @@ public class Case {
 
     /**
      * Sets the status.
+     * Adds this case to the defects list if failed or broken.
+     * Removes this case if not failed or broken anymore.
      *
      * @param status the new status
      */
     public void setStatus(CaseStatus status) {
         this.status = status;
+        if (status.equals(CaseStatus.FAILED)) Defects.addFailed(this);
+        else if (status.equals(CaseStatus.BROKEN)) Defects.addBroken(this);
+        else if (Defects.getFailedDefects().contains(this)) Defects.removeFailed(this);
+        else if (Defects.getBrokenDefects().contains(this)) Defects.removeBroken(this);
     }
 
     /**

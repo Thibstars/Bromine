@@ -33,28 +33,23 @@ public class DefectsTests {
         failedCase = new Case("Failed Case",
                 new CaseEnvironment("Google Chrome", new URL("http://www.thibaulthelsmoortel.be")),
                 "Just a failed case");
-        failedCase.setStatus(CaseStatus.FAILED);
 
         brokenCase = new Case("Broken Case",
                 new CaseEnvironment("Google Chrome", new URL("http://www.thibaulthelsmoortel.be")),
                 "Just a broken case");
+    }
+
+    private static void addCases() {
+        LOGGER.debug("Adding defects...");
+        failedCase.setStatus(CaseStatus.FAILED);
         brokenCase.setStatus(CaseStatus.BROKEN);
     }
 
     @Test
     public void shouldAddDefects() {
         addCases();
-
         assertEquals(failedCase, Defects.getFailedDefects().get(0));
         assertEquals(brokenCase, Defects.getBrokenDefects().get(0));
-    }
-
-    private void addCases() {
-        LOGGER.debug("Adding defects...");
-        failedCase.setStatus(CaseStatus.FAILED);
-        brokenCase.setStatus(CaseStatus.BROKEN);
-        Defects.addFailed(failedCase);
-        Defects.addBroken(brokenCase);
     }
 
     @Test
@@ -65,8 +60,6 @@ public class DefectsTests {
         failedCase.setStatus(CaseStatus.PENDING);
         brokenCase.setStatus(CaseStatus.PENDING);
 
-        Defects.removeFailed(failedCase);
-        Defects.removeBroken(brokenCase);
         assertTrue(Defects.getFailedDefects().isEmpty());
         assertTrue(Defects.getBrokenDefects().isEmpty());
     }
