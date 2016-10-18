@@ -1,7 +1,7 @@
 package stats;
 
 /**
- * Enum containing trackable actions.
+ * Enum containing traceable actions.
  * @author Thibault Helsmoortel
  */
 public enum StatsAction {
