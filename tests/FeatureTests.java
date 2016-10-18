@@ -8,7 +8,7 @@ import reporting.features.Feature;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.testng.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
 /**
  * Test class testing features.

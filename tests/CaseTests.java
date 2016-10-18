@@ -9,7 +9,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.testng.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
 /**
  * Test class testing cases.
