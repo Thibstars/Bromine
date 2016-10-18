@@ -16,6 +16,7 @@ public class Case {
     private String errorTrace;
     private final CaseEnvironment environment;
     private final String description;
+    private long duration;
     private List<URL> links;
     private List<CaseStep> steps;
     private List<File> attachments;
@@ -119,6 +120,24 @@ public class Case {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Returns the duration of this case.
+     *
+     * @return the duration of this case
+     */
+    public long getDuration() {
+        return duration;
+    }
+
+    /**
+     * Sets the duration of this case.
+     *
+     * @param duration the duration of this case
+     */
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 
     /**
