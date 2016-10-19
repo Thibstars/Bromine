@@ -19,7 +19,7 @@ import static org.junit.Assert.assertNotNull;
  *
  * @author Thibault Helsmoortel
  */
-public class CaptureScreenshotCommandTests {
+public class CaptureScreenshotCommandTestCase {
 
     @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder();

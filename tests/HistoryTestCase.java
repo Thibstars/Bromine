@@ -19,9 +19,9 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Thibault Helsmoortel
  */
-public class HistoryTests {
+public class HistoryTestCase {
 
-    private static final Logger LOGGER = Logger.getLogger(HistoryTests.class);
+    private static final Logger LOGGER = Logger.getLogger(HistoryTestCase.class);
 
     /*
     @Rule

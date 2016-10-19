@@ -11,9 +11,9 @@ import static org.junit.Assert.*;
  *
  * @author Thibault Helsmoortel
  */
-public class TimeStampUtilTests {
+public class TimeStampUtilTestCase {
 
-    private static final Logger LOGGER = Logger.getLogger(TimeStampUtilTests.class);
+    private static final Logger LOGGER = Logger.getLogger(TimeStampUtilTestCase.class);
 
     /**
      * Tests if a time stamp is successfully generated and returned.

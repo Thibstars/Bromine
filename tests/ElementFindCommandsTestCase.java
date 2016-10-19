@@ -26,9 +26,9 @@ import static org.junit.Assert.assertTrue;
  * @author Thibault Helsmoortel
  */
 @RunWith(Theories.class)
-public class ElementFindCommandsTests {
+public class ElementFindCommandsTestCase {
 
-    private static final Logger LOGGER = Logger.getLogger(ElementFindCommandsTests.class);
+    private static final Logger LOGGER = Logger.getLogger(ElementFindCommandsTestCase.class);
 
     //Set of test data, commands finding elements
     @DataPoints

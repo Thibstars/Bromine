@@ -16,9 +16,9 @@ import static junit.framework.TestCase.assertEquals;
  *
  * @author Thibault Helsmoortel
  */
-public class CaseTests {
+public class CaseTestCase {
 
-    private static final Logger LOGGER = Logger.getLogger(CaseTests.class);
+    private static final Logger LOGGER = Logger.getLogger(CaseTestCase.class);
 
     private static Case testCase;
 

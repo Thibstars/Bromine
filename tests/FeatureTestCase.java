@@ -15,9 +15,9 @@ import static junit.framework.TestCase.assertEquals;
  *
  * @author Thibault Helsmoortel
  */
-public class FeatureTests {
+public class FeatureTestCase {
 
-    private static final Logger LOGGER = Logger.getLogger(FeatureTests.class);
+    private static final Logger LOGGER = Logger.getLogger(FeatureTestCase.class);
 
     private static Feature feature;
 

@@ -17,9 +17,9 @@ import static junit.framework.TestCase.assertTrue;
  *
  * @author Thibault Helsmoortel
  */
-public class DefectsTests {
+public class DefectsTestCase {
 
-    private static final Logger LOGGER = Logger.getLogger(DefectsTests.class);
+    private static final Logger LOGGER = Logger.getLogger(DefectsTestCase.class);
 
     private static Case failedCase;
     private static Case brokenCase;

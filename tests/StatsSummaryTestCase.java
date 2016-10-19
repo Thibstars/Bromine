@@ -12,9 +12,9 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Thibault Helsmoortel
  */
-public class StatsSummaryTests {
+public class StatsSummaryTestCase {
 
-    private static final Logger LOGGER = Logger.getLogger(StatsSummaryTests.class);
+    private static final Logger LOGGER = Logger.getLogger(StatsSummaryTestCase.class);
 
     /**
      * Initializes the test class.

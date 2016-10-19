@@ -8,7 +8,7 @@ import java.io.IOException;
  *
  * @author Thibault Helsmoortel
  */
-public class PackageUtilTests {
+public class PackageUtilTestCase {
 
     /**
      * Tests if classes can successfully be retrieved from a package.

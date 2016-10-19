@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  * Test class testing Pages.
  * @author Thibault Helsmoortel
  */
-public class PagesTests {
+public class PagesTestCase {
 
     /*
     @Rule

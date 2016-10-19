@@ -21,9 +21,9 @@ import static org.junit.Assert.*;
  * Test class testing the StatsTracker.
  * @author Thibault Helsmoortel
  */
-public class StatsTrackerTests {
+public class StatsTrackerTestCase {
 
-    private static final Logger LOGGER = Logger.getLogger(StatsTrackerTests.class);
+    private static final Logger LOGGER = Logger.getLogger(StatsTrackerTestCase.class);
 
     /**
      * Initializes the test class.

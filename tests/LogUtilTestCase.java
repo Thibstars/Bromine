@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @author Thibault Helsmoortel
  */
-public class LogUtilTests {
+public class LogUtilTestCase {
 
     /**
      * Tests if the logs can be properly turned of.

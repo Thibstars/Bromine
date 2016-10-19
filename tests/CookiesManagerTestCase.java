@@ -18,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author Thibault Helsmoortel
  */
-public class CookiesManagerTests {
+public class CookiesManagerTestCase {
 
-    private static final Logger LOGGER = Logger.getLogger(CookiesManagerTests.class);
+    private static final Logger LOGGER = Logger.getLogger(CookiesManagerTestCase.class);
 
     /**
      * Initialise the class.

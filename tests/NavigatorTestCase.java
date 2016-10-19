@@ -23,9 +23,9 @@ import static org.junit.Assert.*;
 /**
  * Test class testing the Navigator.
  */
-public class NavigatorTests {
+public class NavigatorTestCase {
 
-    private static Logger LOGGER = Logger.getLogger(NavigatorTests.class);
+    private static Logger LOGGER = Logger.getLogger(NavigatorTestCase.class);
 
     /*
     @Rule
