@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
+import ru.yandex.qatools.allure.annotations.Step;
 
 /**
  * Rule responsible for taking a snapshot of the log output right before test failure.
@@ -44,6 +45,7 @@ public class LogsOnFailure implements MethodRule {
              * Captures the actual logs with a given name.
              * @param fileName the name of the logs to capture
              */
+            @Step("Capture logs")
             private void captureLogs(String fileName) {
                 LOGGER.debug("Firing screenshot capture command due to test failure");
                 new CaptureLogsCommand(packagePath, fileName).execute();

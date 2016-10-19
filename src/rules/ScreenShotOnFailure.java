@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
+import ru.yandex.qatools.allure.annotations.Step;
 
 /**
  * Rule responsible for taking a screenshot right before test failure.
@@ -43,6 +44,7 @@ public class ScreenShotOnFailure implements MethodRule {
              * Captures the actual screenshot with a given name.
              * @param fileName the name of the screenshot to take
              */
+            @Step("Capture screenshot")
             public void captureScreenShot(String fileName) {
                 LOGGER.debug("Firing screenshot capture command due to test failure");
                 new CaptureScreenshotCommand(packagePath, fileName).execute();
