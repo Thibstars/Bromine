@@ -23,7 +23,7 @@ public class ActionBot {
      *
      * @param element the element to click on
      */
-    @Step
+    @Step("Click on element: {0}")
     public void click(WebElement element) {
         LOGGER.debug("Performing click on " + element.toString());
         element.click();
@@ -48,7 +48,7 @@ public class ActionBot {
      *
      * @param element the element to click on
      */
-    @Step
+    @Step("Click on element: {0}")
     public void NGClick(WebElement element) {
         LOGGER.debug("Performing ng-click on " + element.toString());
 
@@ -82,7 +82,7 @@ public class ActionBot {
      *
      * @param element the element to double click
      */
-    @Step
+    @Step("Double click on element: {0}")
     public void doubleClick(WebElement element) {
         LOGGER.debug("Performing double click on " + element.toString());
 
@@ -97,7 +97,7 @@ public class ActionBot {
      * @param element      the element to send keys to
      * @param charSequence the keys to send
      */
-    @Step
+    @Step("Send keys: '{1}' to element: {0} ")
     public void sendKeys(WebElement element, String charSequence) {
         LOGGER.debug("Sending keys [" + charSequence + "] to " + element.toString());
 
@@ -111,7 +111,7 @@ public class ActionBot {
      *
      * @param charSequence the keys to send
      */
-    @Step
+    @Step("Send keys: '{1}'")
     public void sendKeys(String charSequence) {
         LOGGER.debug("Sending keys [" + charSequence + "]");
         Actions actions = new Actions(Navigator.getInstance().getDriver());
@@ -125,7 +125,7 @@ public class ActionBot {
      * @param element  the element accepting the upload
      * @param filePath the path of the file to upload
      */
-    @Step
+    @Step("Upload file: {1} via element: {0}")
     public void uploadFile(WebElement element, String filePath) {
         LOGGER.debug("Uploading file: " + filePath);
         element.sendKeys(filePath);
@@ -136,7 +136,7 @@ public class ActionBot {
      *
      * @param element the element to scroll in the view
      */
-    @Step
+    @Step("Scroll element: {0} into view")
     public void scrollElementIntoView(WebElement element) {
         LOGGER.debug("Scrolling element " + element.toString() + " into view");
 
@@ -148,7 +148,7 @@ public class ActionBot {
      *
      * @param element the element to which the mouse should move
      */
-    @Step
+    @Step("Move to element: {0}")
     public void moveToElement(WebElement element) {
         LOGGER.debug("Moving to element: " + element.toString());
 
@@ -163,7 +163,7 @@ public class ActionBot {
      * @param xOffset the x-axis offset
      * @param yOffset the y-axis offset
      */
-    @Step
+    @Step("Dragging element: {0} with offsets: {1},{2}")
     public void dragElement(WebElement element, int xOffset, int yOffset) {
         LOGGER.debug("Dragging element: " + element.toString());
 
@@ -181,7 +181,7 @@ public class ActionBot {
      * @param source the source element to drag to the target element
      * @param target the target element that will accept the source element
      */
-    @Step
+    @Step("Dragging element: {0} to element: {1}")
     public void dragAndDropElement(WebElement source, WebElement target) {
         LOGGER.debug("Dragging element: " + source.toString() + " and dropping on: " + target.toString());
 
@@ -194,7 +194,7 @@ public class ActionBot {
      *
      * @param element the element to focus
      */
-    @Step
+    @Step("Focusing element: {0}")
     public void focusElement(WebElement element) {
         LOGGER.debug("Focusing element: " + element.toString());
         ((JavascriptExecutor) Navigator.getInstance().getDriver()).executeScript("arguments[0].focus();", element);
