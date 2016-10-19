@@ -3,6 +3,7 @@ package session;
 import navigation.Navigator;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Cookie;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Set;
 
@@ -35,6 +36,7 @@ public final class CookiesManager {
      * Adds a specified cookie to the current session.
      * @param cookie the cookie to add
      */
+    @Step("Adding cookie: {0}")
     public static void addCookie(Cookie cookie) {
         LOGGER.debug("Adding cookie: " + cookie.getName());
         Navigator.getInstance().getDriver().manage().addCookie(cookie);
@@ -44,6 +46,7 @@ public final class CookiesManager {
      * Delete a specified cookie from the current session.
      * @param cookie the cookie to delete
      */
+    @Step("Deleting cookie: {0}")
     public static void deleteCookie(Cookie cookie) {
         deleteCookie(cookie.getName());
     }
@@ -52,6 +55,7 @@ public final class CookiesManager {
      * Delete a cookie, based on the specified name, from the current session.
      * @param name the name of the cookie to delete
      */
+    @Step("Deleting cookie: {0}")
     public static void deleteCookie(String name) {
         LOGGER.debug("Deleting cookie: " + name);
         Navigator.getInstance().getDriver().manage().deleteCookieNamed(name);
@@ -60,6 +64,7 @@ public final class CookiesManager {
     /**
      * Deletes all cookies from the current session.
      */
+    @Step("Deleting all cookies")
     public static void deleteAllCookies() {
         LOGGER.debug("Deleting all cookies");
         Navigator.getInstance().getDriver().manage().deleteAllCookies();
