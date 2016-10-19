@@ -54,7 +54,7 @@
         <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-java-annotations</artifactId>
-            <version>1.4.23.HOTFIX1</version>
+            <version>${allure.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
