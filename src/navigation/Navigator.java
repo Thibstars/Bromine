@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import pages.Page;
+import ru.yandex.qatools.allure.annotations.Step;
 import sut.Environment;
 
 import java.net.URL;
@@ -60,6 +61,7 @@ public final class Navigator {
      *
      * @param url the url to navigate to
      */
+    @Step("Navigating to url: {0}")
     public void navigateTo(URL url) {
         LOGGER.debug("Navigating to " + url.toString());
         driver.navigate().to(url);
@@ -70,6 +72,7 @@ public final class Navigator {
      *
      * @param page the page to navigate to
      */
+    @Step("Navigating to page: {0}")
     public void navigateTo(Page page) {
         LOGGER.debug("Navigating to " + page.toString());
         driver.navigate().to(page.getCompleteURL());
@@ -78,6 +81,7 @@ public final class Navigator {
     /**
      * Navigates back to the previous page.
      */
+    @Step("Navigating back")
     public void navigateBack() {
         LOGGER.debug("Navigating back");
         driver.navigate().back();
@@ -86,6 +90,7 @@ public final class Navigator {
     /**
      * Navigates to the next page.
      */
+    @Step("Navigating forward")
     public void navigateForward() {
         LOGGER.debug("Navigating forward");
         driver.navigate().forward();
@@ -94,6 +99,7 @@ public final class Navigator {
     /**
      * Refreshes the current page.
      */
+    @Step("Performing refresh")
     public void navigateRefresh() {
         LOGGER.debug("Performing refresh");
         driver.navigate().refresh();
