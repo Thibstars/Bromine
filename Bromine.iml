@@ -51,5 +51,7 @@
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-firefox-driver:2.53.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-exec:1.3" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
+    <orderEntry type="library" name="allure-java-annotations-1.4.23.HOTFIX1" level="project" />
+    <orderEntry type="library" name="allure-junit-adaptor-1.4.23.HOTFIX1" level="project" />
   </component>
 </module>
