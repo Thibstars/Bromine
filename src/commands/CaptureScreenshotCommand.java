@@ -5,6 +5,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import ru.yandex.qatools.allure.annotations.Attachment;
 import util.TimeStampUtil;
 
 import javax.imageio.ImageIO;
@@ -36,6 +37,7 @@ public class CaptureScreenshotCommand implements Command {
         this.name = name;
     }
 
+    @Attachment("Screenshot")
     @Override
     public Object execute() {
         LOGGER.debug("Initiating screenshot capture...");

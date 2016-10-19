@@ -2,6 +2,7 @@ package commands;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import ru.yandex.qatools.allure.annotations.Attachment;
 import util.TimeStampUtil;
 
 import java.io.File;
@@ -27,6 +28,7 @@ public class CaptureLogsCommand implements Command {
         this.name = name;
     }
 
+    @Attachment("Logs")
     @Override
     public Object execute() {
         LOGGER.debug("Initiating log capture...");
