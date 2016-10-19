@@ -19,7 +19,7 @@ import static org.junit.Assert.assertNotNull;
  *
  * @author Thibault Helsmoortel
  */
-public class LogsTestCase {
+public class CaptureLogsCommandTestCase {
 
     @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder();
