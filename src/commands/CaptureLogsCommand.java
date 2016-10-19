@@ -1,11 +1,13 @@
 package commands;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import ru.yandex.qatools.allure.annotations.Attachment;
 import util.TimeStampUtil;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
@@ -28,10 +30,10 @@ public class CaptureLogsCommand implements Command {
         this.name = name;
     }
 
-    @Attachment("Logs")
     @Override
     public Object execute() {
         LOGGER.debug("Initiating log capture...");
+
         File scrFile = new File("all.log");
         String fileName;
         fileName = name + "_" + TimeStampUtil.getTimeStamp() + ".log";
@@ -45,8 +47,30 @@ public class CaptureLogsCommand implements Command {
             success = false;
         }
 
-        if (success) LOGGER.debug("Logs successfully captured.");
+        if (success) {
+            //Take the byte logs for the attachment
+            try {
+                takeLogs(name, targetFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            LOGGER.debug("Logs successfully captured.");
+        }
         else LOGGER.error("Something went wrong capturing the logs.");
         return targetFile;
+    }
+
+    /**
+     * Takes the logs and returns a byte array of it.
+     * Gets attached to a test case in Allure
+     *
+     * @param name the log file name
+     * @param logFile the actual log file
+     * @return the byte array of the log file
+     * @throws IOException thrown when the file couldn't be read
+     */
+    @Attachment("{0}")
+    public byte[] takeLogs(String name, File logFile) throws IOException {
+        return IOUtils.toByteArray(new FileInputStream(logFile));
     }
 }

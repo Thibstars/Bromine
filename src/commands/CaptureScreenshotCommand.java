@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import ru.yandex.qatools.allure.annotations.Attachment;
+import ru.yandex.qatools.allure.annotations.Step;
 import util.TimeStampUtil;
 
 import javax.imageio.ImageIO;
@@ -37,10 +38,12 @@ public class CaptureScreenshotCommand implements Command {
         this.name = name;
     }
 
-    @Attachment("Screenshot")
     @Override
     public Object execute() {
         LOGGER.debug("Initiating screenshot capture...");
+        //Take the byte screenshot for the attachment
+        takeScreenShot(name);
+
         File scrFile = ((TakesScreenshot) Navigator.getInstance().getDriver()).getScreenshotAs(OutputType.FILE);
         String fileName;
         fileName = name + "_" + TimeStampUtil.getTimeStamp() + ".png";
@@ -64,6 +67,18 @@ public class CaptureScreenshotCommand implements Command {
         if (success) LOGGER.debug("Screenshot successfully captured.");
         else LOGGER.error("Something went wrong capturing the screenshot.");
         return targetFile;
+    }
+
+    /**
+     * Takes a screenshot and returns a byte array of it.
+     * Gets attached to a test case in Allure.
+     *
+     * @param name the screenshot name
+     * @return the byte array of the screenshot
+     */
+    @Attachment("{0}")
+    public byte[] takeScreenShot(String name) {
+        return ((TakesScreenshot) Navigator.getInstance().getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
     /**
