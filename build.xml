@@ -8,6 +8,7 @@
     <property name="dir.jar" value="${dir.build}/jar"/>
 
     <path id="classpath.base">
+        <!-- TODO add maven dependencies -->
         <pathelement location="lib/selenium-server-standalone-3.0.0.jar"/>
         <pathelement location="lib/commons-lang-2.1.jar"/>
         <pathelement location="lib/log4j-1.2-api-2.5.jar"/>
