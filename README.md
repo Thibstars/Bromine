@@ -21,6 +21,8 @@ Selenium tools for Java. Offers means to simplify the setup of a Selenium projec
 * Log4J 1.2 - API 2.5;
 * Log4J - API 2.5;
 * Log4J - Core 2.5;
+* Allure JUnit Adaptor
+* Allure Java Annotations
 
 ## Getting started ##
 * Copy al the resources into your project (important, won't work otherwise!);
