@@ -43,7 +43,7 @@ public final class Pages {
     public static void registerAllPagesFromPackage(String pack) {
         LOGGER.debug("Registering all pages...");
         try {
-            for (Class clazz : PackageUtil.getClasses("pages")) {
+            for (Class clazz : PackageUtil.getClasses(pack)) {
                 if (clazz.getClass().isInstance(Page.class))
                     LOGGER.debug("Registering: " + clazz.getSimpleName());
                 registerPage((Page) clazz.newInstance());
