@@ -41,6 +41,7 @@ public final class Pages {
      * @param pack the package of the pages to register
      */
     public static void registerAllPagesFromPackage(String pack) {
+        //TODO fix bug with nested packages (like 'platform/pages'
         LOGGER.debug("Registering all pages...");
         try {
             for (Class clazz : PackageUtil.getClasses(pack)) {
