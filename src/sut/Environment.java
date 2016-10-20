@@ -50,4 +50,14 @@ public class Environment {
     public void setUrl(URL url) {
         this.url = url;
     }
+
+    /**
+     * Returns a String representation of this environment.
+     *
+     * @return a String representation of this environment
+     */
+    @Override
+    public String toString() {
+        return name + ": " + url.toString();
+    }
 }
