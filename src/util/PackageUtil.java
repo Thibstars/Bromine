@@ -28,7 +28,9 @@ public final class PackageUtil {
         LOGGER.debug("Fetching all classes inside package: " + packageName);
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         assert classLoader != null;
-        String path = packageName.replace('.', '/');
+        String path;
+        if (packageName.contains(".") ) path = packageName.replace('.', '/');
+        else path = packageName;
         Enumeration<URL> resources = classLoader.getResources(path);
         List<File> dirs = new ArrayList<>();
         while (resources.hasMoreElements()) {
