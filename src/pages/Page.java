@@ -150,6 +150,6 @@ public abstract class Page {
      */
     @Override
     public String toString() {
-        return url;
+        return this.getClass().getSimpleName() + ": " + url;
     }
 }
