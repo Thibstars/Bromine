@@ -9,13 +9,17 @@ import org.openqa.selenium.WebElement;
  */
 public class CheckBox extends ElementImpl {
 
+    private String value;
+
     /**
      * Class constructor specifying the WebElement.
      *
      * @param element the actual WebElement
+     * @param value the value of the check box
      */
-    public CheckBox(WebElement element) {
+    public CheckBox(WebElement element, String value) {
         super(element);
+        this.value = value;
     }
 
     /**
@@ -52,4 +56,11 @@ public class CheckBox extends ElementImpl {
         return super.isSelected();
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 }
