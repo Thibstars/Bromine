@@ -8,16 +8,21 @@ import org.openqa.selenium.WebElement;
  *
  * @author Thibault Helsmoortel
  */
-public class WebElementProxy extends ElementImpl {
+public class WebElementByProxy extends ElementImpl {
 
     private final By by;
 
-    public WebElementProxy(WebElement element, By by) {
+    public WebElementByProxy(WebElement element, By by) {
         super(element);
         this.by = by;
     }
 
     public By getBy() {
         return by;
+    }
+
+    @Override
+    public String toString() {
+        return by.toString();
     }
 }

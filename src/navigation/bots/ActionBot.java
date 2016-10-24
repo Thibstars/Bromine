@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import ru.yandex.qatools.allure.annotations.Step;
 import stats.StatsAction;
 import stats.StatsTracker;
+import elements.WebElementByProxy;
 
 /**
  * Class responsible for performing Selenium actions.
@@ -194,9 +195,12 @@ public class ActionBot {
      *
      * @param element the element to focus
      */
-    @Step("Focusing element: {0}")
     public void focusElement(WebElement element) {
         LOGGER.debug("Focusing element: " + element.toString());
         ((JavascriptExecutor) Navigator.getInstance().getDriver()).executeScript("arguments[0].focus();", element);
+        focusElementStep();
     }
+
+    @Step("Focusing element: {0}")
+    private void focusElementStep(WebElementByProxy element){};
 }
