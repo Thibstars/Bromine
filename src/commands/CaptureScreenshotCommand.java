@@ -41,12 +41,12 @@ public class CaptureScreenshotCommand implements Command {
     @Override
     public Object execute() {
         LOGGER.debug("Initiating screenshot capture...");
-        //Take the byte screenshot for the attachment
-        takeScreenShot(name);
 
         File scrFile = ((TakesScreenshot) Navigator.getInstance().getDriver()).getScreenshotAs(OutputType.FILE);
         String fileName;
         fileName = name + "_" + TimeStampUtil.getTimeStamp() + ".png";
+        //Take the byte screenshot for the attachment
+        takeScreenShot(fileName);
         File targetFile = new File(packageName + fileName);
         boolean success = true;
         try {
