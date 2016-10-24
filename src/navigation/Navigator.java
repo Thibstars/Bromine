@@ -68,6 +68,17 @@ public final class Navigator {
     }
 
     /**
+     * Navigates to a specified url.
+     *
+     * @param url the url to navigate to
+     */
+    @Step("Navigating to url: {0}")
+    public void navigateTo(String url) {
+        LOGGER.debug("Navigating to " + url);
+        driver.navigate().to(url);
+    }
+
+    /**
      * Navigates to a specified page.
      *
      * @param page the page to navigate to
