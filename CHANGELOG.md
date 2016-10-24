@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.5-beta](https://github.com/Thibstars/Bromine/tree/v0.5-beta) (2016-10-24)
+[Full Changelog](https://github.com/Thibstars/Bromine/compare/v0.4-alpha...v0.5-beta)
+
+**Merged pull requests:**
+
+- Feature/reporting [\#1](https://github.com/Thibstars/Bromine/pull/1) ([Thibstars](https://github.com/Thibstars))
+
 ## [v0.4-alpha](https://github.com/Thibstars/Bromine/tree/v0.4-alpha) (2016-10-17)
 [Full Changelog](https://github.com/Thibstars/Bromine/compare/v0.3-alpha...v0.4-alpha)
 
