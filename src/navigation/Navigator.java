@@ -380,7 +380,7 @@ public final class Navigator {
      * @return the found element, if any
      */
     public WebElement fluentWait(By locator) {
-        return waiterBot.fluentWait(locator);
+        return new WebElementByProxy(waiterBot.fluentWait(locator), locator);
     }
 
     /**
