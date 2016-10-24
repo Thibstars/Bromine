@@ -50,7 +50,7 @@ public class CaptureLogsCommand implements Command {
         if (success) {
             //Take the byte logs for the attachment
             try {
-                takeLogs(name, targetFile);
+                takeLogs(fileName, targetFile);
             } catch (IOException e) {
                 e.printStackTrace();
             }
