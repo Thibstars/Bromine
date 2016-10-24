@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
  *
  * @author Thibault Helsmoortel
  */
-public class WebElementByProxy extends ElementImpl {
+public class WebElementByProxy extends WrappedElement {
 
     private final By by;
 

@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Thibault Helsmoortel
  */
-public class Table extends ElementImpl {
+public class Table extends WrappedElement {
 
     /**
      * Class constructor specifying the actual element.

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
  *
  * @author Thibault Helsmoortel
  */
-public class Input extends ElementImpl {
+public class Input extends WrappedElement {
 
     /**
      * Class constructor specifying the actual element.

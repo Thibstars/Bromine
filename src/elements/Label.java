@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
  *
  * @author Thibault Helsmoortel
  */
-public class Label extends ElementImpl{
+public class Label extends WrappedElement {
 
     /**
      * Class constructor specifying the actual element.

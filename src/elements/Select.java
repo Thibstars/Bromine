@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
  *
  * @author Thibault Helsmoortel
  */
-public class Select extends ElementImpl {
+public class Select extends WrappedElement {
 
     private final org.openqa.selenium.support.ui.Select innerSelect;
 

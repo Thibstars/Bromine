@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
  *
  * @author Thibault Helsmoortel
  */
-public class CheckBox extends ElementImpl {
+public class CheckBox extends WrappedElement {
 
     private String value;
 

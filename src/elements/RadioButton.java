@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
  *
  * @author Thibault Helsmoortel
  */
-public class RadioButton extends ElementImpl {
+public class RadioButton extends WrappedElement {
 
     private String value;
 

@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Thibault Helsmoortel
  */
-public class ElementImpl implements WebElement {
+public class WrappedElement implements WebElement {
 
     private final WebElement element;
 
@@ -18,7 +18,7 @@ public class ElementImpl implements WebElement {
      *
      * @param element the actual element
      */
-    public ElementImpl(WebElement element) {
+    public WrappedElement(WebElement element) {
         this.element = element;
     }
 
