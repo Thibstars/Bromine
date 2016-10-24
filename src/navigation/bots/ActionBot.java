@@ -97,7 +97,7 @@ public class ActionBot {
      * @param element      the element to send keys to
      * @param charSequence the keys to send
      */
-    @Step("Send keys: '{1}' to element: {0} ")
+    @Step("Send keys: {1} to element: {0} ")
     public void sendKeys(WebElement element, String charSequence) {
         LOGGER.debug("Sending keys [" + charSequence + "] to " + element.toString());
 
@@ -111,7 +111,7 @@ public class ActionBot {
      *
      * @param charSequence the keys to send
      */
-    @Step("Send keys: '{1}'")
+    @Step("Send keys: {1}")
     public void sendKeys(String charSequence) {
         LOGGER.debug("Sending keys [" + charSequence + "]");
         Actions actions = new Actions(Navigator.getInstance().getDriver());
