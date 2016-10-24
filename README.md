@@ -14,6 +14,7 @@ Selenium tools for Java. Offers means to simplify the setup of a Selenium projec
 * Highlighting WebElements;
 * Cookies management;
 * Customizable action and wait implementations;
+* Storing By locator in WebElementByProxy (not provided in Selenium);
 
 ## Dependencies ##
 * Selenium Server Standalone 3.0.0;
