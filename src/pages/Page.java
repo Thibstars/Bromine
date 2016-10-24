@@ -143,4 +143,13 @@ public abstract class Page {
         return url != null && Navigator.getInstance().getUrl().equals(getCompleteURL().toString());
     }
 
+    /**
+     * Returns a String representation of this page.
+     *
+     * @return a String representation of this page
+     */
+    @Override
+    public String toString() {
+        return url;
+    }
 }
