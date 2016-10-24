@@ -12,12 +12,9 @@ import org.openqa.selenium.support.ui.Wait;
 import pages.Page;
 import ru.yandex.qatools.allure.annotations.Step;
 import sut.Environment;
-import elements.WebElementByProxy;
 
 import java.net.URL;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 /**
  * Representation of a Navigator. This (Singleton) class is responsible for
@@ -129,27 +126,6 @@ public final class Navigator {
         LOGGER.debug("Retrieving parent element of: " + element.toString());
         return (WebElement) ((JavascriptExecutor) driver).executeScript(
                 "return arguments[0].parentNode;", element);
-    }
-
-    /**
-     * Returns the found element using the specified locator.
-     *
-     * @param by locator used to find the element
-     * @return the found WebElement (actually a proxy)
-     */
-    public WebElement findElement(By by) {
-        return new WebElementByProxy(driver.findElement(by), by);
-    }
-
-    /**
-     * Returns the found elements using the specified locator.
-     *
-     * @param by locator used to find the elements
-     * @return the found WebElements (actually proxies)
-     */
-    public List<WebElement> findElements(By by) {
-        return driver.findElements(by).stream().map(
-                element -> new WebElementByProxy(element, by)).collect(Collectors.toList());
     }
 
     /**
@@ -380,7 +356,7 @@ public final class Navigator {
      * @return the found element, if any
      */
     public WebElement fluentWait(By locator) {
-        return new WebElementByProxy(waiterBot.fluentWait(locator), locator);
+        return waiterBot.fluentWait(locator);
     }
 
     /**
