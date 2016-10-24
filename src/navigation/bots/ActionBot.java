@@ -195,12 +195,9 @@ public class ActionBot {
      *
      * @param element the element to focus
      */
+    @Step("Focusing element: {0}")
     public void focusElement(WebElement element) {
         LOGGER.debug("Focusing element: " + element.toString());
         ((JavascriptExecutor) Navigator.getInstance().getDriver()).executeScript("arguments[0].focus();", element);
-        focusElementStep();
     }
-
-    @Step("Focusing element: {0}")
-    private void focusElementStep(WebElementByProxy element){};
 }
