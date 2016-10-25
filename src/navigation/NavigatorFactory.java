@@ -145,7 +145,7 @@ public final class NavigatorFactory {
      */
     public static void destroyNavigator() {
         LOGGER.debug("Destroying the Navigator to a useless state");
-        if (Navigator.getInstance().getDriver() != null) Navigator.getInstance().getDriver().close();
+        if (Navigator.getInstance().getDriver() != null) Navigator.getInstance().getDriver().quit();
         Navigator.getInstance().setDriver(null);
         Navigator.getInstance().setWait(null);
         Navigator.getInstance().setEnvironment(null);
