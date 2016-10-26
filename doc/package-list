@@ -1,9 +1,13 @@
 
 commands
 commands.elements
+elements
 navigation
 navigation.bots
 pages
+reporting
+reporting.cases
+reporting.features
 rules
 session
 stats
