@@ -297,6 +297,13 @@ public final class Navigator {
     }
 
     /**
+     * Removes active implicit wait actions.
+     */
+    public void removeActiveImplicitWaits() {
+        waiterBot.removeActiveImplicitWaits();
+    }
+
+    /**
      * Performs an explicit wait for an element until it is present on the page.
      *
      * @param locator the method used to find the element

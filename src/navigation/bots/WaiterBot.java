@@ -50,6 +50,14 @@ public class WaiterBot {
     }
 
     /**
+     * Removes active implicit wait actions.
+     */
+    public void removeActiveImplicitWaits() {
+        LOGGER.debug("Removing active implicit wait actions");
+        Navigator.getInstance().getDriver().manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+    }
+
+    /**
      * Performs an explicit wait for an element until it is present on the page.
      *
      * @param locator the method used to find the element
