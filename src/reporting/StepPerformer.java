@@ -9,6 +9,8 @@ import ru.yandex.qatools.allure.annotations.Step;
  */
 public final class StepPerformer {
 
+    //TODO make sure correct time spans are used (invoking perform takes only 0-1 ms)...
+
     /**
      * Performs an Allure Step using action and description.
      *
