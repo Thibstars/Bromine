@@ -5,10 +5,10 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import ru.yandex.qatools.allure.annotations.Step;
+import reporting.StepPerformer;
 import stats.StatsAction;
 import stats.StatsTracker;
-import elements.WebElementByProxy;
+import util.WebElementUtil;
 
 /**
  * Class responsible for performing Selenium actions.
@@ -24,9 +24,9 @@ public class ActionBot {
      *
      * @param element the element to click on
      */
-    @Step("Click on element: {0}")
     public void click(WebElement element) {
         LOGGER.debug("Performing click on " + element.toString());
+        StepPerformer.perform("Click", WebElementUtil.getTextOrToString(element));
         element.click();
         StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
     }
@@ -49,9 +49,9 @@ public class ActionBot {
      *
      * @param element the element to click on
      */
-    @Step("Click on element: {0}")
     public void NGClick(WebElement element) {
         LOGGER.debug("Performing ng-click on " + element.toString());
+        StepPerformer.perform("Click", WebElementUtil.getTextOrToString(element));
 
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.moveToElement(element).perform();
@@ -83,9 +83,9 @@ public class ActionBot {
      *
      * @param element the element to double click
      */
-    @Step("Double click on element: {0}")
     public void doubleClick(WebElement element) {
         LOGGER.debug("Performing double click on " + element.toString());
+        StepPerformer.perform("Double click", WebElementUtil.getTextOrToString(element));
 
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.doubleClick(element).perform();
@@ -98,9 +98,9 @@ public class ActionBot {
      * @param element      the element to send keys to
      * @param charSequence the keys to send
      */
-    @Step("Send keys: {1} to element: {0} ")
     public void sendKeys(WebElement element, String charSequence) {
         LOGGER.debug("Sending keys [" + charSequence + "] to " + element.toString());
+        StepPerformer.perform("Send keys", "'" + charSequence + "' to " + WebElementUtil.getTextOrToString(element));
 
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.sendKeys(element, charSequence).perform();
@@ -112,9 +112,9 @@ public class ActionBot {
      *
      * @param charSequence the keys to send
      */
-    @Step("Send keys: {1}")
     public void sendKeys(String charSequence) {
         LOGGER.debug("Sending keys [" + charSequence + "]");
+        StepPerformer.perform("Send keys", "'" + charSequence + "'");
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.sendKeys(charSequence).perform();
         StatsTracker.getInstance().track(StatsAction.KEYBOARD_TYPE);
@@ -126,9 +126,9 @@ public class ActionBot {
      * @param element  the element accepting the upload
      * @param filePath the path of the file to upload
      */
-    @Step("Upload file: {1} via element: {0}")
     public void uploadFile(WebElement element, String filePath) {
         LOGGER.debug("Uploading file: " + filePath);
+        StepPerformer.perform("Upload file", filePath + " via element: " + WebElementUtil.getTextOrToString(element));
         element.sendKeys(filePath);
     }
 
@@ -137,9 +137,9 @@ public class ActionBot {
      *
      * @param element the element to scroll in the view
      */
-    @Step("Scroll element: {0} into view")
     public void scrollElementIntoView(WebElement element) {
         LOGGER.debug("Scrolling element " + element.toString() + " into view");
+        StepPerformer.perform("Scroll element into view" , WebElementUtil.getTextOrToString(element));
 
         ((JavascriptExecutor) Navigator.getInstance().getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
@@ -149,9 +149,9 @@ public class ActionBot {
      *
      * @param element the element to which the mouse should move
      */
-    @Step("Move to element: {0}")
     public void moveToElement(WebElement element) {
         LOGGER.debug("Moving to element: " + element.toString());
+        StepPerformer.perform("Move to element", WebElementUtil.getTextOrToString(element));
 
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.moveToElement(element).build().perform();
@@ -164,9 +164,9 @@ public class ActionBot {
      * @param xOffset the x-axis offset
      * @param yOffset the y-axis offset
      */
-    @Step("Dragging element: {0} with offsets: {1},{2}")
     public void dragElement(WebElement element, int xOffset, int yOffset) {
         LOGGER.debug("Dragging element: " + element.toString());
+        StepPerformer.perform("Drag element", WebElementUtil.getTextOrToString(element) + " with offsets " + xOffset + "," + yOffset);
 
         Actions action = new Actions(Navigator.getInstance().getDriver());
         action.moveToElement(element);
@@ -182,9 +182,9 @@ public class ActionBot {
      * @param source the source element to drag to the target element
      * @param target the target element that will accept the source element
      */
-    @Step("Dragging element: {0} to element: {1}")
     public void dragAndDropElement(WebElement source, WebElement target) {
         LOGGER.debug("Dragging element: " + source.toString() + " and dropping on: " + target.toString());
+        StepPerformer.perform("Drag element", WebElementUtil.getTextOrToString(source) + " to " + WebElementUtil.getTextOrToString(target));
 
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.dragAndDrop(source, target);
@@ -195,9 +195,9 @@ public class ActionBot {
      *
      * @param element the element to focus
      */
-    @Step("Focusing element: {0}")
     public void focusElement(WebElement element) {
         LOGGER.debug("Focusing element: " + element.toString());
+        StepPerformer.perform("Focus element", WebElementUtil.getTextOrToString(element));
         ((JavascriptExecutor) Navigator.getInstance().getDriver()).executeScript("arguments[0].focus();", element);
     }
 }

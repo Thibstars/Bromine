@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import pages.Page;
-import ru.yandex.qatools.allure.annotations.Step;
+import reporting.StepPerformer;
 import sut.Environment;
 
 import java.net.URL;
@@ -61,9 +61,9 @@ public final class Navigator {
      *
      * @param url the url to navigate to
      */
-    @Step("Navigating to url: {0}")
     public void navigateTo(URL url) {
         LOGGER.debug("Navigating to " + url.toString());
+        StepPerformer.perform("Navigate to", url.toString());
         driver.navigate().to(url);
     }
 
@@ -72,9 +72,9 @@ public final class Navigator {
      *
      * @param url the url to navigate to
      */
-    @Step("Navigating to url: {0}")
     public void navigateTo(String url) {
         LOGGER.debug("Navigating to " + url);
+        StepPerformer.perform("Navigate to", url);
         driver.navigate().to(url);
     }
 
@@ -83,36 +83,36 @@ public final class Navigator {
      *
      * @param page the page to navigate to
      */
-    @Step("Navigating to page: {0}")
     public void navigateTo(Page page) {
         LOGGER.debug("Navigating to " + page.toString());
+        StepPerformer.perform("Navigate to", page.getUrl());
         driver.navigate().to(page.getCompleteURL());
     }
 
     /**
      * Navigates back to the previous page.
      */
-    @Step("Navigating back")
     public void navigateBack() {
         LOGGER.debug("Navigating back");
+        StepPerformer.perform("Navigate back");
         driver.navigate().back();
     }
 
     /**
      * Navigates to the next page.
      */
-    @Step("Navigating forward")
     public void navigateForward() {
         LOGGER.debug("Navigating forward");
+        StepPerformer.perform("Navigate forward");
         driver.navigate().forward();
     }
 
     /**
      * Refreshes the current page.
      */
-    @Step("Performing refresh")
     public void navigateRefresh() {
         LOGGER.debug("Performing refresh");
+        StepPerformer.perform("Perform refresh");
         driver.navigate().refresh();
     }
 
