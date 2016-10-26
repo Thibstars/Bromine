@@ -26,7 +26,7 @@ public class ActionBot {
      */
     public void click(WebElement element) {
         LOGGER.debug("Performing click on " + element.toString());
-        StepPerformer.perform("Click", WebElementUtil.getTextOrToString(element));
+        StepPerformer.perform("Click", WebElementUtil.getTextOrTagOrToString(element));
         element.click();
         StatsTracker.getInstance().track(StatsAction.MOUSE_LMB_CLICK);
     }
@@ -51,7 +51,7 @@ public class ActionBot {
      */
     public void NGClick(WebElement element) {
         LOGGER.debug("Performing ng-click on " + element.toString());
-        StepPerformer.perform("Click", WebElementUtil.getTextOrToString(element));
+        StepPerformer.perform("Click", WebElementUtil.getTextOrTagOrToString(element));
 
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.moveToElement(element).perform();
@@ -85,7 +85,7 @@ public class ActionBot {
      */
     public void doubleClick(WebElement element) {
         LOGGER.debug("Performing double click on " + element.toString());
-        StepPerformer.perform("Double click", WebElementUtil.getTextOrToString(element));
+        StepPerformer.perform("Double click", WebElementUtil.getTextOrTagOrToString(element));
 
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.doubleClick(element).perform();
@@ -100,7 +100,7 @@ public class ActionBot {
      */
     public void sendKeys(WebElement element, String charSequence) {
         LOGGER.debug("Sending keys [" + charSequence + "] to " + element.toString());
-        StepPerformer.perform("Send keys", "'" + charSequence + "' to " + WebElementUtil.getTextOrToString(element));
+        StepPerformer.perform("Send keys", "'" + charSequence + "' to " + WebElementUtil.getTextOrTagOrToString(element));
 
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.sendKeys(element, charSequence).perform();
@@ -128,7 +128,7 @@ public class ActionBot {
      */
     public void uploadFile(WebElement element, String filePath) {
         LOGGER.debug("Uploading file: " + filePath);
-        StepPerformer.perform("Upload file", filePath + " via element: " + WebElementUtil.getTextOrToString(element));
+        StepPerformer.perform("Upload file", filePath + " via element: " + WebElementUtil.getTextOrTagOrToString(element));
         element.sendKeys(filePath);
     }
 
@@ -139,7 +139,7 @@ public class ActionBot {
      */
     public void scrollElementIntoView(WebElement element) {
         LOGGER.debug("Scrolling element " + element.toString() + " into view");
-        StepPerformer.perform("Scroll element into view" , WebElementUtil.getTextOrToString(element));
+        StepPerformer.perform("Scroll element into view" , WebElementUtil.getTextOrTagOrToString(element));
 
         ((JavascriptExecutor) Navigator.getInstance().getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
@@ -151,7 +151,7 @@ public class ActionBot {
      */
     public void moveToElement(WebElement element) {
         LOGGER.debug("Moving to element: " + element.toString());
-        StepPerformer.perform("Move to element", WebElementUtil.getTextOrToString(element));
+        StepPerformer.perform("Move to element", WebElementUtil.getTextOrTagOrToString(element));
 
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.moveToElement(element).build().perform();
@@ -166,7 +166,7 @@ public class ActionBot {
      */
     public void dragElement(WebElement element, int xOffset, int yOffset) {
         LOGGER.debug("Dragging element: " + element.toString());
-        StepPerformer.perform("Drag element", WebElementUtil.getTextOrToString(element) + " with offsets " + xOffset + "," + yOffset);
+        StepPerformer.perform("Drag element", WebElementUtil.getTextOrTagOrToString(element) + " with offsets " + xOffset + "," + yOffset);
 
         Actions action = new Actions(Navigator.getInstance().getDriver());
         action.moveToElement(element);
@@ -184,7 +184,7 @@ public class ActionBot {
      */
     public void dragAndDropElement(WebElement source, WebElement target) {
         LOGGER.debug("Dragging element: " + source.toString() + " and dropping on: " + target.toString());
-        StepPerformer.perform("Drag element", WebElementUtil.getTextOrToString(source) + " to " + WebElementUtil.getTextOrToString(target));
+        StepPerformer.perform("Drag element", WebElementUtil.getTextOrTagOrToString(source) + " to " + WebElementUtil.getTextOrTagOrToString(target));
 
         Actions actions = new Actions(Navigator.getInstance().getDriver());
         actions.dragAndDrop(source, target);
@@ -197,7 +197,7 @@ public class ActionBot {
      */
     public void focusElement(WebElement element) {
         LOGGER.debug("Focusing element: " + element.toString());
-        StepPerformer.perform("Focus element", WebElementUtil.getTextOrToString(element));
+        StepPerformer.perform("Focus element", WebElementUtil.getTextOrTagOrToString(element));
         ((JavascriptExecutor) Navigator.getInstance().getDriver()).executeScript("arguments[0].focus();", element);
     }
 }

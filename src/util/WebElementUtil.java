@@ -15,7 +15,10 @@ public final class WebElementUtil {
      * @param element the element of which to get the text or toString of
      * @return the text if any, the toString if none
      */
-    public static String getTextOrToString(WebElement element) {
-        return element.getText() == null ? element.toString() : element.getText();
+    public static String getTextOrTagOrToString(WebElement element) {
+        return element.getText() == null
+                ? element.toString() == null
+                    ? element.getTagName() : element.toString()
+                : element.getText();
     }
 }
