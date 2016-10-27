@@ -1,5 +1,6 @@
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import ru.yandex.qatools.allure.annotations.Features;
 import util.TimeStampUtil;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ import static org.junit.Assert.*;
  *
  * @author Thibault Helsmoortel
  */
+@Features("Utils")
 public class TimeStampUtilTestCase {
 
     private static final Logger LOGGER = Logger.getLogger(TimeStampUtilTestCase.class);

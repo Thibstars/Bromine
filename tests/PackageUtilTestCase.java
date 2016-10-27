@@ -1,5 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
+import ru.yandex.qatools.allure.annotations.Features;
 
 import java.io.IOException;
 
@@ -8,6 +9,7 @@ import java.io.IOException;
  *
  * @author Thibault Helsmoortel
  */
+@Features("Utils")
 public class PackageUtilTestCase {
 
     /**

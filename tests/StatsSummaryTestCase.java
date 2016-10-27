@@ -1,6 +1,7 @@
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import ru.yandex.qatools.allure.annotations.Features;
 import stats.StatsSummary;
 import stats.StatsTrackerFactory;
 
@@ -12,6 +13,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Thibault Helsmoortel
  */
+@Features("Stats")
 public class StatsSummaryTestCase {
 
     private static final Logger LOGGER = Logger.getLogger(StatsSummaryTestCase.class);

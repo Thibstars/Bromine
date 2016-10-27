@@ -1,6 +1,5 @@
 import commands.InitFrameworkCommand;
 import navigation.Browser;
-import navigation.BrowserHistory;
 import navigation.Navigator;
 import navigation.NavigatorFactory;
 import org.apache.log4j.Logger;
@@ -9,6 +8,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import pages.Page;
 import pages.Pages;
+import ru.yandex.qatools.allure.annotations.Features;
+import session.BrowserHistory;
 import stats.StatsTrackerFactory;
 import sut.Environment;
 
@@ -19,6 +20,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Thibault Helsmoortel
  */
+@Features("Session")
 public class HistoryTestCase {
 
     private static final Logger LOGGER = Logger.getLogger(HistoryTestCase.class);

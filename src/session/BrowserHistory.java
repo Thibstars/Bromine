@@ -1,5 +1,6 @@
-package navigation;
+package session;
 
+import navigation.Navigator;
 import org.openqa.selenium.JavascriptExecutor;
 
 /**

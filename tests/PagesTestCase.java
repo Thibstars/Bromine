@@ -10,6 +10,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import pages.Page;
 import pages.Pages;
 import pages.Section;
+import ru.yandex.qatools.allure.annotations.Features;
 import sut.Environment;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import static org.junit.Assert.*;
  * Test class testing Pages.
  * @author Thibault Helsmoortel
  */
+@Features("Pages")
 public class PagesTestCase {
 
     /*

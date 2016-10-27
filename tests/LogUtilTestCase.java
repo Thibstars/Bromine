@@ -2,6 +2,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.Test;
+import ru.yandex.qatools.allure.annotations.Features;
 import util.LogUtil;
 
 import static org.junit.Assert.assertEquals;
@@ -11,6 +12,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @author Thibault Helsmoortel
  */
+@Features({"Logs", "Utils"})
 public class LogUtilTestCase {
 
     /**

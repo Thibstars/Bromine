@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.Page;
 import pages.Pages;
+import ru.yandex.qatools.allure.annotations.Features;
 import stats.SendKeyStats;
 import stats.StatsPlugin;
 import stats.StatsTracker;
@@ -23,6 +24,7 @@ import static org.junit.Assert.*;
 /**
  * Test class testing the Navigator.
  */
+@Features("Navigation")
 public class NavigatorTestCase {
 
     private static Logger LOGGER = Logger.getLogger(NavigatorTestCase.class);

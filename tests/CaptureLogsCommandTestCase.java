@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import ru.yandex.qatools.allure.annotations.Features;
 import sut.Environment;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ import static org.junit.Assert.assertNotNull;
  *
  * @author Thibault Helsmoortel
  */
+@Features("Logs")
 public class CaptureLogsCommandTestCase {
 
     private static final Logger LOGGER = Logger.getLogger(CaptureLogsCommandTestCase.class);

@@ -4,6 +4,7 @@ import org.junit.Test;
 import reporting.cases.Case;
 import reporting.cases.CaseEnvironment;
 import reporting.cases.CaseStep;
+import ru.yandex.qatools.allure.annotations.Features;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -16,6 +17,7 @@ import static junit.framework.TestCase.assertEquals;
  *
  * @author Thibault Helsmoortel
  */
+@Features("Reporting")
 public class CaseTestCase {
 
     private static final Logger LOGGER = Logger.getLogger(CaseTestCase.class);

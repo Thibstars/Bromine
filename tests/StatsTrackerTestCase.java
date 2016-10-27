@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.Page;
 import pages.Pages;
+import ru.yandex.qatools.allure.annotations.Features;
 import stats.StatsPlugin;
 import stats.StatsTracker;
 import stats.defaultPlugins.LMBClickStats;
@@ -21,6 +22,7 @@ import static org.junit.Assert.*;
  * Test class testing the StatsTracker.
  * @author Thibault Helsmoortel
  */
+@Features("Stats")
 public class StatsTrackerTestCase {
 
     private static final Logger LOGGER = Logger.getLogger(StatsTrackerTestCase.class);

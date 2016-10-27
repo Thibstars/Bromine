@@ -6,6 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.Cookie;
+import ru.yandex.qatools.allure.annotations.Features;
 import session.CookiesManager;
 import sut.Environment;
 
@@ -18,6 +19,7 @@ import static org.junit.Assert.*;
  *
  * @author Thibault Helsmoortel
  */
+@Features("Session")
 public class CookiesManagerTestCase {
 
     private static final Logger LOGGER = Logger.getLogger(CookiesManagerTestCase.class);

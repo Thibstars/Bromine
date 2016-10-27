@@ -5,6 +5,7 @@ import reporting.cases.Case;
 import reporting.cases.CaseEnvironment;
 import reporting.cases.CaseStatus;
 import reporting.cases.Defects;
+import ru.yandex.qatools.allure.annotations.Features;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,6 +18,7 @@ import static junit.framework.TestCase.assertTrue;
  *
  * @author Thibault Helsmoortel
  */
+@Features("Reporting")
 public class DefectsTestCase {
 
     private static final Logger LOGGER = Logger.getLogger(DefectsTestCase.class);

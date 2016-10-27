@@ -13,6 +13,7 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 import pages.Page;
 import pages.Pages;
+import ru.yandex.qatools.allure.annotations.Features;
 import sut.Environment;
 
 import java.util.List;
@@ -25,6 +26,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Thibault Helsmoortel
  */
+@Features("Elements")
 @RunWith(Theories.class)
 public class ElementFindCommandsTestCase {
 
