@@ -72,8 +72,15 @@ public class InitFrameworkCommand implements Command {
             //Create default StatsTracker
             StatsTrackerFactory.createDefault();
 
-            if (Navigator.getInstance().getWaiterBot() == null) Navigator.getInstance().setWaiterBot(new WaiterBot());
-            if (Navigator.getInstance().getActionBot() == null) Navigator.getInstance().setActionBot(new ActionBot());
+            //Already add the default bots to the Navigator
+            if (Navigator.getInstance().getWaiterBot() == null) {
+                LOGGER.debug("Setting default WaterBot");
+                Navigator.getInstance().setWaiterBot(new WaiterBot());
+            }
+            if (Navigator.getInstance().getActionBot() == null) {
+                LOGGER.debug("Setting default ActionBot");
+                Navigator.getInstance().setActionBot(new ActionBot());
+            }
 
             LOGGER.debug("Framework initialised");
             isInitialised = true;
