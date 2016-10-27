@@ -1,8 +1,8 @@
 import commands.CaptureLogsCommand;
-import commands.InitFrameworkCommand;
 import navigation.Browser;
 import navigation.Navigator;
 import navigation.NavigatorFactory;
+import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -21,6 +21,8 @@ import static org.junit.Assert.assertNotNull;
  */
 public class CaptureLogsCommandTestCase {
 
+    private static final Logger LOGGER = Logger.getLogger(CaptureLogsCommandTestCase.class);
+
     @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
@@ -29,7 +31,6 @@ public class CaptureLogsCommandTestCase {
      */
     @BeforeClass
     public static void init() {
-        new InitFrameworkCommand().execute();
         NavigatorFactory.createHighlightingNavigator(new Environment("Website", "http://thibaulthelsmoortel.be"), Browser.CHROME);
     }
 

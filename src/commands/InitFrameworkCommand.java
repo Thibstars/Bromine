@@ -1,5 +1,8 @@
 package commands;
 
+import navigation.Navigator;
+import navigation.bots.ActionBot;
+import navigation.bots.WaiterBot;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import stats.StatsTrackerFactory;
@@ -68,6 +71,9 @@ public class InitFrameworkCommand implements Command {
 
             //Create default StatsTracker
             StatsTrackerFactory.createDefault();
+
+            if (Navigator.getInstance().getWaiterBot() == null) Navigator.getInstance().setWaiterBot(new WaiterBot());
+            if (Navigator.getInstance().getActionBot() == null) Navigator.getInstance().setActionBot(new ActionBot());
 
             LOGGER.debug("Framework initialised");
             isInitialised = true;
