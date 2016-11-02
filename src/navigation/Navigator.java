@@ -269,6 +269,15 @@ public final class Navigator {
     }
 
     /**
+     * Returns true if the current page is fully loaded, false if otherwise.
+     *
+     * @return true if the current page is fully loaded, false if otherwise
+     */
+    public boolean isPageLoaded() {
+        return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+    }
+
+    /**
      * Performs an implicit wait until a given expected condition is met.
      *
      * @param expectedCondition the expected condition
