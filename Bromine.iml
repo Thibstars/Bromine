@@ -53,6 +53,6 @@
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-firefox-driver:2.53.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-exec:1.3" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons.lang:2.1:unknown" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.5" level="project" />
   </component>
 </module>
