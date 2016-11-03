@@ -19,7 +19,7 @@ Selenium tools for Java. Offers means to simplify the setup of a Selenium projec
 
 ## Dependencies ##
 * Selenium Server Standalone 3.0.0;
-* Apache Commons Lang 2.1;
+* Apache Commons Lang 3.5;
 * Log4J 1.2 - API 2.5;
 * Log4J - API 2.5;
 * Log4J - Core 2.5;
