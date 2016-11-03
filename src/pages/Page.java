@@ -40,6 +40,20 @@ public abstract class Page {
         this.url = pageUrl;
     }
 
+    /**
+     * Returns the list of sections.
+     *
+     * @return the list of sections
+     */
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    /**
+     * Adds a given section if it wasn't added already.
+     *
+     * @param section the section to add
+     */
     public void addSection(Section section) {
         if (sections.contains(section)) throw new IllegalArgumentException("Section was already added.");
         LOGGER.debug("Adding section: " + section.getName());
