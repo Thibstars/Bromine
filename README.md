@@ -33,7 +33,7 @@ Selenium tools for Java. Offers means to simplify the setup of a Selenium projec
 * Register your pages: `Pages.registerPage(myPage);`;
 * Add sections to your pages if any: `myPage.addSection(mySection);`;
 
-You're now good to go. You can now start building your framework. 
+You're good to go. You can now start building your framework. 
 A good start could be `myPage.goTo();`.
 
 ## Projects using this library ##
