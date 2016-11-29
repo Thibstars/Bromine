@@ -9,6 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Representation of all the registered pages.
+ *
  * @author Thibault Helsmoortel
  */
 public final class Pages {
@@ -19,6 +20,7 @@ public final class Pages {
 
     /**
      * Registers a page in the list.
+     *
      * @param page the page to register in the list
      */
     public static void registerPage(Page page) {
@@ -28,6 +30,7 @@ public final class Pages {
 
     /**
      * Register all pages from a given list.
+     *
      * @param pages the list of pages to register
      */
     public static void registerAllPages(List<Page> pages) {
@@ -38,10 +41,11 @@ public final class Pages {
     /**
      * The package from which to register all pages from.
      * Note that this method instantiates all pages with their default constructors before registering them.
+     * Important note: when using nested packages, separate them with '.' (eg: "platform.pages").
+     *
      * @param pack the package of the pages to register
      */
     public static void registerAllPagesFromPackage(String pack) {
-        //TODO fix bug with nested packages (like 'platform/pages'
         LOGGER.debug("Registering all pages...");
         try {
             for (Class clazz : PackageUtil.getClasses(pack)) {
@@ -56,11 +60,12 @@ public final class Pages {
 
     /**
      * Deregisters a page from the list.
+     *
      * @param page the page to deregister from the list
      */
     public static void deregisterPage(Page page) {
         if (!pageList.contains(page)) throw new IllegalArgumentException("Page was not previously registered.");
-        else{
+        else {
             LOGGER.debug("Deregistering page: " + page.getClass().getSimpleName());
             pageList.remove(page);
         }
@@ -76,6 +81,7 @@ public final class Pages {
 
     /**
      * Searches for a page and returns it back if it was found.
+     *
      * @param page the page to find in the list
      * @return the page if found
      */
@@ -89,6 +95,7 @@ public final class Pages {
 
     /**
      * Searches for a page based on a given url and returns it if it was found.
+     *
      * @param url the url of the page to find
      * @return the page if found
      */
@@ -102,6 +109,7 @@ public final class Pages {
 
     /**
      * Searches for a page based on a given url and returns it if it was found.
+     *
      * @param pageClazz the class of the page to find
      * @return the page if found
      */
