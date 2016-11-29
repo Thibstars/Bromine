@@ -1,3 +1,4 @@
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import ru.yandex.qatools.allure.annotations.Features;
@@ -12,6 +13,8 @@ import java.io.IOException;
 @Features("Utils")
 public class PackageUtilTestCase {
 
+    public static final Logger LOGGER = Logger.getLogger(PackageUtilTestCase.class);
+
     /**
      * Tests if classes can successfully be retrieved from a package.
      *
@@ -24,5 +27,10 @@ public class PackageUtilTestCase {
 
         Assert.assertNotNull(classes);
         Assert.assertTrue(classes.length > 0);
+
+        LOGGER.debug("Found classes:");
+        for (Class c : classes) {
+            LOGGER.debug(c.getTypeName());
+        }
     }
 }
