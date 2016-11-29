@@ -116,26 +116,19 @@ public class NavigatorTestCase {
         assertEquals(1, clicks.getClicks());
     }
 
-    //Ignore until a working solution is found
-    //TODO find working solution
-    @Ignore
     @Test
     public void shouldSendKeys() {
         StatsTracker.getInstance().reset();
 
         Pages.getPage("/index.html").goTo();
-        WebElement nameField = Navigator.getInstance().getDriver().findElement(By.id("name"));
+        WebElement emailField = Navigator.getInstance().getDriver().findElement(By.id("email"));
 
-        Navigator.getInstance().scrollElementIntoView(nameField);
-        Navigator.getInstance().sendKeys(nameField, "MyName");
+        Navigator.getInstance().scrollElementIntoView(emailField);
 
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        String s = "mail@mail.com";
+        Navigator.getInstance().sendKeys(emailField, s);
 
-        assertEquals("MyName", nameField.getText());
+        assertEquals(s, emailField.getAttribute("value"));
 
         SendKeyStats keys = null;
         for (StatsPlugin plugin : StatsTracker.getPlugins()) {
