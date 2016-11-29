@@ -19,6 +19,8 @@ public final class Highlighter {
 
     private static final Logger LOGGER = Logger.getLogger(Highlighter.class);
 
+    private static final String encoding = "UTF-8";
+
     //Assuming JS is enabled
     private static JavascriptExecutor js = (JavascriptExecutor) Navigator.getInstance().getDriver();
     private static WebElement lastElem = null;
@@ -29,7 +31,7 @@ public final class Highlighter {
 
     static {
         try {
-            SCRIPT_GET_ELEMENT_BORDER = FileUtils.readFileToString(new File(Highlighter.class.getClassLoader().getResource("getElementBorder.js").getFile()));
+            SCRIPT_GET_ELEMENT_BORDER = FileUtils.readFileToString(new File(Highlighter.class.getClassLoader().getResource("getElementBorder.js").getFile()), encoding);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,7 +41,7 @@ public final class Highlighter {
 
     static {
         try {
-            SCRIPT_UNHIGHLIGHT_ELEMENT = FileUtils.readFileToString(new File(Highlighter.class.getClassLoader().getResource("unhighlightElement.js").getFile()));
+            SCRIPT_UNHIGHLIGHT_ELEMENT = FileUtils.readFileToString(new File(Highlighter.class.getClassLoader().getResource("unhighlightElement.js").getFile()), encoding);
         } catch (IOException e) {
             e.printStackTrace();
         }
