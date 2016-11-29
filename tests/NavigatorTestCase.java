@@ -5,7 +5,6 @@ import navigation.NavigatorFactory;
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -138,22 +137,21 @@ public class NavigatorTestCase {
         assertEquals(1, keys.getTimesKeysSent());
     }
 
-    //Ignore until a working solution is found
-    //TODO find working solution
-    @Ignore
     @Test
     public void shouldSendKeysWithoutElement() {
         StatsTracker.getInstance().reset();
 
         Pages.getPage("/index.html").goTo();
-        WebElement nameField = Navigator.getInstance().getDriver().findElement(By.id("name"));
+        WebElement emailField = Navigator.getInstance().getDriver().findElement(By.id("email"));
 
-        Navigator.getInstance().scrollElementIntoView(nameField);
-        Navigator.getInstance().moveToElement(nameField);
-        Navigator.getInstance().click(nameField);
-        Navigator.getInstance().sendKeys("MyName");
+        Navigator.getInstance().scrollElementIntoView(emailField);
+        Navigator.getInstance().moveToElement(emailField);
+        Navigator.getInstance().click(emailField);
 
-        assertEquals("MyName", nameField.getText());
+        String s = "mail@mail.com";
+        Navigator.getInstance().sendKeys(s);
+
+        assertEquals(s, emailField.getAttribute("value"));
 
         SendKeyStats keys = null;
         for (StatsPlugin plugin : StatsTracker.getPlugins()) {
