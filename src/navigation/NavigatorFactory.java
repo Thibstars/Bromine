@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sut.Environment;
 
@@ -126,7 +127,10 @@ public final class NavigatorFactory {
 
         new InitFrameworkCommand().execute();
         Navigator navigator = Navigator.getInstance();
-        navigator.setDriver(new FirefoxDriver());
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference("javascript.enabled", true);
+        WebDriver d = new FirefoxDriver(profile);
+        navigator.setDriver(d);
         navigator.setWait(new WebDriverWait(navigator.getDriver(), 30));
         WebDriver driver = navigator.getDriver();
         driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
