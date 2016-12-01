@@ -5,6 +5,7 @@ import stats.defaultPlugins.*;
 
 /**
  * Factory responsible for creating the StatsTracker.
+ *
  * @author Thibault Helsmoortel
  */
 public final class StatsTrackerFactory {
@@ -13,6 +14,7 @@ public final class StatsTrackerFactory {
 
     /**
      * Creates and returns a default StatsTracker
+     *
      * @return the newly created default StatsTracker
      */
     public static StatsTracker createDefault() {

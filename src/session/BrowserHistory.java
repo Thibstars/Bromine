@@ -12,6 +12,7 @@ public final class BrowserHistory {
 
     /**
      * Returns true when the browser has a history, else if otherwise.
+     *
      * @return true when the browser has a history, else if otherwise
      */
     public static boolean hasHistory() {
@@ -20,6 +21,7 @@ public final class BrowserHistory {
 
     /**
      * Returns the size of the browser history.
+     *
      * @return the size of the browser history
      */
     public static long getHistoryLength() {

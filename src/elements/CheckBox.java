@@ -15,7 +15,7 @@ public class CheckBox extends WrappedElement {
      * Class constructor specifying the WebElement.
      *
      * @param element the actual WebElement
-     * @param value the value of the check box
+     * @param value   the value of the check box
      */
     public CheckBox(WebElement element, String value) {
         super(element);

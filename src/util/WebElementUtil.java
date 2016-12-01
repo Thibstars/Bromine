@@ -18,7 +18,7 @@ public final class WebElementUtil {
     public static String getTextOrTagOrToString(WebElement element) {
         return element.getText() == null
                 ? element.toString() == null
-                    ? element.getTagName() : element.toString()
+                ? element.getTagName() : element.toString()
                 : element.getText();
     }
 }

@@ -4,6 +4,7 @@ import stats.StatsAction;
 
 /**
  * StatsPlugin tracking only LMB double clicks.
+ *
  * @author Thibault Helsmoortel
  */
 public class LMBDoubleClickStats extends LMBClickStats {

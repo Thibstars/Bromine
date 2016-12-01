@@ -139,7 +139,7 @@ public class ActionBot {
      */
     public void scrollElementIntoView(WebElement element) {
         LOGGER.debug("Scrolling element " + element.toString() + " into view");
-        StepPerformer.perform("Scroll element into view" , WebElementUtil.getTextOrTagOrToString(element));
+        StepPerformer.perform("Scroll element into view", WebElementUtil.getTextOrTagOrToString(element));
 
         ((JavascriptExecutor) Navigator.getInstance().getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }

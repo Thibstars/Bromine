@@ -15,7 +15,7 @@ public class RadioButton extends WrappedElement {
      * Class constructor specifying the actual element.
      *
      * @param element the actual element
-     * @param value the value of the radio button
+     * @param value   the value of the radio button
      */
     public RadioButton(WebElement element, String value) {
         super(element);
@@ -25,7 +25,9 @@ public class RadioButton extends WrappedElement {
     /**
      * Toggles the radio button.
      */
-    public void toggle() { super.click(); }
+    public void toggle() {
+        super.click();
+    }
 
     /**
      * Checks the radio button if it wasn't checked already.

@@ -5,6 +5,7 @@ import stats.StatsPlugin;
 
 /**
  * StatsPlugin tracking waits.
+ *
  * @author Thibault Helsmoortel
  */
 public class WaitStats implements StatsPlugin {

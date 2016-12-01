@@ -5,6 +5,7 @@ import java.net.URL;
 
 /**
  * Representation of the environment under test.
+ *
  * @author Thibault Helsmoortel
  */
 public class Environment {
@@ -13,8 +14,9 @@ public class Environment {
 
     /**
      * Class constructor specifying name and url.
+     *
      * @param name the environment's name
-     * @param url the environment's url
+     * @param url  the environment's url
      */
     public Environment(String name, URL url) {
         this.name = name;
@@ -23,8 +25,9 @@ public class Environment {
 
     /**
      * Class constructor specifying name and url (in String form).
+     *
      * @param name the environment's name
-     * @param url the environment's url
+     * @param url  the environment's url
      */
     public Environment(String name, String url) {
         this.name = name;

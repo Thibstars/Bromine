@@ -4,6 +4,7 @@ import stats.StatsAction;
 
 /**
  * StatsPlugin tracking explicit waits.
+ *
  * @author Thibault Helsmoortel
  */
 public class ExplicitWaitStats extends WaitStats {

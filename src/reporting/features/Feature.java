@@ -46,7 +46,7 @@ public class Feature {
      * @throws IllegalArgumentException thrown when a feature is added to itself
      */
     public boolean addFeature(Feature feature) {
-        if (feature.equals(this)) throw  new IllegalArgumentException("Feature cannot be a sub feature of its own.");
+        if (feature.equals(this)) throw new IllegalArgumentException("Feature cannot be a sub feature of its own.");
         return features.add(feature);
     }
 

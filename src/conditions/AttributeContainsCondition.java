@@ -18,18 +18,18 @@ public class AttributeContainsCondition implements ExpectedCondition<Boolean> {
     /**
      * Class constructor specifying the element, attribute name and expected value.
      *
-     * @param element the element to evaluate
+     * @param element       the element to evaluate
      * @param attributeName the attribute value to evaluate
      * @param expectedValue the expected attribute value
      */
-    public AttributeContainsCondition(WebElement element, String attributeName, String expectedValue){
+    public AttributeContainsCondition(WebElement element, String attributeName, String expectedValue) {
         this.element = element;
         this.attributeName = attributeName;
         this.expectedValue = expectedValue;
     }
 
     @Override
-    public Boolean apply(WebDriver input){
+    public Boolean apply(WebDriver input) {
         return StringUtils.contains(element.getAttribute(attributeName), expectedValue);
     }
 }

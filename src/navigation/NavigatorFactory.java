@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Responsible class for creating and destroying the Navigator.
+ *
  * @author Thibault Helsmoortel
  */
 public final class NavigatorFactory {
@@ -25,6 +26,7 @@ public final class NavigatorFactory {
 
     /**
      * (Re)creates and returns the default Navigator based on the given Environment.
+     *
      * @param environment the environment for the Navigator to operate on
      * @return the (re)created Navigator instance
      */
@@ -34,8 +36,9 @@ public final class NavigatorFactory {
 
     /**
      * (Re)creates and returns the Navigator based on the given Environment and desired Browser.
+     *
      * @param environment the environment for the Navigator to operate on
-     * @param browser the browser to use
+     * @param browser     the browser to use
      * @return the (re)created Navigator instance
      */
     public static Navigator createNavigator(Environment environment, Browser browser) {
@@ -62,8 +65,9 @@ public final class NavigatorFactory {
     /**
      * (Re)creates and returns the Navigator based on the given Environment and desired Browser.
      * The navigator will be highlighting elements upon use.
+     *
      * @param environment the environment for the Navigator to operate on
-     * @param browser the browser to use
+     * @param browser     the browser to use
      * @return the (re)created Navigator instance
      */
     public static Navigator createHighlightingNavigator(Environment environment, Browser browser) {
@@ -74,14 +78,15 @@ public final class NavigatorFactory {
 
     /**
      * (Re)creates and returns the Navigator based on the given Environment and the desired incognito mode.
+     *
      * @param environment the environment for the Navigator to operate on
-     * @param incognito boolean value indicating whether or not to use incognito mode
+     * @param incognito   boolean value indicating whether or not to use incognito mode
      * @return the (re)created Navigator instance
      */
     public static Navigator createChromeNavigator(Environment environment, boolean incognito) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
-        if (incognito){
+        if (incognito) {
             //Set incognito driver options
             options.addArguments("--incognito");
         }
@@ -91,7 +96,8 @@ public final class NavigatorFactory {
 
     /**
      * (Re)creates and returns the Navigator based on the given Environment and the desired ChromeOptions
-     * @param environment the environment fo the Navigator to operate on
+     *
+     * @param environment   the environment fo the Navigator to operate on
      * @param chromeOptions the chrome options to be used
      * @return the (re)created Navigator instance
      */
@@ -117,8 +123,9 @@ public final class NavigatorFactory {
 
     /**
      * (Re)creates and returns the Navigator based on the given Environment.
+     *
      * @param environment the environment for the Navigator to operate on
-     * @return  the (re)created Navigator instance
+     * @return the (re)created Navigator instance
      */
     public static Navigator createFirefoxNavigator(Environment environment) {
         LOGGER.debug("Creating a Firefox Navigator for environment: " + environment.getName());

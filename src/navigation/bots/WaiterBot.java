@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Class responsible for performing Selenium wait actions.
+ *
  * @author Thibault Helsmoortel
  */
 public class WaiterBot {

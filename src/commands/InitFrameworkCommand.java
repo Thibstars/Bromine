@@ -47,27 +47,27 @@ public class InitFrameworkCommand implements Command {
 
             LOGGER.debug("Silencing noise...");
             //Remove noisy debug logs
-            Logger.getLogger("org.apache.http")                                                     .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.http.wire")                                                .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.http.headers")                                             .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.http.impl.conn.PoolingHttpClientConnectionManager")        .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.http.impl.conn.DefaultHttpClientConnectionOperator")       .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.http.impl.conn.DefaultManagedHttpClientConnection")        .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.http.impl.execchain.MainClientExec")                       .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.http.client.protocol.RequestAddCookies")                   .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.http.client.protocol.RequestAuthCache")                    .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.BooleanConverter")            .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.ByteConverter")               .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.CharacterConverter")          .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.DoubleConverter")             .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.FloatConverter")              .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.IntegerConverter")            .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.BigIntegerConverter")         .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.ShortConverter")              .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.BigDecimalConverter")         .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.LongConverter")               .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.StringConverter")             .setLevel(Level.WARN);
-            Logger.getLogger("org.apache.commons.beanutils.converters.ArrayConverter")              .setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.wire").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.headers").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.impl.conn.PoolingHttpClientConnectionManager").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.impl.conn.DefaultHttpClientConnectionOperator").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.impl.conn.DefaultManagedHttpClientConnection").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.impl.execchain.MainClientExec").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.client.protocol.RequestAddCookies").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.http.client.protocol.RequestAuthCache").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.BooleanConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.ByteConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.CharacterConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.DoubleConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.FloatConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.IntegerConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.BigIntegerConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.ShortConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.BigDecimalConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.LongConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.StringConverter").setLevel(Level.WARN);
+            Logger.getLogger("org.apache.commons.beanutils.converters.ArrayConverter").setLevel(Level.WARN);
 
             //Create default StatsTracker
             StatsTrackerFactory.createDefault();
@@ -84,8 +84,7 @@ public class InitFrameworkCommand implements Command {
 
             LOGGER.debug("Framework initialised");
             isInitialised = true;
-        }
-        else LOGGER.debug("The framework was already initialised.");
+        } else LOGGER.debug("The framework was already initialised.");
 
         return null;
     }

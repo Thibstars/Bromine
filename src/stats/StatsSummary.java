@@ -4,12 +4,14 @@ import java.util.List;
 
 /**
  * Class responsible for providing summaries of statistics.
+ *
  * @author Thibault Helsmoortel
  */
 public final class StatsSummary {
 
     /**
      * Summarizes all registered plugins.
+     *
      * @return a summary of all registered plugins
      */
     public static String summarizeAll() {
@@ -18,6 +20,7 @@ public final class StatsSummary {
 
     /**
      * Summarizes all plugins from a given list.
+     *
      * @param plugins the plugins to summarize
      * @return a summary of all given plugins
      */

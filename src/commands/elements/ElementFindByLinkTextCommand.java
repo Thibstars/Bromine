@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 
 /**
  * Command for finding WebElements by link text.
+ *
  * @author Thibault Helsmoortel
  */
 public class ElementFindByLinkTextCommand implements Command {

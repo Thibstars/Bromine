@@ -9,6 +9,7 @@ import java.util.Set;
 
 /**
  * Class responsible for the management of cookies.
+ *
  * @author Thibault Helsmoortel
  */
 public final class CookiesManager {
@@ -17,6 +18,7 @@ public final class CookiesManager {
 
     /**
      * Returns a set of cookies present in the current session.
+     *
      * @return a set of cookies present in the current session
      */
     public static Set<Cookie> getCookies() {
@@ -25,6 +27,7 @@ public final class CookiesManager {
 
     /**
      * Returns a cookie with the specified name, if any.
+     *
      * @param name the cookie name
      * @return the cookie with the specified name, if any
      */
@@ -34,6 +37,7 @@ public final class CookiesManager {
 
     /**
      * Adds a specified cookie to the current session.
+     *
      * @param cookie the cookie to add
      */
     @Step("Adding cookie: {0}")
@@ -44,6 +48,7 @@ public final class CookiesManager {
 
     /**
      * Delete a specified cookie from the current session.
+     *
      * @param cookie the cookie to delete
      */
     @Step("Deleting cookie: {0}")
@@ -53,6 +58,7 @@ public final class CookiesManager {
 
     /**
      * Delete a cookie, based on the specified name, from the current session.
+     *
      * @param name the name of the cookie to delete
      */
     @Step("Deleting cookie: {0}")

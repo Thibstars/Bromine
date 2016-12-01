@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Utility class for package operations.
+ *
  * @author Thibault Helsmoortel
  */
 public final class PackageUtil {
@@ -19,17 +20,18 @@ public final class PackageUtil {
 
     /**
      * Returns an array of classes inside a given package.
+     *
      * @param packageName the package of which to retrieve the classes from
      * @return the classes inside the given package
      * @throws ClassNotFoundException when a class was not found
-     * @throws IOException when a file could not be found
+     * @throws IOException            when a file could not be found
      */
     public static Class[] getClasses(String packageName) throws ClassNotFoundException, IOException {
         LOGGER.debug("Fetching all classes inside package: " + packageName);
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         assert classLoader != null;
         String path;
-        if (packageName.contains(".") ) path = packageName.replace('.', '/');
+        if (packageName.contains(".")) path = packageName.replace('.', '/');
         else path = packageName;
         Enumeration<URL> resources = classLoader.getResources(path);
         List<File> dirs = new ArrayList<>();
@@ -46,7 +48,8 @@ public final class PackageUtil {
 
     /**
      * Returns a list of classes found in the directory of a package.
-     * @param directory the directory of a package
+     *
+     * @param directory   the directory of a package
      * @param packageName the package
      * @return the list of classes found in a package
      * @throws ClassNotFoundException

@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Singleton class responsible for tracking multiple events.
+ *
  * @author Thibault Helsmoortel
  */
 public final class StatsTracker {
@@ -25,6 +26,7 @@ public final class StatsTracker {
 
     /**
      * Registers a plugin.
+     *
      * @param plugin the plugin to register
      */
     public void registerPlugin(StatsPlugin plugin) {
@@ -37,6 +39,7 @@ public final class StatsTracker {
 
     /**
      * Deregisters a plugin.
+     *
      * @param plugin the plugin to deregister
      */
     public void deregisterPlugin(StatsPlugin plugin) {
@@ -49,6 +52,7 @@ public final class StatsTracker {
 
     /**
      * Returns an immutable list of the currently registered plugins.
+     *
      * @return a list of the currently registered plugins
      */
     public static List<StatsPlugin> getPlugins() {
@@ -57,6 +61,7 @@ public final class StatsTracker {
 
     /**
      * Means to track a given action in all registered plugins.
+     *
      * @param action the action to track in all registered plugins
      */
     public void track(StatsAction action) {

@@ -8,6 +8,7 @@ import stats.StatsSummary;
 
 /**
  * Rule responsible for summarizing all stats.
+ *
  * @author Thibault Helsmoortel
  */
 public class SummarizeAllStats implements TestRule {

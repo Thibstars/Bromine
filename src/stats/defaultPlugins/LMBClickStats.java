@@ -5,6 +5,7 @@ import stats.StatsPlugin;
 
 /**
  * StatsPlugin tracking only LMB clicks.
+ *
  * @author Thibault Helsmoortel
  */
 public class LMBClickStats implements StatsPlugin {

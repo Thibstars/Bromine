@@ -274,7 +274,7 @@ public final class Navigator {
      * @return true if the current page is fully loaded, false if otherwise
      */
     public boolean isPageLoaded() {
-        return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+        return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
     }
 
     /**

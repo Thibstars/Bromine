@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Command for finding WebElements by class.
+ *
  * @author Thibault Helsmoortel
  */
 public class ElementsFindByClassCommand implements Command {

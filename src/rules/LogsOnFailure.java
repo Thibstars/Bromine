@@ -20,6 +20,7 @@ public class LogsOnFailure implements MethodRule {
 
     /**
      * Class constructor specifying the logs destination package path.
+     *
      * @param packagePath the logs destination package path
      */
     public LogsOnFailure(String packagePath) {

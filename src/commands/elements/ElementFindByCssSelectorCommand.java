@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 
 /**
  * Command for finding WebElements by cssSelector.
+ *
  * @author Thibault Helsmoortel
  */
 public class ElementFindByCssSelectorCommand implements Command {

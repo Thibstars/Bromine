@@ -2,6 +2,7 @@ package stats;
 
 /**
  * StatsPlugin tracking only sendKey events.
+ *
  * @author Thibault Helsmoortel
  */
 public class SendKeyStats implements StatsPlugin {

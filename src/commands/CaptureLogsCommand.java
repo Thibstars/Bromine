@@ -22,8 +22,9 @@ public class CaptureLogsCommand implements Command {
 
     /**
      * Class constructor specifying the name of the logs to capture.
+     *
      * @param packageName the name of the destination package
-     * @param name the name of the logs to capture
+     * @param name        the name of the logs to capture
      */
     public CaptureLogsCommand(String packageName, String name) {
         this.packageName = packageName;
@@ -55,8 +56,7 @@ public class CaptureLogsCommand implements Command {
                 e.printStackTrace();
             }
             LOGGER.debug("Logs successfully captured.");
-        }
-        else LOGGER.error("Something went wrong capturing the logs.");
+        } else LOGGER.error("Something went wrong capturing the logs.");
         return targetFile;
     }
 
@@ -64,7 +64,7 @@ public class CaptureLogsCommand implements Command {
      * Takes the logs and returns a byte array of it.
      * Gets attached to a test case in Allure
      *
-     * @param name the log file name
+     * @param name    the log file name
      * @param logFile the actual log file
      * @return the byte array of the log file
      * @throws IOException thrown when the file couldn't be read

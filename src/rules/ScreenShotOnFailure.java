@@ -9,6 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 /**
  * Rule responsible for taking a screenshot right before test failure.
+ *
  * @author Thibault Helsmoortel
  */
 public class ScreenShotOnFailure implements MethodRule {
@@ -19,6 +20,7 @@ public class ScreenShotOnFailure implements MethodRule {
 
     /**
      * Class constructor specifying the screenshot destination package path.
+     *
      * @param packagePath the screenshot destination package path
      */
     public ScreenShotOnFailure(String packagePath) {

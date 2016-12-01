@@ -7,6 +7,7 @@ import org.junit.runners.model.Statement;
 
 /**
  * Rule responsible for destroying the navigator.
+ *
  * @author Thibault Helsmoortel
  */
 public class DestroyNavigator implements TestRule {

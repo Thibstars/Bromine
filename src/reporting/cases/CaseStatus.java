@@ -3,7 +3,6 @@ package reporting.cases;
 /**
  * Different case statuses.
  *
- *
  * @author Thibault Helsmoortel
  */
 public enum CaseStatus {

@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Command for finding WebElements by XPath.
+ *
  * @author Thibault Helsmoortel
  */
 public class ElementsFindByXPathCommand implements Command {

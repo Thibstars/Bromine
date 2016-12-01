@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 
 /**
  * Command for finding WebElements by id.
+ *
  * @author Thibault Helsmoortel
  */
 public class ElementFindByIdCommand implements Command {
